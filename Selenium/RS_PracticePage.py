@@ -3,6 +3,8 @@ Created: 11/5/202
 Script Type: Selenium Practice Script
 Notes:
     This script is a selenium practice script using Raul Shetty's practice web page.
+    Install selenium
+    Install and run Chrome Driver
 
 Webpage used: https://rahulshettyacademy.com/AutomationPractice/
 """
