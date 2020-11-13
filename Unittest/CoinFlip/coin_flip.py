@@ -3,11 +3,12 @@ Coin Flip Simulation
 - Write some code that simulates flipping a single coin however many times the user decides.
 The code should record the outcomes and count the number of tails and heads.
 
-Script : This is the Main script
+Script : All in one Coin Flip script
 Created: 11/11/2020 - 11/12/2020
 
 Notes:
-
+    This is the original all in one Coin Flip script.  The Main and Function sections are broken out into 2 additional
+    scripts that work together the same as this script.  I did this to practice using/connecting multiple scripts.
 """
 
 # Froms & Imports
@@ -81,7 +82,7 @@ while True:
 
         coins_flips = Counter(results)
         print(show_results(flips, coins_flips[heads], coins_flips[tails]))
-        # break
+        playing = False
 
 
     # Ask to play again
@@ -90,61 +91,9 @@ while True:
         playing = True
 
     elif play_again.upper() == "N":
-        print(f"\nThank You for playing {player}")
+        print(f"\nThanks for playing {player}.")
         break
     else:
         print("Please enter 'Y' or 'N'.")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ToDo - Break Class and Functions into own scripts
-
-
-
-
-
-# ---- TESTS ----
-# Test the Coin class
-# c = Coin('Heads', "Odds")
-# print(c)
-
-# Test the random number generator Function
-# print(generate_number())
-
-# Test the even / odds function
-# print(even_odd())
-
-# Test input player name
-# name = player_name()
-# print(name)
-
-# Test input os number of coin flips
-# F = number_of_flips()
-# print(F)
-
-# Test count tails
-# T = count_tails(20, 11)
-# print(T)
-
-# Test results
-# R = show_results(30, 12, 18)
-# print(R)
-
-
-
-
-
-
 
 
