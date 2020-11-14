@@ -3,13 +3,11 @@ Coin Flip Simulation
 - Write some code that simulates flipping a single coin however many times the user decides.
 The code should record the outcomes and count the number of tails and heads.
 
-Script : This is the Main script
+Script : Functions only script
 Created: 11/13/2020
-
 Notes:
-    This is the original all in one Coin Flip script.  The Main and Function sections are broken out into 2 additional
-    scripts that work together the same as this script.  I did this to practice using/connecting multiple scripts.
-
+    The Main and Function sections are broken out into 2 scripts that are connected together.
+    I did this to practice using/connecting multiple scripts.
 """
 
 

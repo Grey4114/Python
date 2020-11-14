@@ -5,7 +5,6 @@ The code should record the outcomes and count the number of tails and heads.
 
 Script : Main script only
 Created: 11/13/2020
-
 Notes:
     The Main and Function sections are broken out into 2 scripts that connected together.
     I did this to practice using/connecting multiple scripts.
