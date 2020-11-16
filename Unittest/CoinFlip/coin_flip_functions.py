@@ -43,8 +43,10 @@ def generate_number():
 def flip_results(flips):
     if flips == 0:
         return 'Heads'
-    else:
+    elif flips == 1:
         return 'Tails'
+    else:
+        return 'Tie'
 
 
 # Post total Head / Tails results
