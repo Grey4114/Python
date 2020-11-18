@@ -13,49 +13,49 @@ Notes:
 # Froms & Imports
 import sys
 from collections import Counter
-from CoinFlip import coin_flip_functions
+from coin_flip_functions import generate_number, flip_results, flip_the_coin, show_results
 
 # Global Variables and Settings
 playing = True
 
 
 
-# ---- MAIN SECTION
 # Starting while loop
 while True:
     # Print opening statement
     print("\nWelcome to the Coin Flip Simulation")
 
-    # Create the coins and variables
-    results = []
-    heads = 0
-    tails = 1
-    flips = 0
-
     # Playing while loop
     while playing:
-        player = coin_flip_functions.player_name()
-        flips = coin_flip_functions.number_of_flips()
+        flips = 0
+        heads = 0  # Note this is not a counter, used as an identifier of heads
+        tails = 1  # Note this is not a counter, used as an identifier of tails
 
-        for x in range(flips):
-            number = coin_flip_functions.generate_number()
-            results.append(number)
-            flip_results = coin_flip_functions.flip_results(number)
-            print(flip_results)
+        # Player inputs the flip amount and the input is checked if it is a number
+        while True:
+            try:
+                flips = int(input("\nNumber of times to flip the coin: "))
+            except TypeError:
+                print("Error! That's not a number. Please try again.")
+                continue
+            break
 
-        coins_flips = Counter(results)
-        print(coin_flip_functions.show_results(flips, coins_flips[heads], coins_flips[tails]))
-        playing = False
+        # Flip the coins, count the flips and print results
+        flip_count = flip_the_coin(flips)
+        coin_flips = Counter(flip_count)
+        print(show_results(flips, coin_flips[heads], coin_flips[tails]))
 
 
-    # Ask to play again
-    play_again = input("Play Again (Y,N): ")
-    if play_again.upper() == "Y":
-        playing = True
+        # Ask to play again
+        while True:
+            play_again = input("\nPlay Again (Y,N): ")
+            if play_again.upper() == "Y":
+                break
 
-    elif play_again.upper() == "N":
-        print(f"\nThanks for playing {player}.")
-        break
-    else:
-        print("Please enter 'Y' or 'N'.")
-        continue
+            elif play_again.upper() == "N":
+                print(f"\nThanks for playing!!")
+                playing = False
+                break
+            else:
+                print("Please enter 'Y' or 'N'.")
+    break

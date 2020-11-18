@@ -1,10 +1,8 @@
 """
-Coin Flip Simulation
-- Write some code that simulates flipping a single coin however many times the user decides.
-The code should record the outcomes and count the number of tails and heads.
-
+Program: Coin Flip Simulation
 Script : Unittest script
 Created: 11/13/2020
+Updated: 11/17/2020
 Notes:
     This tests the coin_flip_functions.py script
 """
@@ -12,41 +10,10 @@ Notes:
 import sys
 import unittest
 from io import StringIO
-from unittest.mock import patch
-from CoinFlip.coin_flip_functions import player_name, number_of_flips, generate_number, flip_results, show_results
+from coin_flip_functions import generate_number, flip_results, flip_the_coin, show_results
 
 
-# Tests the player_name function
-# Todo - unable to get the mock inputs to work for this test, need to do more research
-class TestPlayerName(unittest.TestCase):
-    def setUp(self):
-        self.held, sys.stdout = sys.stdout, StringIO()
-        self.player = player_name()
-
-    #def test_player_name(self):
-    #    with mock.patch('builtins.input', return_value="Tom"):
-    #        assert player_name() == "Tom"
-
-    def tearDown(self):
-        self.player = None
-
-
-# Tests the number_of_flips function
-# Todo - unable to get the mock inputs to work for this test, need to do more research
-class TestNumberOfFlips(unittest.TestCase):
-    def setUp(self):
-        self.held, sys.stdout = sys.stdout, StringIO()
-        self.flips = number_of_flips()
-
-    #@patch('builtins.input', return_value=21)
-    #def test_num_flips(self, mock_flips):
-    #    self.flips
-    #    self.assertEqual(self.flips, mock_flips)
-
-    def tearDown(self):
-        self.flips = None
-
-
+""" --- TEST CASES --- """
 # Tests the generate_number function
 class TestGenerateNumber(unittest.TestCase):
     def setUp(self):
@@ -68,24 +35,26 @@ class TestGenerateNumber(unittest.TestCase):
 class TestFlipResults(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
-        self.results_0 = flip_results(0)
-        self.results_1 = flip_results(1)
-        self.results_2 = flip_results(2)
 
+    # Checks that 0 prints Heads
     def test_results_0(self):
-        return self.results_0
+        flip_results(0)
         self.assertEqual(sys.stdout.getvalue().strip(), 'Heads')
 
+    # Checks that 1 prints Tails
     def test_results_1(self):
-        return self.results_1
+        flip_results(1)
         self.assertEqual(sys.stdout.getvalue().strip(), 'Tails')
 
-    def test_results_2(self):
-        return self.results_2
-        self.assertEqual(sys.stdout.getvalue().strip(), 'Tie')
-
     def tearDown(self):
-        self.results = None
+        pass
+
+
+# Tests the flip_the_coin function
+class TestFlipCoin(unittest.TestCase):
+
+    def test_flip_coin(self):
+        self.assertEqual(len(flip_the_coin(7)), 7)
 
 
 # Tests the show_results function
@@ -101,7 +70,6 @@ class TestShowResults(unittest.TestCase):
 
     def tearDown(self):
         self.show = None
-
 
 
 if __name__ == '__main__':

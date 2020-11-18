@@ -11,28 +11,15 @@ Notes:
 """
 
 
-# Froms & Imports
+""" --- Froms & Imports --- """
 import random
 
 
-# Input a Player Name
-def player_name():
-    player = input("Enter your name: ")
-    return player
+""" --- VARIABLES --- """
+flip_count = []
 
 
-# Ask player number of times to flip coin
-def number_of_flips():
-    while True:
-        try:
-            flips = int(input("Number of times to flip the coin: "))
-        except:
-            print("Whoops! That's not a number. Please try again.")
-            continue
-        break
-    return flips
-
-
+""" ---- FUNCTIONS --- """
 # Create a random number generator(RNG)
 # Gives either 0 or 1
 def generate_number():
@@ -42,16 +29,23 @@ def generate_number():
 # Print coin flip results of each coin as it is flipped
 def flip_results(flips):
     if flips == 0:
-        return 'Heads'
-    elif flips == 1:
-        return 'Tails'
+        print('Heads')
     else:
-        return 'Tie'
+        print('Tails')
+
+
+# Flips the coin and keeps list of the flips
+def flip_the_coin(flips):
+    for x in range(flips):
+        number = generate_number()
+        flip_results(number)
+        flip_count.append(number)
+    return flip_count
 
 
 # Post total Head / Tails results
 def show_results(flips, heads, tails):
-    return f'\n{flips} Flips: {heads} Heads & {tails} Tails'
+    return f'{flips} Flips: {heads} Heads & {tails} Tails'
 
 
 

@@ -11,33 +11,17 @@ Notes:
     scripts that work together the same as this script.  I did this to practice using/connecting multiple scripts.
 """
 
-# Froms & Imports
+""" --- Froms & Imports --- """
 import random
 from collections import Counter
 
-# Global Variables and Settings
+""" --- Global Variables and Settings --- """
 playing = True
+heads = 0   # Note this is not a counter, used as an identifier of heads
+tails = 1   # Note this is not a counter, used as an identifier of tails
 
 
-# ----- FUNCTIONS
-# Input a Player Name
-def player_name():
-    player = input("Enter your name: ")
-    return player
-
-
-# Ask player number of times to flip coin
-def number_of_flips():
-    while True:
-        try:
-            flips = int(input("Number of times to flip the coin: "))
-        except:
-            print("Whoops! That's not a number. Please try again.")
-            continue
-        break
-    return flips
-
-
+""" ---- FUNCTIONS --- """
 # Create a random number generator(RNG)
 # Gives either 0 or 1
 def generate_number():
@@ -47,53 +31,61 @@ def generate_number():
 # Print coin flip results of each coin as it is flipped
 def flip_results(flips):
     if flips == 0:
-        return 'Heads'
+        print('Heads')
     else:
-        return 'Tails'
+        print('Tails')
+
+
+# Flips the coin and keeps list of the flips
+def flip_the_coin(flips):
+    for x in range(flips):
+        number = generate_number()
+        flip_results(number)
+        flip_count.append(number)
+    return flip_count
 
 
 # Post total Head / Tails results
 def show_results(flips, heads, tails):
-    return f'\n{flips} Flips: {heads} Heads & {tails} Tails'
+    return f'{flips} Flips: {heads} Heads & {tails} Tails'
 
 
-# ---- MAIN SECTION
-# Create main section
+""" ---- MAIN SECTION --- """
 # Starting while loop
 while True:
     # Print opening statement
     print("\nWelcome to the Coin Flip Simulation")
 
-    # Create the coins and variables
-    results = []
-    heads = 0
-    tails = 1
-    flips = 0
-
     # Playing while loop
     while playing:
-        player = player_name()
-        flips = number_of_flips()
+        flips = 0
+        flip_count = []
 
-        for x in range(flips):
-            number = generate_number()
-            results.append(number)
-            print(flip_results(number))
+        # Player inputs the flip amount and the input is checked if it is a number
+        while True:
+            try:
+                flips = int(input("\nNumber of times to flip the coin: "))
+            except TypeError:
+                print("Error! That's not a number. Please try again.")
+                continue
+            break
 
-        coins_flips = Counter(results)
-        print(show_results(flips, coins_flips[heads], coins_flips[tails]))
-        playing = False
-
-
-    # Ask to play again
-    play_again = input("Play Again (Y,N): ")
-    if play_again.upper() == "Y":
-        playing = True
-
-    elif play_again.upper() == "N":
-        print(f"\nThanks for playing {player}.")
-        break
-    else:
-        print("Please enter 'Y' or 'N'.")
+        # Flip the coins, count the flips and print results
+        flip_count = flip_the_coin(flips)
+        coin_flips = Counter(flip_count)
+        print(show_results(flips, coin_flips[heads], coin_flips[tails]))
 
 
+        # Ask to play again
+        while True:
+            play_again = input("\nPlay Again (Y,N): ")
+            if play_again.upper() == "Y":
+                break
+
+            elif play_again.upper() == "N":
+                print(f"\nThanks for playing!!")
+                playing = False
+                break
+            else:
+                print("Please enter 'Y' or 'N'.")
+    break
