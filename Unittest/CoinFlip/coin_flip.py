@@ -65,7 +65,7 @@ while True:
         while True:
             try:
                 flips = int(input("\nNumber of times to flip the coin: "))
-            except TypeError:
+            except ValueError:
                 print("Error! That's not a number. Please try again.")
                 continue
             break

@@ -13,11 +13,11 @@ Notes:
 # Froms & Imports
 import sys
 from collections import Counter
-from coin_flip_functions import generate_number, flip_results, flip_the_coin, show_results
+from coin_flip_functions import flip_the_coin, show_results
+
 
 # Global Variables and Settings
 playing = True
-
 
 
 # Starting while loop
@@ -35,7 +35,7 @@ while True:
         while True:
             try:
                 flips = int(input("\nNumber of times to flip the coin: "))
-            except TypeError:
+            except ValueError:
                 print("Error! That's not a number. Please try again.")
                 continue
             break
