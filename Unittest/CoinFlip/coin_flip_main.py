@@ -1,13 +1,18 @@
 """
-Coin Flip Simulation
-- Write some code that simulates flipping a single coin however many times the user decides.
-The code should record the outcomes and count the number of tails and heads.
+Program: Coin Flip Simulation
+Created: 11/11/2020 - 11/12/2020
+Script Type: Main section only
+Project Source:
+    Pierian Data's Complete Python 3 Bootcamp Projects List
+    https://github.com/Pierian-Data/Complete-Python-3-Bootcamp/blob/master/18-Milestone%20Project%20-%203/02-Final%20Capstone%20Project%20Ideas.ipynb
 
-Script : Main script only
-Created: 11/13/2020
+Program Details:
+    Write some code that simulates flipping a single coin however many times the user decides.
+    The code should record the outcomes and count the number of tails and heads.
+
 Notes:
-    The Main and Function sections are broken out into 2 scripts that connected together.
-    I did this to practice using/connecting multiple scripts.
+    The Main and Function sections are broken out into 2 additional scripts that work together the same as this script.
+    This was done to practice using/connecting multiple scripts.
 """
 
 # Froms & Imports
