@@ -1,11 +1,8 @@
 """
 Program: Pig Latin
-Created: 11/20/2020 - 11/21/2020
-Script Type: One script - this is a simple brute force version
-Project Source:
-    Pierian Data's Complete Python 3 Bootcamp Projects List
-    https://github.com/Pierian-Data/Complete-Python-3-Bootcamp/blob/master/18-Milestone%20Project%20-%203/02-Final%20Capstone%20Project%20Ideas.ipynb
-
+Created: 11/22/2020 - 11/23/2020
+Script Type:
+    One script - this is a more complex version using a PigLatin class and streamlined functions
 Program Details:
     Pig Latin is a game of alterations played on the English language game.
     Read Wikipedia for more info. https://en.wikipedia.org/wiki/Pig_Latin
@@ -29,125 +26,117 @@ Program Rules:
     "I"= "Iyay"
 
 Notes:
-
+    Added the PigLatin class and cleaned up the code
 
 """
-
 
 """ --- VARIABLES --- """
 special = "!@#$%^&*()-+_=,.<>?:;[]{}/"
 vowels = "aeiouy"
-consonants = "bcdfghjklmnpqrstvwxz"
 playing = True
+
+
+
+""" --- CLASSES --- """
+class PigLatin:
+    def __init__(self, word):
+        self.word = word
+
+    # Vowel - slice the word and return pig latin word
+    def vowel_word(self):
+        return self.word + 'way'
+
+    # Consonant - slice the word and return pig latin word
+    def consonant_word(self):
+        return self.word[1::] + self.word[0] + 'ay'
+
+    # Two consonants - slice the word and return pig latin word
+    def two_consonant_word(self):
+        return self.word[2::] + self.word[0:2] + 'ay'
+
+    # Three Consonant - slice the word and return pig latin word
+    def three_consonant_word(self):
+        return self.word[3::] + self.word[0:3] + 'ay'
+
+    # This simple returns what the current word is
+    def __str__(self):
+        return f'The word that is being converted is: {self.word}'
+
+
 
 
 """ --- FUNCTIONS --- """
 # This checks the word and returns the pig latin version
 def transform_word(word):
-    word = word.lower()
-    word_type = check_if_vowel(word)
+    word_in = word.lower()
+    pl = PigLatin(word_in)
+    word_type = check_word_type(word_in)
 
     if word_type == "v":
-        pig_latin = vowel_word(word)
-        return pig_latin
-
+        return pl.vowel_word()
+    elif word_type == "c":
+        return pl.consonant_word()
+    elif word_type == "c2":
+        return pl.two_consonant_word()
     else:
-        word_type = check_if_consonant(word)
-        if word_type == "c":
-            pig_latin = consonant_word(word)
-            return pig_latin
-        elif word_type == "c2":
-            pig_latin = two_consonant_word(word)
-            return pig_latin
-        else:
-            pig_latin = three_consonant_word(word)
-            return pig_latin
-
-
-# Word - Check if the word starts with a vowel
-def check_if_vowel(word):
-    for v in vowels:
-        if word[0] == v:
-            word_type = 'v'
-            return word_type
+        return pl.three_consonant_word()
 
 
 # Word - Check if the word starts with a consonant(s)
-def check_if_consonant(word):
-    count = 0
+def check_word_type(word):
+    type = 0
 
-    # Verify if word is a single consonant
-    for a in consonants:
-        if word[0] == a:
-            word_type = 'c'
-            count += 1
-            break
-
-    # Verify if word has two consonants
-    if count == 1:
-        for b in consonants:
-            if word[1] == b:
-                word_type = 'c2'
-                count += 1
+    for v in vowels:
+        for i, let in enumerate(word):
+            if v == let:
+                type = i - 1
                 break
 
-    # Verify if word has three consonants
-    if count == 2:
-        for c in consonants:
-            if word[2] == c:
-                word_type = 'c3'
-                break
+    if type == 1:
+        word_type = 'v'
+    elif type == 2:
+        word_type = 'c'
+    elif type == 3:
+        word_type = 'c2'
+    else:
+        word_type = 'c3'
 
     return word_type
 
 
-# Vowel - slice the word and return pig latin word
-def vowel_word(word):
-    pig_latin = word + 'way'
-    return pig_latin
-
-
-# Consonant - slice the word and return pig latin word
-def consonant_word(word):
-    pig_latin = word[1::] + word[0] + 'ay'
-    return pig_latin
-
-
-# Two consonants - slice the word and return pig latin word
-def two_consonant_word(word):
-    pig_latin = word[2::] + word[0:2] + 'ay'
-    return pig_latin
-
-
-# Three Consonant - slice the word and return pig latin word
-def three_consonant_word(word):
-    pig_latin = word[3::] + word[0:3] + 'ay'
-    return pig_latin
-
-
-# Sentance - Slice up the sentence
-def sentance_slice(sentance):
-    new_sentance = sentance.split()
-    return new_sentance
-
-# Sentnce - Transform each word and add into the sentance
+# Sentance - Transform each word and add into the sentance
 def convert_sentance(sentance):
+    sentance = sentance.split()
     new_sentance = []
     for word in sentance:
-        pig_latin = transform_word(word)
-        new_sentance.append(pig_latin)
+        pig_latin_word = transform_word(word)
+        new_sentance.append(pig_latin_word)
         pig_latin_sentance = " ".join(new_sentance)
     return pig_latin_sentance
 
 
+# Users choice transform the Word / Sentance into pig latin
+def user_choice(choice):
+    if choice == 'w':
+        pig_latin_word = transform_word(word)
+        print_pig_latin_word(word, pig_latin_word)
+    else:
+        pig_latin_sentance = convert_sentance(sentance)
+        print_pig_latin_sentance(sentance, pig_latin_sentance)
+
+
+
+
 # Print the orinal word and the pig latin word
-def print_pig_latin_word(word, pig_latin):
-    print(f'\n\t  Oringal Word: {word}\n\tPig Latin Word: {pig_latin}')
+def print_pig_latin_word(word, pig_latin_word):
+    print(f'\n\t  Oringal Word: {word}\n\tPig Latin Word: {pig_latin_word}')
 
 
 # Print the original sentance and the new pig latin sentance
 def print_pig_latin_sentance(sentance, pig_latin_sentance):
     print(f'\n\t  Oringal Sentance: {sentance}\n\tPig Latin Sentance: {pig_latin_sentance}')
+
+
 
 
 """ --- MAIN --- """
@@ -166,7 +155,7 @@ while True:
         choice = ""
         word = ""
         sentance = []
-        pig_latin = ""
+        pig_latin_word = ""
         pig_latin_sentance = []
 
         # START - Choice loop
@@ -178,7 +167,6 @@ while True:
             except ValueError as e:
                 print(e)
                 continue
-
             # END - Choice loop
             break
 
@@ -186,7 +174,6 @@ while True:
         # START - Word / Sentance loop
         while True:
             if choice.lower() == 'w':
-
                 # Input Word - check that it is one word, no numbers, spaces or special characters
                 try:
                     word = input('Enter a word: ')
@@ -194,7 +181,6 @@ while True:
                         raise ValueError('\tError! Empty string, please try again')
                     elif any(not w.isalpha() for w in word):
                         raise ValueError('\tError! Contains numbers, spaces or special characters, please try again')
-
                 except ValueError as e:
                     print(e)
                     continue
@@ -209,25 +195,22 @@ while True:
                         raise ValueError('\tError! Contains numbers, please try again')
                     elif any(sc in special for sc in sentance):
                         raise ValueError('\tError! Contains special characters, please try again')
-
                 except ValueError as e:
                     print(e)
                     continue
 
-
-
             # END - Word / Sentance loop
             break
 
+        # user_choice(choice)
+
 
         # Word / Sentance transform section
-        if choice == 'w':
-            pig_latin = transform_word(word)
-            print_pig_latin_word(word, pig_latin)
-
+        if choice.lower() == 'w':
+            pig_latin_word = transform_word(word)
+            print_pig_latin_word(word, pig_latin_word)
         else:
-            new_sentance = sentance_slice(sentance)
-            pig_latin_sentance = convert_sentance(new_sentance)
+            pig_latin_sentance = convert_sentance(sentance)
             print_pig_latin_sentance(sentance, pig_latin_sentance)
 
 
@@ -243,7 +226,6 @@ while True:
                 break
             else:
                 print("Please enter 'Y' or 'N'.")
-
 
     # END - Main loop
     break
