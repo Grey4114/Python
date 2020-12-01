@@ -33,7 +33,7 @@ Notes:
 """
 
 """ --- IMPORTS --- """
-from pig_latin_complex_functions import transform_word, convert_sentance, print_pig_latin_word, print_pig_latin_sentance
+from pig_latin_complex_functions import user_choice
 
 
 """ --- VARIABLES --- """
@@ -53,12 +53,11 @@ while True:
 
     # START - Playing loop
     while playing:
-        word_type = ""
         choice = ""
         word = ""
-        sentance = []
+        sentance = ""
         pig_latin_word = ""
-        pig_latin_sentance = []
+        pig_latin_sentance = ""
 
         # START - Choice loop
         while True:
@@ -104,15 +103,8 @@ while True:
             # END - Word / Sentance loop
             break
 
-
-        # Word / Sentance transform section
-        if choice == 'w':
-            pig_latin_word = transform_word(word)
-            print_pig_latin_word(word, pig_latin_word)
-        else:
-            pig_latin_sentance = convert_sentance(sentance)
-            print_pig_latin_sentance(sentance, pig_latin_sentance)
-
+        # Runs the function that transform the Word / Sentance into pig latin
+        user_choice(choice, word, sentance)
 
         # START - Play again loop
         while True:
