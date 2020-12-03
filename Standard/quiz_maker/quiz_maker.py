@@ -9,7 +9,7 @@ Project Source:
     https://github.com/Pierian-Data/Complete-Python-3-Bootcamp/blob/master/18-Milestone%20Project%20-%203/02-Final%20Capstone%20Project%20Ideas.ipynb
 
 Program Details:
-    Make an application which takes various questions form a file, picked randomly, and puts together a quiz for
+    Make an application which takes various questions from a file, picked randomly, and puts together a quiz for
     students. Each quiz can be different and then reads a key to grade the quizzes.
 
 Notes:
@@ -17,88 +17,109 @@ Notes:
 """
 
 
-""" --- VARIABLES --- """
-# OS functions - how to see and access all files in a directory
-# import os
+" --- VARIABLES --- "
 import random
-
-question_Areas = ['History', 'Literature', 'Geography', 'Sciences', 'Mathematics']
-question_StartEnd = ((2, 11), (14, 23), (26, 35), (38, 47), (50, 59))
-numberSets = []
+import csv
 
 
 
-""" --- CLASSES --- """
+" --- FUNCTIONS --- "
+# Opens the questions.csv file and drops the info into a list
+def get_text_from_csv_file():
+    q_data = open('questions.csv', 'r')   # Open the csv file using read
+    csv_data = csv.reader(q_data)    # Read all of the lines of info
+    q_lines = list(csv_data)
+    q_data.close()    # Close the file
+    return q_lines
 
 
+# Generates a random number
+def generate_random_number(start, end):
+    return random.randint(start, end)
 
 
-
-""" --- FUNCTIONS --- """
-def get_random_numbers():
-    for number_pair in question_StartEnd:
-        start = number_pair[0]
-        end = number_pair[1]
-        new_set = []
-        count = 0
-
-        while count < 3:
-            num = random.randint(start, end)
-            if num not in new_set:
-                count += 1
-                new_set.append(num)
-        numberSets.append(new_set)
-    return numberSets
+# Calls for 10 random numbers and checks to make sure there are no duplicates
+def question_number_list():
+    numberList = []
+    while len(numberList) < 10:
+        n = generate_random_number(1, 44)
+        if n not in numberList:
+            numberList.append(n)
+    return numberList
 
 
-
-
-def get_text_from_file():
-    question = open('questions.txt', 'r')   # Open the text file using read
-    line = question.readlines()     # Read all of the lines of text
-    question.close()    # Close the file
-    return line
-
-
-def print_question(count, line):
-    return f"Q{count}: {line}"
-
-
-def print_answers():
-    pass
-
-
-
-def question_answer():
-    line = get_text_from_file()
-    numberSets = get_random_numbers()
+# Calls for 3 random numbers and checks to make sure there are no duplicates
+def answers_number_list():
     count = 0
-
-    # for loop - read and print each line
-    for numSet in numberSets:
-        ac = 0
-        area = question_Areas
-        print(area[ac])
-        ac += 1
-        for x in numSet:
+    num_list = []
+    while count < 3:
+        x = generate_random_number(1, 3)
+        if x not in num_list:
             count += 1
-            print(print_question(count, line[x - 1]))
+            num_list.append(x)
+    return num_list
 
 
-question_answer()
+# Prints the question
+def print_question(count, question):
+    return f"\nQuestion {count}: {question}"
 
 
-
-
-
-""" --- MAIN --- """
-
-
-
-
-
+# Prints the answer list
+def print_answers(count, answers):
+    return f"\t{count}) {answers}"
 
 
 
+" --- MAIN --- "
+def main_def():
+    questions = get_text_from_csv_file()
+    q_num_list = question_number_list()
+    ques_count = 0
+    points = 0
 
+
+    while True:
+        # For loop prints the question
+        for x in q_num_list:
+            correct_answer = 0
+            answ_count = 0
+            ques_count += 1
+            print(print_question(ques_count, questions[x][0]))
+            a_num_list = answers_number_list()
+
+            # For loop prints the list of answers
+            for y in a_num_list:
+                answ_count += 1
+                print(print_answers(answ_count, questions[x][y]))
+                correct_answer = a_num_list.index(1) + 1
+
+            # Player inputs the answer number
+            while True:
+                try:
+                    choice = int(input("Choice: "))
+                    if choice < 1 or choice > 3:
+                        raise ValueError('\tError! Enter 1, 2 or 3')
+                except ValueError as e:
+                    print(e)
+                    continue
+                break
+
+
+            # Todo - compare choice and correct answer
+            if choice == correct_answer:
+                points += 10
+                print(f'\tCorrect')
+            else:
+                print(f'\tIncorrect')
+
+        break
+
+    print(f'\n\tTotal: {points}')
+
+
+
+
+
+main_def()
 
