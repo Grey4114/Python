@@ -1,10 +1,7 @@
 """
+Author: Chris Caprio
 Program: Coin Flip Simulation
-Script : Unittest script
-Created: 11/13/2020
-Updated: 11/17/2020
-Notes:
-    This tests the coin_flip_functions.py script
+Notes: Unittest script for testing the coin_flip_function.py script
 """
 
 import sys

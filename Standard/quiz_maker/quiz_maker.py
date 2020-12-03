@@ -1,18 +1,11 @@
 """
+Author: Chris Caprio
 Program: Quiz Maker
-Created: 12/1/2020 -
-Script Type:
-    One script - contains variables, functions, classes and main
+Details:
+Make an application which takes randomly picked questions from a csv file and puts together a quiz for students.
+Each quiz can be different and then reads a key to grade the quizzes.
 
-Project Source:
-    Pierian Data's Complete Python 3 Bootcamp Projects List
-    https://github.com/Pierian-Data/Complete-Python-3-Bootcamp/blob/master/18-Milestone%20Project%20-%203/02-Final%20Capstone%20Project%20Ideas.ipynb
-
-Program Details:
-    Make an application which takes various questions from a file, picked randomly, and puts together a quiz for
-    students. Each quiz can be different and then reads a key to grade the quizzes.
-
-Notes:
+Notes: Program scores 10 point for each correct answer and gives a total at end.
 
 """
 
@@ -72,7 +65,7 @@ def print_answers(count, answers):
 
 
 " --- MAIN --- "
-def main_def():
+def main():
     questions = get_text_from_csv_file()
     q_num_list = question_number_list()
     ques_count = 0
@@ -106,7 +99,7 @@ def main_def():
                 break
 
 
-            # Todo - compare choice and correct answer
+            # Compare choice to correct answer, give response and points
             if choice == correct_answer:
                 points += 10
                 print(f'\tCorrect')
@@ -118,8 +111,6 @@ def main_def():
     print(f'\n\tTotal: {points}')
 
 
-
-
-
-main_def()
+if __name__ == "__main__":
+    main()
 

@@ -1,17 +1,12 @@
 """
-Program: Fizz Buzz
-Created: 11/18/2020
-Updated: 11/20/2020
-Script Type: Complexe FizzBuzz script - Main Section only
-Program Details:
-    In this adaptation of FizzBuzz the user is asked to enter number range (Ex. 85 to 123).
-    The program will then list the number range, replacing multiples of 3 with Fizz, multiples of 5 with Buzz and
-    multiples of 3 and 5 with FizzBuzz.
-    The program will also keep a count of each type.
+Author: Chris Caprio
+Program: FizzBuzz
+Details:
+The program prints the numbers 1 to 100.
+For multiples of three print “Fizz” instead of the number and for the multiples of five print “Buzz”.
+For numbers which are multiples of both three and five print “FizzBuzz”.
 
-Notes:
-    For training in working with multiple connected scripts, the fizz_buzz_complex script was split into the
-    scripts fizz_buzz_complex_main and fizz_buzz_complex_functions
+Notes: Main section of the fizz_buzz_complex.py script
 
 """
 

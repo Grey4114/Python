@@ -1,12 +1,7 @@
 """
+Author: Chris Caprio
 Program: Change Return
-Created: 11/17/2020
-Updated: 11/20/2020
-Script Type: Functions section only
-Notes:
-    The original script is change_return.py
-    I have broken it into 2 scripts - return_change_main and return_change_functions to exapnd my skills in working
-    with multiple connected scripts
+Notes: Functions section of the change_return.py script
 
 """
 

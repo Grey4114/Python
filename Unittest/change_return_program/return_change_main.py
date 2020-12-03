@@ -1,12 +1,11 @@
 """
+Author: Chris Caprio
 Program: Change Return
-Created: 11/17/2020
-Updated: 11/20/2020
-Script Type: Main section only
-Notes:
-    The original script is change_return.py
-    I have broken it into 2 scripts - return_change_main and return_change_functions to exapnd my skills in working
-    with multiple connected scripts
+Details:
+The user enters a cost and then the amount of money given. The program will figure out the change and the number of
+quarters, dimes, nickels, pennies needed for the change.
+
+Notes: Main section of the change_return.py script
 
 """
 

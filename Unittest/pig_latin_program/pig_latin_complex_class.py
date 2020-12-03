@@ -1,16 +1,7 @@
 """
+Author: Chris Caprio
 Program: Pig Latin
-Created: 11/23/2020
-Script Type:
-    Class Only - this is orinally from the pig_latin_complex script
-
-Program Details:
-    Pig Latin is a game of alterations played on the English language game.
-    Read Wikipedia for more info. https://en.wikipedia.org/wiki/Pig_Latin
-
-Notes:
-    Broke the pig_latin_complex script into 3 scripts - main, function & class-  to improve skills of linking
-    multiple scripts
+Notes: Class section of the pig_latin_complex.py script
 
 """
 

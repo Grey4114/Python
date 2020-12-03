@@ -1,15 +1,7 @@
 """
+Author: Chris Caprio
 Program: Count Vowels
-Created: 11/19/2020
-Updated:
-Script Type: Unittest for vowel_counter_functions
-Program Details:
-    Enter a string and the program counts the number of vowels in the text.
-    For added complexity have it report a sum of each vowel found.
-
-Notes:
-    The vowel_counter script was split into the 2 scripts, vowel_counter_main and vowel_counter_functions
-    to test working with mutiple connected script.
+Notes: Unittest script that tests the vowel_counter_functions.py script
 """
 
 import sys

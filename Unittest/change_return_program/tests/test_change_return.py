@@ -1,9 +1,7 @@
 """
+Author: Chris Caprio
 Program: Change Return
-Created: 11/17/2020
-Script Type:  Unittest Script
-Notes:
-    This script tests change_return_functions.py script
+Notes: Unittest script for the change_return_functions.py script
 """
 
 import sys

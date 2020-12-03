@@ -1,10 +1,7 @@
 """
+Author: Chris Caprio
 Program: FizzBuzz
-Created: 11/18/2020
-Updated:
-Script Type: Unittest script
-Notes:
-    Unittest for fizz_buzz_complex_functions scrip
+Notes: Unittest test script for testing the fizz_buzz_complex_functions.py script
 """
 
 

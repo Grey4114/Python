@@ -1,21 +1,13 @@
 """
+Author: Chris Caprio
 Program: FizzBuzz
-Created: 11/18/2020
-Updated: 11/20/2020
-Script Type: All In One Complexe FizzBuzz script
-Project Source:
-    Pierian Data's Complete Python 3 Bootcamp Projects List
-    https://github.com/Pierian-Data/Complete-Python-3-Bootcamp/blob/master/18-Milestone%20Project%20-%203/02-Final%20Capstone%20Project%20Ideas.ipynb
+Program Detail:
+The program prints the numbers 1 to 100.
+For multiples of three print “Fizz” and for the multiples of five print “Buzz”.
+For numbers which are multiples of both three and five print “FizzBuzz”.
 
-Program Details:
-    In this adaptation of FizzBuzz the user is asked to enter number range (Ex. 85 to 123).
-    The program will then list the number range, replacing multiples of 3 with Fizz, multiples of 5 with Buzz and
-    multiples of 3 and 5 with FizzBuzz.
-    The program will also keep a count of each type.
+Notes:  This is a more robust version of the fizz_buzz_simple program.
 
-Notes:
-    This script is broken into two other scripts Main and Functions, to practice working with multiple scripts that
-    are connected.
 """
 
 from collections import Counter
