@@ -102,7 +102,8 @@ def check_choice_answer(points, choice, correct_answer_number):
 
 
 # Play again loop
-def play_again(playing):
+def play_again():
+    playing = True
     while True:
         play_again = input("\nPlay Again (Y,N): ")
         if play_again.upper() == "Y":

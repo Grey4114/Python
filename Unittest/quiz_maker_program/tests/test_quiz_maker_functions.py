@@ -57,7 +57,6 @@ class TestGenerateNumber(unittest.TestCase):
         end = 45
         for x in range(0, end):
             num = generate_random_number(start, end)
-            # print(num)  # This is a quick check of the random numbers that are generated
             self.assertIsNot(num, num < start, num > end)
 
     def test_answer_range(self):
@@ -75,7 +74,6 @@ class TestQuestionNumberList(unittest.TestCase):
 
     def test_number_list_size(self):
         num = self.questionNumbers
-        # print(num)   # quick check
         self.assertEqual(len(num), 10)
 
     def test_numbers_in_range(self):
@@ -93,7 +91,6 @@ class TestAnswerNumberList(unittest.TestCase):
 
     def test_list_size(self):
         num = self.answerNumbers
-        # print(num)   # Quick check
         self.assertEqual(len(num), 3)
 
     def test_numbers_in_range(self):
@@ -120,7 +117,7 @@ class TestGreeting(unittest.TestCase):
 
     def tearDown(self):
         self.greeting = None
-        pass
+        
 
 # Test that the questions are being shown correctly
 class TestPrintQuestion(unittest.TestCase):
@@ -261,36 +258,49 @@ class TestCheckChoiceAnswer(unittest.TestCase):
         self.correct_answer_number = None
         self.incorrect_answer_number = None
 
-# Todo - Tests user input play again
-"""
+
+# Tests user input for play again function
 class TestPlayAgain(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
-        self.play = play_again(True)
 
     @patch('builtins.input', return_value='y')
     def test_input_yes(self, mock_input):
-        self.assertEqual(self.play, True)
+        play = play_again()
+        self.assertEqual(play, True)
 
     @patch('builtins.input', return_value='n')
     def test_input_no(self, mock_input):
-        self.assertEqual(self.play, False)
+        play = play_again()
+        self.assertEqual(play, False)
 
+    @patch('builtins.input', return_value='n')
+    def test_input_no_text_check(self, mock_input):
+        play = play_again()
+        self.assertEqual(sys.stdout.getvalue().strip(), "Thanks for playing!!")
+
+
+    # TODO - Unabel to get the mock input to work correctly for the 3 test cases, skipping for now
+    """
     @patch('builtins.input', return_value='z')
     def test_input_letter(self, mock_input):
-        self.assertEqual(self.play, True)
+        play = play_again()
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
 
     @patch('builtins.input', return_value='')
     def test_input_space(self, mock_input):
-        self.assertEqual(self.play, True)
+        play = play_again()
+        self.assertEqual(play, True)
 
     @patch('builtins.input', return_value=5)
     def test_input_number(self, mock_input):
-        self.assertEqual(self.play, True)
+        play = play_again()
+        self.assertEqual(play, True)
+    """
 
     def tearDown(self):
-        self.play = None
-"""
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()

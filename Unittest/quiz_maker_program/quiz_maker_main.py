@@ -26,7 +26,7 @@ def main(questions, q_num_list, ques_count):
     while True:
         # For loop prints the question
         for x in q_num_list:
-            # Setup variables
+            # Setup variable
             correct_answer_number = 0
             answ_count = 0
             ques_count += 1
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         main(questions, q_num_list, ques_count)
 
         # Run the play again function
-        playing = play_again(playing)
+        playing = play_again()
 
 
 
