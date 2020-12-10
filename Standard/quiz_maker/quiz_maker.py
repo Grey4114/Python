@@ -33,24 +33,32 @@ def generate_random_number(start, end):
 
 # Calls for 10 random numbers and checks to make sure there are no duplicates
 def question_number_list():
-    numberList = []
-    while len(numberList) < 10:
+    questionNumberList = []
+    while len(questionNumberList) < 10:
         n = generate_random_number(1, 44)
-        if n not in numberList:
-            numberList.append(n)
-    return numberList
+        if n not in questionNumberList:
+            questionNumberList.append(n)
+    return questionNumberList
 
 
 # Calls for 3 random numbers and checks to make sure there are no duplicates
 def answers_number_list():
     count = 0
-    num_list = []
+    answerNumberList = []
     while count < 3:
         x = generate_random_number(1, 3)
-        if x not in num_list:
+        if x not in answerNumberList:
             count += 1
-            num_list.append(x)
-    return num_list
+            answerNumberList.append(x)
+    return answerNumberList
+
+
+# Prints the question
+def print_greeting():
+    print("\nWelcome to the Quiz Maker program")
+    print("\tThere are 10 questions and each correct answer is worth 10 points.")
+    print("\tAnswer all 10 questions and see how well you do.")
+    print("\tGood Luck!!")
 
 
 # Prints the question
@@ -62,16 +70,14 @@ def print_question(count, question):
 def print_answers(count, answers):
     return f"\t{count}) {answers}"
 
+# Prints the answer list
+def print_score(points):
+    return f'\n\tTotal Score: {points}'
+
 
 
 " --- MAIN --- "
-def main():
-    questions = get_text_from_csv_file()
-    q_num_list = question_number_list()
-    ques_count = 0
-    points = 0
-
-
+def main(questions, q_num_list, ques_count, points):
     while True:
         # For loop prints the question
         for x in q_num_list:
@@ -90,7 +96,7 @@ def main():
             # Player inputs the answer number
             while True:
                 try:
-                    choice = int(input("Choice: "))
+                    choice = int(input("Answer: "))
                     if choice < 1 or choice > 3:
                         raise ValueError('\tError! Enter 1, 2 or 3')
                 except ValueError as e:
@@ -99,7 +105,7 @@ def main():
                 break
 
 
-            # Compare choice to correct answer, give response and points
+            # Compare choice to correct answer, give response and apply points
             if choice == correct_answer:
                 points += 10
                 print(f'\tCorrect')
@@ -108,9 +114,39 @@ def main():
 
         break
 
-    print(f'\n\tTotal: {points}')
 
+    return points
 
 if __name__ == "__main__":
-    main()
+    playing = True
+
+    # Main loop
+    while playing:
+        # Setup the variables
+        questions = get_text_from_csv_file()
+        q_num_list = question_number_list()
+        ques_count = 0
+        points = 0
+
+        # Print the greeting
+        print_greeting()
+
+        # Run the main program and print the score
+        points = main(questions, q_num_list, ques_count, points)
+        print(print_score(points))
+
+
+        # START - Play again loop
+        while True:
+            play_again = input("\nPlay Again (Y,N): ")
+            if play_again.upper() == "Y":
+                break
+            elif play_again.upper() == "N":
+                print(f"\nThanks for playing!!")
+                playing = False
+                break
+            else:
+                print("Please enter 'Y' or 'N'.")
+
+
 
