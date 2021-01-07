@@ -1,5 +1,15 @@
-number, type, recipe, ingrediants...
-1,Cake,Chocolate Cake,milk,sugar
-2,Pie,Chocolate Cake,milk,sugar,flour
-3,Sandwich,Chocolate Cake,milk,sugar,flour,chocolate
-4,Soup,Trout,Carrot
+type,recipe_name,ingrediants...
+Cake,Chocolate Cake,milk,sugar
+Pie,Chocolate Cake,milk,sugar,flour
+Sandwich,Chocolate Cake,milk,sugar,flour,chocolate
+Soup,Trout,Carrot
+Candy,PBJ Cookie,Banana
+Cookie,Chris Cookies,Salt
+Cookie,Rumble Cookie,Banana,Carrot
+Pie,Pumkin Pie,Banana,Mustard,Salt
+Soup,Tomato Soup,Banana,Mustard
+Pie,Apple Pie,Salt,Carrot,Salt
+Candy,Gummy,Salt,Banana
+Candy,Gummy,Salt,Banana
+Cookie,Oatmeal,Pepper,Tomato
+Pie,Apple Pie,Apple,Salt,Mayo

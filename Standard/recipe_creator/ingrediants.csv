@@ -1,5 +1,16 @@
-number, type, ingrediant
-1,Fruit,Banana
-2,Spice,Salt
-3,Vegitable,Carrot
-4,Condiment,Mustard
+type,ingrediant
+Fruit,Banana
+Spice,Salt
+Condiment,Mustard
+Condiment,Mayo
+Spice,Pepper
+Protien,Chicken
+Protien,Fish
+Protien,Steak
+Fruit,Apple
+Fruit,Orange
+Fruit,Pear
+Vegitable,Tomato
+Vegitable,Carrot
+Vegitable,Onion
+Condiment,Soy Sauce
