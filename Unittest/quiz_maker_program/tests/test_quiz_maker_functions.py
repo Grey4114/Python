@@ -1,7 +1,6 @@
 """
 Author: Chris Caprio
 Program: Quiz Maker
-
 Notes: Unittest tests of the quiz_maker_functions.py script
 """
 

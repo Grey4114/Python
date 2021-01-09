@@ -1,27 +1,11 @@
 """
 Author: Chris Caprio
 Program: Recipe Maker
-Details:
-Create a recipe class with ingredients and a put them in a recipe manager program that organizes them into
-categories like deserts, main courses or by ingredients like chicken, beef, soups, pies etc.
-
-Notes:
-    Import / export info to/from CSV files
+Notes: This is the Functions section of the original recipe_creator_main.py script
 """
-
 " --- IMPORTS --- "
-import csv
-
-" --- VARIABLES --- "
-recipes_file = "D:\\GitHub\\Python\\Standard\\recipe_creator\\recipes.csv"
-ingrediants_file = "D:\\GitHub\\Python\\Standard\\recipe_creator\\ingrediants.csv"
-
-recipe_type = ('Main Meal', 'Candy', 'Cookie', 'Cake', 'Pie', 'Soup', 'Sandwich', 'Salad')
-ingrediant_type = ('Spice', 'Fruit', 'Vegitable', 'Condiment', 'Protien', 'Grains')
-
-main_dict = {1: 'Recipe', 2: 'Ingrediants', 3: 'Exit'}
-menu_dict = {1: 'View All', 2: 'Find By Type', 3: 'Add', 4: 'Main Menu'}
-
+from recipe_creator_classes import recipes_file, recipe_type, ingrediant_type, ingrediants_file, main_dict, menu_dict
+from recipe_creator_classes import Recipes, Ingrediants
 
 
 

@@ -1,12 +1,7 @@
 """
 Author: Chris Caprio
 Program: Recipe Maker
-Details:
-Create a recipe class with ingredients and a put them in a recipe manager program that organizes them into
-categories like deserts, main courses or by ingredients like chicken, beef, soups, pies etc.
-
-Notes:
-    Import / export info to/from CSV files
+Notes: This is the Functions section of the original recipe_creator_main.py script
 """
 
 " --- IMPORTS --- "
