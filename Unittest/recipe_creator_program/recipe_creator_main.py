@@ -1,6 +1,6 @@
 """
 Author: Chris Caprio
-Program: Recipe Maker
+Program: Recipe Creator
 Details:
 Create a recipe class with ingredients and a put them in a recipe manager program that organizes them into
 categories like deserts, main courses or by ingredients like chicken, beef, soups, pies etc.
@@ -8,7 +8,6 @@ categories like deserts, main courses or by ingredients like chicken, beef, soup
 
 " --- IMPORTS --- "
 from recipe_creator_functions import welcome, main_menu, general_menu, add_data, menu_choice,choice_RI_type, type_list
-
 from recipe_creator_classes import recipes_file, recipe_type, ingrediant_type, ingrediants_file, main_dict, menu_dict
 from recipe_creator_classes import Recipes, Ingrediants
 
@@ -37,7 +36,9 @@ def main():
 
         # Main Loop
         while looping:
-            data, info_type = choice_RI_type(choice_type, recipes, ingrediants, recipe_type, ingrediant_type)
+            # info_type = choice_RI_type(choice_type, recipes, ingrediants, recipe_type, ingrediant_type)
+            info_type = choice_RI_type(choice_type, recipe_type, ingrediant_type)
+
             length = general_menu(main_dict[choice_type], menu_dict)
             choice = menu_choice(length)
 
@@ -82,7 +83,7 @@ def main():
 
             # Adds eithe a recipe or an ingrediant to the respective csv file
             elif choice == 3:
-                add_data(info_type, choice_type, main_dict, data, recipes, ingrediants)
+                add_data(info_type, choice_type, main_dict, recipes, ingrediants)
                 input('\nPress any key to return to the Main Menu ')
                 looping = False
             else:

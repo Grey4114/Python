@@ -1,16 +1,11 @@
 type,ingrediant
-Fruit,Banana
 Spice,Salt
+Spice,Pepper
 Condiment,Mustard
 Condiment,Mayo
-Spice,Pepper
 Protien,Chicken
-Protien,Fish
 Protien,Steak
 Fruit,Apple
-Fruit,Orange
-Fruit,Pear
+Fruit,Banana
 Vegitable,Tomato
 Vegitable,Carrot
-Vegitable,Onion
-Condiment,Soy Sauce

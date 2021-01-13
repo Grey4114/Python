@@ -1,6 +1,6 @@
 """
 Author: Chris Caprio
-Program: Recipe Maker
+Program: Recipe Creator
 Notes: This is the Functions section of the original recipe_creator_main.py script
 """
 " --- IMPORTS --- "
@@ -8,13 +8,11 @@ from recipe_creator_classes import recipes_file, recipe_type, ingrediant_type, i
 from recipe_creator_classes import Recipes, Ingrediants
 
 
-
 " --- FUNCTIONS --- "
 # This prints the startup info for the program
 def welcome():
     print("\nWelcome to the Recipe Manager")
     print("\tView and add ingrediants and recipes.")
-    input("\tPress any key to continue ")
 
 
 # The main menu function
@@ -23,7 +21,7 @@ def main_menu(main_dict):
     print("------------")
     for x in range(0, len(main_dict)):
         print(f"\t{x+1}) {main_dict[x+1]}")
-    return len(menu_dict)
+    return len(main_dict)
 
 
 # For Loop that prints out the menu
@@ -37,11 +35,11 @@ def general_menu(main_dict, menu_dict):
 
 # While loop - input choice for the general_menu function
 def menu_choice(length):
-    selection = -1
+    selection = 0
     while True:
         try:
             selection = int(input("\tSelect an Option: "))
-            if selection < 0 or selection > length:
+            if selection < 1 or selection > length:
                 raise ValueError()
         except ValueError:
             print('\tValue Error! Enter a valid number')
@@ -51,14 +49,12 @@ def menu_choice(length):
 
 
 # Sets variables for either recipe or ingrediant types
-def choice_RI_type(choice_type, recipe_data, ingrediant_data, recipe_type, ingrediant_type):
+def choice_RI_type(choice_type, recipe_type, ingrediant_type):
     if choice_type == 1:
-        data = recipe_data
         info_type = recipe_type
     else:
-        data = ingrediant_data
         info_type = ingrediant_type
-    return data, info_type
+    return info_type
 
 
 # Lists either the recipe or ingrediants by choice_type
@@ -70,7 +66,7 @@ def type_list(info_type, choice_type, main_dict):
 
 
 # Add a recipe or ingrediant to the respective csv file
-def add_data(info_type, choice_type, main_dict, data, recipes, ingrediants):
+def add_data(info_type, choice_type, main_dict, recipes, ingrediants):
     add_info = []
     print(f'\n\nAdd {main_dict[choice_type]}')
     add_loop = True

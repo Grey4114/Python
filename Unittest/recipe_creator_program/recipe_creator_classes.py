@@ -1,6 +1,6 @@
 """
 Author: Chris Caprio
-Program: Recipe Maker
+Program: Recipe Creator
 Notes: This is the Functions section of the original recipe_creator_main.py script
 """
 
@@ -8,8 +8,8 @@ Notes: This is the Functions section of the original recipe_creator_main.py scri
 import csv
 
 " --- VARIABLES --- "
-recipes_file = "D:\\GitHub\\Python\\Standard\\recipe_creator\\recipes.csv"
-ingrediants_file = "D:\\GitHub\\Python\\Standard\\recipe_creator\\ingrediants.csv"
+recipes_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\recipes.csv"
+ingrediants_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\ingrediants.csv"
 
 recipe_type = ('Main Meal', 'Candy', 'Cookie', 'Cake', 'Pie', 'Soup', 'Sandwich', 'Salad')
 ingrediant_type = ('Spice', 'Fruit', 'Vegitable', 'Condiment', 'Protien', 'Grains')
@@ -63,7 +63,6 @@ class Recipes:
                 print(f'\t{count}) {recipe_data[x][1]}')
                 count += 1
                 menu_list.append(recipe_data.index(recipe_data[x]))
-
         return len(recipe_data), menu_list
 
     # Prints one full recipe and its ingrediants
