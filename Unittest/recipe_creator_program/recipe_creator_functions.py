@@ -40,9 +40,10 @@ def menu_choice(length):
         try:
             selection = int(input("\tSelect an Option: "))
             if selection < 1 or selection > length:
-                raise ValueError()
-        except ValueError:
-            print('\tValue Error! Enter a valid number')
+                raise ValueError('\tValue Error! Enter a valid number')
+                break
+        except ValueError as e:
+            print(e)
             continue
         break
     return selection

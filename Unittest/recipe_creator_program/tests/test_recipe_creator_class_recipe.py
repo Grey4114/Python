@@ -5,13 +5,17 @@ Notes: Unittest of the recipe_creator_classes.py script
 """
 
 " --- IMPORTS --- "
+
 import sys
 import unittest
 from io import StringIO
 from recipe_creator_classes import Recipes, recipe_type, recipes_file
 from recipe_creator_classes import main_dict, menu_dict
-recipes_test_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\recipes.csv"
-
+recipes_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\recipes.csv"
+recipes_test_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\recipes_test.csv"
+recipes_test_text = ['Cake', 'Chocolate Cake', 'milk', 'sugar']
+recipe_info_test = ('Test', 'Chocolate Cake', 'milk')
+recipes_write_text = ['Test', 'Chocolate Cake', 'milk']
 
 " --- TEST CASES --- "
 # Tests the Recipe Class
@@ -19,16 +23,18 @@ class TestRecipeClass(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
         self.recipe = Recipes(recipe_type, recipes_file, main_dict, menu_dict)
+        self.recipe_test = Recipes(recipe_type, recipes_test_file, main_dict, menu_dict)
 
-    # Todo - Read/import recipes file - Not sure how to test at this time
     # Test opening/importing recipe csv file info
     def test_read_recipes_file(self):
-        self.assertEqual(True, False)
+        data = self.recipe_test.read_recipes_file()
+        self.assertEqual(data[1], recipes_test_text)
 
-    # Todo - Write to recipes file - Not sure how to test at this time
     # Test writing a new line to the recipe csv file
     def test_write_recipes_file(self):
-        self.assertEqual(True, False)
+        self.recipe_test.write_recipes_file(recipe_info_test)
+        data = self.recipe_test.read_recipes_file()
+        self.assertEqual(data[-1], recipes_write_text)
 
     # Test list_recipes_all modules output text
     def test_list_recipes_all_text(self):

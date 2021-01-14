@@ -10,7 +10,11 @@ import unittest
 from io import StringIO
 from recipe_creator_classes import Ingrediants, ingrediant_type, ingrediants_file
 from recipe_creator_classes import main_dict, menu_dict
-ingrediants_test_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\ingrediants.csv"
+ingrediants_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\ingrediants.csv"
+ingrediants_test_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\ingrediants_test.csv"
+ingrediants_test_text = ['Spice', 'Salt']
+ingrediants_info_test = ('Test', 'Vanilla')
+ingrediants_write_text = ['Test', 'Vanilla']
 
 
 
@@ -20,17 +24,19 @@ class TestIngrediantsClass(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
         self.ingrediants = Ingrediants(ingrediant_type, ingrediants_file, main_dict, menu_dict)
+        self.ingrediants_test = Ingrediants(ingrediant_type, ingrediants_test_file, main_dict, menu_dict)
 
-    # Todo - Read/import ingrediants file - Not sure how to test at this time
     # Test opening/importing ingrediants csv file info
     def test_read_ingrediants_file(self):
-        self.assertEqual(True, False)
+        data = self.ingrediants_test.read_ingrediants_file()
+        self.assertEqual(data[1], ingrediants_test_text)
 
-    # Todo - Write to ingrediants file - Not sure how to test at this time
+    # Todo - Write to ingrediants file - Writing to wrong file, Not sure how to get this to work
     # Test writing a new line to the ingrediants csv file
     def test_write_ingrediants_file(self):
-        self.assertEqual(True, False)
-
+        self.ingrediants_test.write_ingrediants_file(ingrediants_info_test)
+        data = self.ingrediants_test.read_ingrediants_file()
+        self.assertEqual(data[-1], ingrediants_write_text)
 
     # Test list_ingrediants_all modules output text
     def test_list_ingrediants_all_text(self):
