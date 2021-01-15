@@ -9,7 +9,7 @@ Notes: Unittest of the recipe_creator_classes.py script
 import sys
 import unittest
 from io import StringIO
-from recipe_creator_classes import Recipes, recipe_type, recipes_file
+from recipe_creator_classes import Recipes, recipe_type
 from recipe_creator_classes import main_dict, menu_dict
 recipes_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\recipes.csv"
 recipes_test_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\recipes_test.csv"

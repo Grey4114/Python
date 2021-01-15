@@ -9,7 +9,7 @@ import sys
 import unittest
 from io import StringIO
 from unittest.mock import patch
-from recipe_creator_functions import welcome, main_menu, general_menu, menu_choice, choice_RI_type, type_list, add_data
+from recipe_creator_functions import welcome, main_menu, general_menu, menu_choice, choice_RI_type, type_list
 from recipe_creator_classes import main_dict, menu_dict, ingrediant_type, recipe_type
 
 
@@ -178,26 +178,6 @@ class TestTypeList(unittest.TestCase):
 
     def tearDown(self):
         pass
-
-# Todo - Do Add Data Tests
-# Tests the Add Data function
-class TestAddData(unittest.TestCase):
-    def setUp(self):
-        self.add_data_R = add_data(info_type, 1, main_dict, recipes, ingrediants)
-        self.add_data_I = add_data(info_type, 2, main_dict, recipes, ingrediants)
-        pass
-
-    def test_number_1(self):
-        self.assertEqual(True, True)
-
-    def test_number_2(self):
-        self.assertEqual(True, True)
-
-    def test_number_3(self):
-        self.assertEqual(True, True)
-
-    def tearDown(self):
-        self.add_data = None
 
 
 if __name__ == '__main__':

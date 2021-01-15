@@ -8,7 +8,7 @@ Notes: Unittest of the recipe_creator_classes.py script
 import sys
 import unittest
 from io import StringIO
-from recipe_creator_classes import Ingrediants, ingrediant_type, ingrediants_file
+from recipe_creator_classes import Ingrediants, ingrediant_type
 from recipe_creator_classes import main_dict, menu_dict
 ingrediants_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\ingrediants.csv"
 ingrediants_test_file = "D:\\GitHub\\Python\\Unittest\\recipe_creator_program\\ingrediants_test.csv"
