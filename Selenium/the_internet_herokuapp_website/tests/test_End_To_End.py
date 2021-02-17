@@ -15,8 +15,8 @@ from selenium.webdriver.common.alert import Alert
 
 from utilities import BaseClass
 
-# class TestPrimary(BaseClass):
-# class TestPrimary:
+# class TestEndToEnd(BaseClass):
+
 """
     def __init__(self, driver):
         self.driver = driver
@@ -28,6 +28,9 @@ driver = webdriver.Chrome(executable_path="C:\\chromedriver.exe")
 driver.get("https://the-internet.herokuapp.com/")
 driver.maximize_window()
 time.sleep(3)
+
+
+
 
 """
 def test_AB():

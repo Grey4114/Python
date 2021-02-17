@@ -2,7 +2,7 @@
 Website:  https://the-internet.herokuapp.com/
 Date:  2/14/2021
 Notes:
-    This script tests the AB Testing page
+    This script tests the AB Testing page objects
 """
 
 from selenium.webdriver.common.by import By
@@ -14,7 +14,7 @@ class abPage:
         self.driver = driver
 
 
-    ab_LinkText = (By.XPATH, "//a[text()='A/B Testing']")
+    ab_LinkText = (By.XPATH, "//a[text()='A/B Testing']")   # Main Website link to page
 
 
     def ab_Link(self):
