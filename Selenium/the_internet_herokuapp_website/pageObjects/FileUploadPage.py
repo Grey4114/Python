@@ -7,26 +7,34 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - File Upload
-
 
 class FileUploadPage:
     def __init__(self, driver):
         self.driver = driver
 
     upload_LinkText = (By.XPATH, "//a[text()='File Upload']")
+    upload_Header = (By.XPATH, "//h3[text()='File Uploader']")
+
+    # todo - choose path
+    upload_Choose = (By.XPATH, "")
+    # todo - upload path
+    upload_Upload = (By.XPATH, "")
+    # todo - drag drop path
+    upload_DragDrop = (By.XPATH, "")
 
 
     def fileUpload_Link(self):
         return self.driver.find_element(*FileUploadPage.upload_LinkText)
 
+    def fileUpload_HeaderText(self):
+        return self.driver.find_element(*FileUploadPage.upload_Header)
 
+    def fileUpload_ChooseFile(self):
+        return self.driver.find_element(*FileUploadPage.upload_Choose)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='File Upload']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def fileUpload_UploadButton(self):
+        return self.driver.find_element(*FileUploadPage.upload_Upload)
+
+    def fileUpload_DragDrop(self):
+        return self.driver.find_element(*FileUploadPage.upload_DragDrop)
+

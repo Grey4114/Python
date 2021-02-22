@@ -7,31 +7,43 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Button 1 and verify
-# todo - Button 2 and verify
-# todo - Button 3 and verify
-# todo - Verify code change
-
+# todo - Blue Button
+# todo - Red Button
+# todo - Green Button
+# todo - Answer Change
 
 class ChallengingDomPage:
     def __init__(self, driver):
         self.driver = driver
 
     challenging_LinkText = (By.XPATH, "//a[text()='Challenging DOM']")
+    challenging_Header = (By.XPATH, "//h3[text()='Challenging DOM']")
+
+
+
+    challenging_Blue = (By.XPATH, "//h3[text()='Challenging DOM']")
+    challenging_Red = (By.XPATH, "//h3[text()='Challenging DOM']")
+    challenging_Green = (By.XPATH, "//h3[text()='Challenging DOM']")
+    challenging_Answer = (By.XPATH, "//h3[text()='Challenging DOM']")
+
 
 
     def challengingDom_Link(self):
         return self.driver.find_element(*ChallengingDomPage.challenging_LinkText)
 
+    def challengingDom_HeaderText(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Challenging DOM']").click()
-    time.sleep(2)
-    driver.back()
-    driver.refresh()
-    time.sleep(2)
-    """
+    def challengingButton_Blue(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Blue)
+
+    def challengingButton_Red(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Red)
+
+    def challengingButton_Green(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Green)
+
+    def challengingAnswer(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Answer)
+
 

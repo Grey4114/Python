@@ -8,25 +8,28 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Key Presses
-
-
-
 class KeyPressesPage:
     def __init__(self, driver):
         self.driver = driver
 
     keyPress_LinkText = (By.XPATH, "//a[text()='Key Presses']")
+    keyPress_Header = (By.XPATH, "//h3[text()='Key Presses']")
+
+    # todo - field path
+    keyPress_Field = (By.XPATH, " ")
+    # todo - Text path
+    keyPress_Text = (By.XPATH, " ")
+
 
     def keyPresses_Link(self):
-        return self.driver.find_element(By.XPATH, "//a[text()='Key Presses']")
+        return self.driver.find_element(*KeyPressesPage.keyPress_LinkText)
 
+    def keyPresses_HeaderText(self):
+        return self.driver.find_element(*KeyPressesPage.keyPress_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Key Presses']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def keyPresses_Field(self):
+        return self.driver.find_element(*KeyPressesPage.keyPress_Field)
+
+    def keyPresses_Text(self):
+        return self.driver.find_element(*KeyPressesPage.keyPress_Text)
+

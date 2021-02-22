@@ -7,24 +7,28 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - ForgotPassword
-
 
 class ForgotPasswordPage:
     def __init__(self, driver):
         self.driver = driver
 
-    password_LinkText = (By.XPATH, "//a[text()='Forgot Password']")
+    forgot_LinkText = (By.XPATH, "//a[text()='Forgot Password']")
+    forgot_Header = (By.XPATH, "//h3[text()='Forgot Password']")
 
-    def password_Link(self):
-        return self.driver.find_element(*ForgotPasswordPage.password_LinkText)
+    # todo - email path
+    forgot_EmailField = (By.XPATH, "")
+    # todo - retrieve path
+    forgot_Retrieve = (By.XPATH, "")
 
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Forgot Password']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def forgotPassword_Link(self):
+        return self.driver.find_element(*ForgotPasswordPage.forgot_LinkText)
+
+    def forgotPassword_HeaderText(self):
+        return self.driver.find_element(*ForgotPasswordPage.forgot_Header)
+
+    def forgotPassword_EmailField(self):
+        return self.driver.find_element(*ForgotPasswordPage.forgot_EmailField)
+
+    def forgotPassword_RetrieveButton(self):
+        return self.driver.find_element(*ForgotPasswordPage.forgot_Retrieve)

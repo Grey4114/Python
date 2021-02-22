@@ -7,9 +7,6 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-
-# todo - break function into separate script page object
-# todo - verify being on page
 # todo - right click box
 # todo - dismiss alert box
 # todo - dismiss popup box
@@ -20,35 +17,26 @@ class ContextMenuPage:
         self.driver = driver
 
     context_LinkText = (By.XPATH, "//a[text()='Context Menu']")
+    context_Header = (By.XPATH, "//h3[text()='Context Menu']")
+
+    context_Right = (By.XPATH, "")
+    context_Alert = (By.XPATH, "")
+    context_Popup = (By.XPATH, "")
 
 
     def contextMenu_Link(self):
         return self.driver.find_element(*ContextMenuPage.context_LinkText)
 
+    def contextMenu_HeaderText(self):
+        return self.driver.find_element(*ContextMenuPage.context_Header)
 
 
 
-    """       
-    driver.find_element(By.XPATH, "//a[text()='Context Menu']").click()
-    time.sleep(2)
+    def contextMenu_RightClickBox(self):
+        return self.driver.find_element(*ContextMenuPage.context_Right)
 
-    action = ActionChains(driver)
-    action.context_click(driver.find_element(By.XPATH, "//div[@id='hot-spot']")).perform()
+    def contextMenu_AlertBox(self):
+        return self.driver.find_element(*ContextMenuPage.context_Alert)
 
-    # driver.find_element(By.XPATH, "//div[@id='hot-spot']").click()
-
-    alert = driver.switch_to.alert
-    time.sleep(1)
-    alert.accept()
-
-    alert2 = driver.switch_to.alert
-    time.sleep(1)
-    alert2.send_keys(Keys.ESCAPE)
-    time.sleep(1)
-
-
-    driver.back()
-    driver.refresh()
-    time.sleep(3)
-    
-    """
+    def contextMenu_PopupBox(self):
+        return self.driver.find_element(*ContextMenuPage.context_Popup)

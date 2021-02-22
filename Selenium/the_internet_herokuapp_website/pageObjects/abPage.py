@@ -7,33 +7,22 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - check title text
 
 class abPage:
     def __init__(self, driver):
         self.driver = driver
 
-
-    ab_LinkText = (By.XPATH, "//a[text()='A/B Testing']")   # Main Website link to page
+    ab_LinkText = (By.XPATH, "//a[text()='A/B Testing']")               # Main Website link to page
+    ab_Header_1 = (By.XPATH, "//h3[text()='A/B Test Control']")         # Page header text
+    ab_Header_2 = (By.XPATH, "//h3[text()='A/B Test Variation 1']")     # Page header text
 
 
     def ab_Link(self):
         return self.driver.find_element(*abPage.ab_LinkText)
 
+    def ab_HeaderText_1(self):
+        return self.driver.find_element(*abPage.ab_Header_1)
 
-    """        
-    # ab_text = driver.find_element_by_xpath("//h3[text()='A/B Test Control']").text
-    # assert ("A/B Test" in ab_text)
-    time.sleep(2)
-    driver.back()
-    time.sleep(2)
-    driver.find_element(By.XPATH, "//a[text()='A/B Testing']").click()
-    # ab_text = driver.find_element_by_xpath("//h3[text()='A/B Test Control']").text
-    # assert ("A/B Test" in ab_text)
-    time.sleep(2)
-    driver.back()
-    driver.refresh()
-    time.sleep(2)
-    """
-
+    def ab_HeaderText_2(self):
+        return self.driver.find_element(*abPage.ab_Header_2)
 

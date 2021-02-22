@@ -5,28 +5,30 @@ Notes:
     This script tests the Exit Intent page
 """
 
-
 from selenium.webdriver.common.by import By
-
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Shadow Dom
-
-
 
 class ShadowDOMPage:
     def __init__(self, driver):
         self.driver = driver
 
     shadow_LinkText = (By.XPATH, "//a[text()='Shadow DOM']")
+    shadow_Header = (By.XPATH, "//h3[text()='Shadow DOM']")
+
+    # todo - text 1 path
+    shadow_Text1 = (By.XPATH, " ")
+    # todo - text 2 path
+    shadow_Text2 = (By.XPATH, " ")
+
 
     def shadowDOM_Link(self):
         return self.driver.find_element(*ShadowDOMPage.shadow_LinkText)
 
+    def shadowDOM_HeaderText(self):
+        return self.driver.find_element(*ShadowDOMPage.shadow_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Shadow DOM']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def shadowDOM_Text_1(self):
+        return self.driver.find_element(*ShadowDOMPage.shadow_Text1)
+
+    def shadowDOM_Text_2(self):
+        return self.driver.find_element(*ShadowDOMPage.shadow_Text2)
+

@@ -8,25 +8,25 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - WYSIWYG_Editor
-
-
-
 class WYSIWYGEditorPage:
     def __init__(self, driver):
         self.driver = driver
 
     wysiwyg_LinkText = (By.XPATH, "//a[text()='WYSIWYG Editor']")
+    wysiwyg_Header = (By.XPATH, "//h3[text()='WYSIWYG Editor']")
+
+    # todo - Area
+    wysiwyg_Area = (By.XPATH, " ")
+
+    # todo - all other options
+
 
     def WYSIWYGEditor_Link(self):
         return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_LinkText)
 
+    def WYSIWYGEditor_HeaderText(self):
+        return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='WYSIWYG Editor']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def WYSIWYGEditor_Area(self):
+        return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_Area)
+

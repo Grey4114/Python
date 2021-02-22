@@ -7,27 +7,23 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Floating menu
-
-
-
 class FloatingMenuPage:
     def __init__(self, driver):
         self.driver = driver
 
     floating_LinkText = (By.XPATH, "//a[text()='Floating Menu']")
+    floating_Header = (By.XPATH, "//h3[text()='Floating Menu']")
+
+    # todo - scroll path
+    floating_Scroll = (By.XPATH, "")
 
 
-    def floating_Link(self):
+    def floatingMenu_Link(self):
         return self.driver.find_element(*FloatingMenuPage.floating_LinkText)
 
+    def floatingMenu_HeaderText(self):
+        return self.driver.find_element(*FloatingMenuPage.floating_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Floating Menu']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
+    def floatingMenuScroll(self):
+        return self.driver.find_element(*FloatingMenuPage.floating_Scroll)
 
-    """

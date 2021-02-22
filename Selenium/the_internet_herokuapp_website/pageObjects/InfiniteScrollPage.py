@@ -8,24 +8,24 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Infinite Scroll
-
 
 class InfiniteScrollPage:
     def __init__(self, driver):
         self.driver = driver
 
     infinite_LinkText = (By.XPATH, "//a[text()='Infinite Scroll']")
+    infinite_Header = (By.XPATH, "//h3[text()='Infinite Scroll']")
+
+    # todo - scroll path
+    infinite_Scroll = (By.XPATH, " ")
+
+
 
     def infiniteScroll_Link(self):
         return self.driver.find_element(*InfiniteScrollPage.infinite_LinkText)
 
+    def infiniteScroll_HeaderText(self):
+        return self.driver.find_element(*InfiniteScrollPage.infinite_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Infinite Scroll']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def infiniteScroll_Scroll(self):
+        return self.driver.find_element(*InfiniteScrollPage.infinite_Scroll)

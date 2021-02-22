@@ -8,27 +8,49 @@ Notes:
 from selenium.webdriver.common.by import By
 
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - check that the Gallery button vanishes and comes back
-
-# user and pass: admin
-
-class DigestAuthPage:
+class DisappearingElementsPage:
     def __init__(self, driver):
         self.driver = driver
 
     disappearing_LinkText = (By.XPATH, "//a[text()='Disappearing Elements']")
+    disappearing_Header = (By.XPATH, "//h3[text()='Disappearing Elements']")
+
+    # todo - Home button path
+    disappearing_Home = (By.XPATH, "")
+
+    # todo - About button path
+    disappearing_About = (By.XPATH, "")
+
+    # todo - Contact button path
+    disappearing_Contact = (By.XPATH, "")
+
+    # todo - Portfolio button path
+    disappearing_Portfolio = (By.XPATH, "")
+
+    # todo - Gallery button path
+    disappearing_Gallery = (By.XPATH, "")
+
+
 
 
     def disappearingElements_Link(self):
-        return self.driver.find_element(*DigestAuthPage.disappearing_LinkText)
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_LinkText)
 
+    def disappearingElements_HeaderText(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_Header)
 
+    def disappearingElements_HomeButton(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_Home)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Disappearing Elements']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def disappearingElements_AboutButton(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_About)
+
+    def disappearingElements_ContactButton(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_Contact)
+
+    def disappearingElements_PortfilioButton(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_Portfolio)
+
+    def disappearingElements_GalleryButton(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_Gallery)
+

@@ -8,25 +8,30 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Inputs
-
-
 
 class InputsPage:
     def __init__(self, driver):
         self.driver = driver
 
     inputs_LinkText = (By.XPATH, "//a[text()='Inputs']")
+    inputs_Header = (By.XPATH, "//h3[text()='Inputs']")
+
+    # todo - manual path
+    inputs_Manual = (By.XPATH, " ")
+    # todo - select arrow path
+    inputs_Arrows = (By.XPATH, " ")
+
+
+
 
     def inputs_Link(self):
         return self.driver.find_element(*InputsPage.inputs_LinkText)
 
+    def inputs_HeaderText(self):
+        return self.driver.find_element(*InputsPage.inputs_Header)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Inputs']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def inputs_ManualNumber(self):
+        return self.driver.find_element(*InputsPage.inputs_Manual)
+
+    def inputs_SelectArrow(self):
+        return self.driver.find_element(*InputsPage.inputs_Arrows)

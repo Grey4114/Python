@@ -9,25 +9,31 @@ Notes:
 from selenium.webdriver.common.by import By
 
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Notification Messages
-
-
 class NotificationMessagesPage:
     def __init__(self, driver):
         self.driver = driver
 
     notification_LinkText = (By.XPATH, "//a[text()='Notification Messages']")
+    notification_Header = (By.XPATH, "//h3[text()='Notification Messages']")
+
+    # todo - click path
+    notification_Click = (By.XPATH, " ")
+
+    # todo - message path
+    notification_Message = (By.XPATH, " ")
+
+
 
     def notificationMessages_Link(self):
         return self.driver.find_element(*NotificationMessagesPage.notification_LinkText)
 
+    def notificationMessages_HeaderText(self):
+        return self.driver.find_element(*NotificationMessagesPage.notification_Header)
+
+    def notificationMessages_ClickHere(self):
+        return self.driver.find_element(*NotificationMessagesPage.notification_Click)
+
+    def notificationMessages_Message(self):
+        return self.driver.find_element(*NotificationMessagesPage.notification_Message)
 
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Notification Messages']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """

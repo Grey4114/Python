@@ -8,23 +8,39 @@ Notes:
 
 import time
 import pytest
-from utilities import BaseClass
-from pageObjects import abPage
+from selenium.common.exceptions import NoSuchElementException
+
+from utilities.BaseClass import BaseClass
+from pageObjects.abPage import abPage
 
 
 class TestAB(BaseClass):
-    # todo - add page tests
-    # todo - grab page header text
-    # todo - assert header text or other text
-
-
-    def test_one(self):
+    def test_ab_control(self):
+        # Enter the Page
         log = self.getLogger()
-
         ab_page = abPage(self.driver)
-
         ab_page.ab_Link().click()
+        log.info("TEST PAGE: A/B Test")
 
-        
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/abtest"
+        log.info("URL - Passed: " + url)
 
 
+        # Verify the Header
+        try:
+            header_text = ab_page.ab_HeaderText_1().text
+        except NoSuchElementException:
+            header_text = ab_page.ab_HeaderText_2().text
+
+        assert ("A/B Test" in header_text)
+        log.info("Header - Passed: " + header_text)
+
+
+        # Exit the Page
+        log.info(header_text + " - All Tests Passed")
+        # time.sleep(2)
+        self.driver.back()
+        self.driver.refresh()

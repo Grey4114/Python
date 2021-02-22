@@ -8,24 +8,24 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Slow Resources
-
-
 class SlowResourcesPage:
     def __init__(self, driver):
         self.driver = driver
 
     slow_LinkText = (By.XPATH, "//a[text()='Slow Resources']")
+    slow_Header = (By.XPATH, "//h3[text()='Slow Resources']")
+
+    # todo - request path
+    slow_Request = (By.XPATH, " ")
+
 
     def slowResources_Link(self):
         return self.driver.find_element(*SlowResourcesPage.slow_LinkText)
 
+    def slowResources_HeaderText(self):
+        return self.driver.find_element(*SlowResourcesPage.slow_Header)
 
-    """    
-    driver.find_element(By.XPATH, "//a[text()='Slow Resources']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)
-    """
+    def slowResources_Request(self):
+        return self.driver.find_element(*SlowResourcesPage.slow_Request)
+
+

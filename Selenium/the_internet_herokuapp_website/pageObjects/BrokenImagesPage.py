@@ -7,29 +7,32 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Verify all 3 images
-
+# todo - find a better way to check for broken images
 
 class BrokenImagePage:
     def __init__(self, driver):
         self.driver = driver
 
-
     broken_LinkText = (By.XPATH, "//a[text()='Broken Images']")
+    broken_Header = (By.XPATH, "//h3[text()='Broken Images']")
 
+    broken_1 = (By.XPATH, "//div[@class='example']/img[@src='asdf.jpg']")
+    broken_2 = (By.XPATH, "//div[@class='example']/img[@src='hjkl.jpg']")
+    broken_3 = (By.XPATH, "//div[@class='example']/img[@src='img/avatar-blank.jpg']")
 
     def broken_Link(self):
         return self.driver.find_element(*BrokenImagePage.broken_LinkText)
 
+    def broken_HeaderText(self):
+        return self.driver.find_element(*BrokenImagePage.broken_Header)
 
-    """        
-    driver.find_element(By.XPATH, "//a[text()='Broken Images']").click()
-    time.sleep(2)
-    driver.back()
-    driver.refresh()
-    time.sleep(2)
 
-    """
+    def brokenImage_1(self):
+        return self.driver.find_element(*BrokenImagePage.broken_1)
+
+    def brokenImage_2(self):
+        return self.driver.find_element(*BrokenImagePage.broken_2)
+
+    def brokenImage_3(self):
+        return self.driver.find_element(*BrokenImagePage.broken_3)
+

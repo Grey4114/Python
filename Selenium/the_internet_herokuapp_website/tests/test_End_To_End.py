@@ -546,6 +546,3 @@ def test_WYSIWYG_Editor():
 
 """
 
-def test_CloseBrowserWindow():
-    time.sleep(3)
-    driver.close()  # Closes Browser window

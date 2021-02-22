@@ -8,27 +8,36 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - break function into separate script page object
-# todo - verify being on page
-# todo - Redirect Link
-
-
-
 class RedirectLinkPage:
     def __init__(self, driver):
         self.driver = driver
 
     redirect_LinkText = (By.XPATH, "//a[text()='Redirect Link']")
+    redirect_Header = (By.XPATH, "//h3[text()='Redirect Link']")
+
+    # todo - click here path
+    redirect_Click = (By.XPATH, " ")
+
+    # todo - New Page path
+    redirect_NewPage = (By.XPATH, " ")
+
+    # todo - New Header path
+    redirect_NewHeader = (By.XPATH, " ")
+
 
 
     def redirectLink_Link(self):
         return self.driver.find_element(*RedirectLinkPage.redirect_LinkText)
 
+    def redirectLink_HeaderText(self):
+        return self.driver.find_element(*RedirectLinkPage.redirect_Header)
 
+    def redirectLink_ClickHere(self):
+        return self.driver.find_element(*RedirectLinkPage.redirect_Click)
 
-    """
-    driver.find_element(By.XPATH, "//a[text()='Redirect Link']").click()
-    time.sleep(3)
-    driver.back()
-    time.sleep(3)   
-    """
+    def redirectLink_NewPageURL(self):
+        return self.driver.find_element(*RedirectLinkPage.redirect_NewPage)
+
+    def redirectLink_NewPageHeader(self):
+        return self.driver.find_element(*RedirectLinkPage.redirect_NewHeader)
+

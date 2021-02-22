@@ -5,12 +5,16 @@ Notes:
     conftest.py script
 """
 
-# import pytest
-# from selenium import webdriver
-# import time
-# driver = None
+import pytest
+from selenium import webdriver
+import time
+driver = None
 
-"""
+# Todo - Add in screenshot - move to reports dir
+# todo - add in html report to reports dir for each test
+# todo - add browser config settings
+
+
 # use to change browsers at launch
 def pytest_addoption(parser):
     parser.addoption("--browser_name", action="store", default="chrome", help="Choose a browser, default is Chrome")
@@ -34,4 +38,5 @@ def setup(request):     # add request to make driver object avialable in other s
     request.cls.driver = driver     # creates a class object called cls.driver for driver
     yield   # runs close last
     driver.close()
-"""
+
+
