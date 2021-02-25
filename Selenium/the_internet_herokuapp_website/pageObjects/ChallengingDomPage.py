@@ -7,43 +7,31 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - Blue Button
-# todo - Red Button
-# todo - Green Button
-# todo - Answer Change
-
 class ChallengingDomPage:
     def __init__(self, driver):
         self.driver = driver
 
-    challenging_LinkText = (By.XPATH, "//a[text()='Challenging DOM']")
-    challenging_Header = (By.XPATH, "//h3[text()='Challenging DOM']")
+    challenging_Link = (By.XPATH, "//a[text()='Challenging DOM']")          # Main Page link
+    challenging_Header = (By.XPATH, "//h3[text()='Challenging DOM']")       # Page header text
+    challenging_Blue = (By.XPATH, "//a[@class='button']")                   # Blue Button
+    challenging_Red = (By.XPATH, "//a[@class='button alert']")              # Red Button
+    challenging_Green = (By.XPATH, "//a[@class='button success']")          # Green Button
 
 
-
-    challenging_Blue = (By.XPATH, "//h3[text()='Challenging DOM']")
-    challenging_Red = (By.XPATH, "//h3[text()='Challenging DOM']")
-    challenging_Green = (By.XPATH, "//h3[text()='Challenging DOM']")
-    challenging_Answer = (By.XPATH, "//h3[text()='Challenging DOM']")
-
-
-
-    def challengingDom_Link(self):
-        return self.driver.find_element(*ChallengingDomPage.challenging_LinkText)
+    def challengingDom_LinkText(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Link)
 
     def challengingDom_HeaderText(self):
         return self.driver.find_element(*ChallengingDomPage.challenging_Header)
 
-    def challengingButton_Blue(self):
+    def challenging_ButtonBlue(self):
         return self.driver.find_element(*ChallengingDomPage.challenging_Blue)
 
-    def challengingButton_Red(self):
+    def challenging_ButtonRed(self):
         return self.driver.find_element(*ChallengingDomPage.challenging_Red)
 
-    def challengingButton_Green(self):
+    def challenging_ButtonGreen(self):
         return self.driver.find_element(*ChallengingDomPage.challenging_Green)
 
-    def challengingAnswer(self):
-        return self.driver.find_element(*ChallengingDomPage.challenging_Answer)
 
 

@@ -10,62 +10,55 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.ChallengingDomPage import ChallengingDomPage
 
-# todo - Verify Blue Button
-# todo - Verify Red Button
-# todo - Verify Green Button
-# todo - Verify Answer Change
-
-
 class TestChallengingDOM(BaseClass):
 
     def test_challenging_dom(self):
         # Enter the Page
         log = self.getLogger()
         challenging_dom_page = ChallengingDomPage(self.driver)
-        log.info("TEST PAGE: Challenging DOM")
-        challenging_dom_page.challengingDom_Link().click()
+        log.info("TEST START")
+        challenging_dom_page.challengingDom_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/challenging_dom"
-        log.info("URL - Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = challenging_dom_page.challengingDom_HeaderText().text
         assert ("Challenging DOM" in header_text)
-        log.info("Header - Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
-        # Verify Blue Button
-        # add_remove_page.addElement().click()
-        # assert len(add_remove_page.delElements())
-        # log.info("Add Buttons - Passed")
+        # todo - Verify Blue Button
+        before = challenging_dom_page.challenging_ButtonBlue().text
+        challenging_dom_page.challenging_ButtonBlue().click()
+        after = challenging_dom_page.challenging_ButtonBlue().text
+        assert before != after
+        log.info("Blue Button: " + before + "-" + after)
 
 
-        # Verify Red Button
-        # add_remove_page.addElement().click()
-        # assert len(add_remove_page.delElements())
-        # log.info("Add Buttons - Passed")
+        # todo - Verify Red Button
+        before = challenging_dom_page.challenging_ButtonRed().text
+        challenging_dom_page.challenging_ButtonRed().click()
+        after = challenging_dom_page.challenging_ButtonRed().text
+        assert before != after
+        log.info("Red Button: " + before + "-" + after)
 
 
-        # Verify Green Button
-        # add_remove_page.addElement().click()
-        # assert len(add_remove_page.delElements())
-        # log.info("Add Buttons - Passed")
-
-
-        # Verify Answer Change
-        # add_remove_page.addElement().click()
-        # assert len(add_remove_page.delElements())
-        # log.info("Add Buttons - Passed")
-
+        # todo - Verify Green Button
+        before = challenging_dom_page.challenging_ButtonGreen().text
+        challenging_dom_page.challenging_ButtonGreen().click()
+        after = challenging_dom_page.challenging_ButtonGreen().text
+        assert before != after
+        log.info("Blue Button: " + before + "-" + after)
 
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        time.sleep(2)
+        # time.sleep(2)
         self.driver.back()
         self.driver.refresh()
 

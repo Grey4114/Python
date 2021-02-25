@@ -12,31 +12,23 @@ class FileDownloadPage:
     def __init__(self, driver):
         self.driver = driver
 
-    download_LinkText = (By.XPATH, "//a[text()='File Download']")
-    download_Header = (By.XPATH, "//h3[text()='File Download']")
+    download_Link = (By.XPATH, "//a[text()='File Download']")       # Main Page link
+    download_Header = (By.XPATH, "//h3[text()='File Downloader']")        # Page header text
 
-    # todo - TextFile1 path
-    download_TextFile1 = (By.XPATH, "")
-    # todo - TextFile2 path
-    download_TextFile2 = (By.XPATH, "")
-    # todo - PNGFile1 path
-    download_PNGFile1 = (By.XPATH, "")
-    # todo - PNGFile2 path
-    download_PNGFile2 = (By.XPATH, "")
-    # todo - PNGFile3 path
-    download_PNGFile3 = (By.XPATH, "")
-    # todo - XLSMFile path
-    download_XLSMFile = (By.XPATH, "")
-    # todo - UploadFile path
-    download_UploadFile = (By.XPATH, "")
+    download_TextFile1 = (By.XPATH, "//a[@href='download/Hello.docx']")                 # Text File 1
+    download_TextFile2 = (By.XPATH, "//a[@href='download/upload_file.xlsx']")           # Text File 2
+    download_PNGFile1 = (By.XPATH, "//a[@href='download/Colbyashi Maru - Khaled Garbaya - Social.jpg']")    # PNG File
+    download_PNGFile2 = (By.XPATH, "//a[@href='download/luminoslogo.png']")            # PNG File 2
+    download_PNGFile3 = (By.XPATH, "//a[@href='download/some-file.txt']")               # PNG File 3
+    download_XLSMFile = (By.XPATH, "//a[@href='download/Testphoto.jpg']")               # XLSM File
 
 
-    def fileDownload_Link(self):
-        return self.driver.find_element(*FileDownloadPage.download_LinkText)
+
+    def fileDownload_LinkText(self):
+        return self.driver.find_element(*FileDownloadPage.download_Link)
 
     def fileDownload_HeaderText(self):
         return self.driver.find_element(*FileDownloadPage.download_Header)
-
 
     def fileDownload_TextFile_1(self):
         return self.driver.find_element(*FileDownloadPage.download_TextFile1)
@@ -56,16 +48,4 @@ class FileDownloadPage:
     def fileDownload_XLSMFile(self):
         return self.driver.find_element(*FileDownloadPage.download_XLSMFile)
 
-    def fileDownload_UploadFile(self):
-        return self.driver.find_element(*FileDownloadPage.download_UploadFile)
 
-
-    """    
-    hello_world.txt
-    some - file.txt
-    buy.jpg
-    zloty-bills-922x614.jpg
-    8q6s1bvaf6hanudbqd4a12fj44-457e5522dd50b21f78ec95e0a268043e.png
-    CloudSauceLab.xlsm
-    TestUploadPage.txt
-    """

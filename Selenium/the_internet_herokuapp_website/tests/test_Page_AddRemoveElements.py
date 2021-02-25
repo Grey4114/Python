@@ -17,27 +17,27 @@ class TestAddRemoveElements(BaseClass):
         # Enter the Page
         log = self.getLogger()
         add_remove_page = AddRemoveElementsPage(self.driver)
-        log.info("TEST PAGE: Add/Remove Elements")
-        add_remove_page.addRemove_Link().click()
+        log.info("TEST START")
+        add_remove_page.addRemove_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/add_remove_elements/"
-        log.info("URL - Passed: " + url)
+        log.info("URL Passed: " + url)
 
 
         # Verify the Header
         header_text = add_remove_page.addremove_HeaderText().text
         assert ("Add/Remove Elements" in header_text)
-        log.info("Header - Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
         # Verify Add two delete buttons
         add_remove_page.addElement().click()
         add_remove_page.addElement().click()
         assert len(add_remove_page.delElements())
-        log.info("Add Buttons - Passed")
+        log.info("Add Buttons: Passed")
 
 
         # Verify Removed delete buttons
@@ -46,7 +46,7 @@ class TestAddRemoveElements(BaseClass):
             button.click()
 
         assert not len(add_remove_page.delElements())
-        log.info("Removed Buttons - Passed")
+        log.info("Removed Buttons: Passed")
 
 
         # Exit the Page

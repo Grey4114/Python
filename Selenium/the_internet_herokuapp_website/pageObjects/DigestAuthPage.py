@@ -14,28 +14,19 @@ class DigestAuthPage:
     def __init__(self, driver):
         self.driver = driver
 
-    digest_LinkText = (By.XPATH, "//a[text()='Digest Authentication']")
-
-    # todo - Page header text
-    digest_Header = (By.XPATH, "//h3[text()='xxxxx']")
-
-    # todo - user path
-    digest_User = (By.XPATH, "")
-
-    # todo - pass path
-    digest_Pass = (By.XPATH, "")
-
-    # todo - sign in button
-    digest_SignIn = (By.XPATH, "")
-    # todo - cancel button
-    digest_Cancel = (By.XPATH, "")
-
-    # todo - login failed text
-    digest_Failed = (By.XPATH, "")
+    digest_Link = (By.XPATH, "//a[text()='Digest Authentication']")     # Main Page link
 
 
-    def digestAuth_Link(self):
-        return self.driver.find_element(*DigestAuthPage.digest_LinkText)
+    digest_Header = (By.XPATH, "//h3[text()='xxxxx']")      # todo - Page header text
+    digest_User = (By.XPATH, "")                            # todo - user path
+    digest_Pass = (By.XPATH, "")                            # todo - pass path
+    digest_SignIn = (By.XPATH, "")                          # todo - sign in button
+    digest_Cancel = (By.XPATH, "")                          # todo - cancel button
+    digest_Failed = (By.XPATH, "")                          # todo - login failed text
+
+
+    def digestAuth_LinkText(self):
+        return self.driver.find_element(*DigestAuthPage.digest_Link)
 
     def digestAuth_HeaderText(self):
         return self.driver.find_element(*DigestAuthPage.digest_Header)

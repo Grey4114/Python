@@ -7,14 +7,11 @@ Notes:
 
 import time
 import pytest
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 from utilities.BaseClass import BaseClass
 from pageObjects.ContextMenuPage import ContextMenuPage
-
-
-# todo - verify right click box
-# todo - verify dismiss alert box
-# todo - verify dismiss popup box
-
 
 class TestContextMenu(BaseClass):
 
@@ -23,62 +20,49 @@ class TestContextMenu(BaseClass):
         log = self.getLogger()
         contextmenu_page = ContextMenuPage(self.driver)
         log.info("TEST START")
-        contextmenu_page.contextMenu_Link().click()
+        contextmenu_page.contextMenu_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/context_menu"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = contextmenu_page.contextMenu_HeaderText().text
-        assert ("Contex Menu" in header_text)
-        log.info("Header Passed: " + header_text)
+        assert ("Context Menu" in header_text)
+        log.info("Header: " + header_text)
+
+        # Grab page handle
+        window_before = self.driver.window_handles[0]      # Page window
 
 
+        # Right click Context box & Verify Alert message
+        action = ActionChains(self.driver)
+        action.context_click(contextmenu_page.contextMenu_RightClickBox()).perform()
+        # time.sleep(5)
 
-        # Verify right click box
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify Alert message & Dismiss alert box
+        alert = self.driver.switch_to.alert
+        alertText = alert.text
+        assert ('You selected a context menu' in alertText)
+        log.info("Alert Text: " + alertText)
+        time.sleep(5)
+        alert.accept()
+        time.sleep(5)
 
-        # Verify dismiss alert box
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # Verify dismiss popup box
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # todo - Verify & Dismiss popup box
+        window_after = self.driver.window_handles[1]       # Popup window
+        self.driver.switch_to.window(window_after).send_keys(Keys.ESCAPE)
+        time.sleep(5)
+
 
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        time.sleep(2)
+        # time.sleep(2)
         self.driver.back()
         self.driver.refresh()
 
-
-        """       
-   
-        action = ActionChains(driver)
-        action.context_click(driver.find_element(By.XPATH, "//div[@id='hot-spot']")).perform()
-    
-        # driver.find_element(By.XPATH, "//div[@id='hot-spot']").click()
-    
-        alert = driver.switch_to.alert
-        time.sleep(1)
-        alert.accept()
-    
-        alert2 = driver.switch_to.alert
-        time.sleep(1)
-        alert2.send_keys(Keys.ESCAPE)
-        time.sleep(1)
-
-        """

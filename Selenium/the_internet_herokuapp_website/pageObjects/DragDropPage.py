@@ -11,18 +11,15 @@ class DragDropPage:
     def __init__(self, driver):
         self.driver = driver
 
-    drag_LinkText = (By.XPATH, "//a[text()='Drag and Drop']")
-    drag_Header = (By.XPATH, "//h3[text()='Drag and Drop']")
+    drag_Link = (By.XPATH, "//a[text()='Drag and Drop']")       # Main Page link
+    drag_Header = (By.XPATH, "//h3[text()='Drag and Drop']")    # Page header text
 
-    # todo - Box A path
-    drag_BoxA = (By.XPATH, "")
-
-    # todo - Box B path
-    drag_BoxB = (By.XPATH, "")
+    drag_BoxA = (By.CSS_SELECTOR, "div[id='column-a']")      # Box A path
+    drag_BoxB = (By.CSS_SELECTOR, "div[id='column-b']")      # Box B path
 
 
-    def dragDrop_Link(self):
-        return self.driver.find_element(*DragDropPage.drag_LinkText)
+    def dragDrop_LinkText(self):
+        return self.driver.find_element(*DragDropPage.drag_Link)
 
     def dragDrop_HeaderText(self):
         return self.driver.find_element(*DragDropPage.drag_Header)
@@ -30,7 +27,7 @@ class DragDropPage:
     def dragDrop_Box_A(self):
         return self.driver.find_element(*DragDropPage.drag_BoxA)
 
-    def dragDrop_Box(self):
+    def dragDrop_Box_B(self):
         return self.driver.find_element(*DragDropPage.drag_BoxB)
 
 

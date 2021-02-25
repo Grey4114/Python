@@ -19,19 +19,19 @@ class TestDigestAuth(BaseClass):
         log = self.getLogger()
         digestauth_page = DigestAuthPage(self.driver)
         log.info("TEST START")
-        digestauth_page.digestAuth_Link().click()
+        digestauth_page.digestAuth_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/digest_auth"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = digestauth_page.digestAuth_HeaderText().text
         assert ("Digest Auth" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
         # todo - Verify enter user & pass & sign in button

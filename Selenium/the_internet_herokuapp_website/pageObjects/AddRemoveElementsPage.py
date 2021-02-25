@@ -12,15 +12,14 @@ class AddRemoveElementsPage:
     def __init__(self, driver):
         self.driver = driver
 
-    addremove_LinkText = (By.XPATH, "//a[text()='Add/Remove Elements']")
-    addremove_Header = (By.XPATH, "//h3[text()='Add/Remove Elements']")
-    addButton = (By.XPATH, "//button[@onclick='addElement()']")
-    delButtons = (By.XPATH, "//div[@id='elements']/button[@class='added-manually']")
+    addremove_Link = (By.XPATH, "//a[text()='Add/Remove Elements']")                    # Main Website link to page
+    addremove_Header = (By.XPATH, "//h3[text()='Add/Remove Elements']")                 # Page header text
+    addButton = (By.XPATH, "//button[@onclick='addElement()']")                         # Add button
+    delButtons = (By.XPATH, "//div[@id='elements']/button[@class='added-manually']")    # Delete button
 
 
-
-    def addRemove_Link(self):
-        return self.driver.find_element(*AddRemoveElementsPage.addremove_LinkText)
+    def addRemove_LinkText(self):
+        return self.driver.find_element(*AddRemoveElementsPage.addremove_Link)
 
     def addremove_HeaderText(self):
         return self.driver.find_element(*AddRemoveElementsPage.addremove_Header)

@@ -17,17 +17,17 @@ class TestFormAuth(BaseClass):
         log = self.getLogger()
         formAuth_page = FormAuthPage(self.driver)
         log.info("TEST START")
-        formAuth_page.formAuth_Link().click()
+        formAuth_page.formAuth_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/login"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = formAuth_page.formAuth_HeaderText().text
         assert ("Login Page" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
 

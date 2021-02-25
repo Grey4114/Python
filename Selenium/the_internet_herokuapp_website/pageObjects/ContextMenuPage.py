@@ -7,36 +7,21 @@ Notes:
 
 from selenium.webdriver.common.by import By
 
-# todo - right click box
-# todo - dismiss alert box
-# todo - dismiss popup box
-
-
 class ContextMenuPage:
     def __init__(self, driver):
         self.driver = driver
 
-    context_LinkText = (By.XPATH, "//a[text()='Context Menu']")
-    context_Header = (By.XPATH, "//h3[text()='Context Menu']")
-
-    context_Right = (By.XPATH, "")
-    context_Alert = (By.XPATH, "")
-    context_Popup = (By.XPATH, "")
+    context_Link = (By.XPATH, "//a[text()='Context Menu']")         # Main Page link
+    context_Header = (By.XPATH, "//h3[text()='Context Menu']")      # Page header text
+    context_Box = (By.XPATH, "//div[@id='hot-spot']")               # right click box
 
 
-    def contextMenu_Link(self):
-        return self.driver.find_element(*ContextMenuPage.context_LinkText)
+    def contextMenu_LinkText(self):
+        return self.driver.find_element(*ContextMenuPage.context_Link)
 
     def contextMenu_HeaderText(self):
         return self.driver.find_element(*ContextMenuPage.context_Header)
 
-
-
     def contextMenu_RightClickBox(self):
-        return self.driver.find_element(*ContextMenuPage.context_Right)
+        return self.driver.find_element(*ContextMenuPage.context_Box)
 
-    def contextMenu_AlertBox(self):
-        return self.driver.find_element(*ContextMenuPage.context_Alert)
-
-    def contextMenu_PopupBox(self):
-        return self.driver.find_element(*ContextMenuPage.context_Popup)

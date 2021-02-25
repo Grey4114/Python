@@ -12,21 +12,17 @@ class ExitIntentPage:
     def __init__(self, driver):
         self.driver = driver
 
-    exit_LinkText = (By.XPATH, "//a[text()='Exit Intent']")
-    exit_Header = (By.XPATH, "//h3[text()='Exit Intent']")
+    exit_Link = (By.XPATH, "//a[text()='Exit Intent']")         # Main Page link
+    exit_Header = (By.XPATH, "//h3[text()='Exit Intent']")      # Page header text
 
-
-    # todo - mouse path
-    exit_Mouse = (By.XPATH, "")
-    # todo - window header text path
-    exit_WindowHeader = (By.XPATH, "")
-    # todo - window close path
-    exit_WindowClose = (By.XPATH, "")
+    exit_WindowHeader = (By.XPATH, "//h3[text()='This is a modal window']")     # Modal window header text
+    exit_WindowClose = (By.XPATH, "//div[@class='modal-footer']")               # Modal window close
+    exit_WindowState = (By.XPATH, "//div[@id='modal']")                         # Modal window state
 
 
 
-    def exitIntent_Link(self):
-        return self.driver.find_element(*ExitIntentPage.exit_LinkText)
+    def exitIntent_LinkText(self):
+        return self.driver.find_element(*ExitIntentPage.exit_Link)
 
     def exitIntent_HeaderText(self):
         return self.driver.find_element(*ExitIntentPage.exit_Header)
@@ -34,8 +30,11 @@ class ExitIntentPage:
     def exitIntent_MouseOut(self):
         return self.driver.find_element(*ExitIntentPage.exit_Mouse)
 
-    def exitIntent_WindowHeader(self):
+    def exitIntent_ModalWindowHeader(self):
         return self.driver.find_element(*ExitIntentPage.exit_WindowHeader)
 
-    def exitIntent_WindowClose(self):
+    def exitIntent_ModalWindowClose(self):
         return self.driver.find_element(*ExitIntentPage.exit_WindowClose)
+
+    def exitIntent_ModalWindowSate(self):
+        return self.driver.find_element(*ExitIntentPage.exit_WindowState)

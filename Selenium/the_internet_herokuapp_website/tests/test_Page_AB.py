@@ -5,7 +5,6 @@ Notes:
     This script tests the A/B Test page using the abPage objects script
 
 """
-
 import time
 import pytest
 from selenium.common.exceptions import NoSuchElementException
@@ -19,14 +18,15 @@ class TestAB(BaseClass):
         # Enter the Page
         log = self.getLogger()
         ab_page = abPage(self.driver)
-        ab_page.ab_Link().click()
-        log.info("TEST PAGE: A/B Test")
+        time.sleep(2)
+        ab_page.ab_LinkText().click()
+        log.info("TEST START")
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/abtest"
-        log.info("URL - Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
@@ -36,11 +36,10 @@ class TestAB(BaseClass):
             header_text = ab_page.ab_HeaderText_2().text
 
         assert ("A/B Test" in header_text)
-        log.info("Header - Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        # time.sleep(2)
         self.driver.back()
         self.driver.refresh()

@@ -18,26 +18,27 @@ class TestFileUpload(BaseClass):
         log = self.getLogger()
         fileUpload_page = FileUploadPage(self.driver)
         log.info("TEST START")
-        fileUpload_page.fileUpload_Link().click()
+        fileUpload_page.fileUpload_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/upload"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = fileUpload_page.fileUpload_HeaderText().text
         assert ("File Uploader" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
-        # todo - Verify choose a file and upload
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Choose a file and Upload
+        fileUpload_page.fileUpload_ChooseFile().click()
+        # todo - MSWindow - change dir, select file and select ok
+        fileUpload_page.fileUpload_UploadButton().click()
+        uploadtext = fileUpload_page.fileUpload_UploadedText().text
+        fileUpload_page.fileUpload_FileUpload()     # todo - verify the file uploaded, not sure how to handle
 
         # todo - Verify drag and drop file into upload area
         # xxx_page.xxxx_Item().click()

@@ -11,15 +11,13 @@ class DropDownPage:
     def __init__(self, driver):
         self.driver = driver
 
-    drop_LinkText = (By.XPATH, "//a[text()='Dropdown']")
-    drop_Header = (By.XPATH, "//h3[text()='Dropdown List']")
-
-    # todo - dropdown list path
-    drop_List = (By.XPATH, "")
+    drop_Link = (By.XPATH, "//a[text()='Dropdown']")            # Main Page link
+    drop_Header = (By.XPATH, "//h3[text()='Dropdown List']")    # Page header text
+    drop_List = (By.XPATH, "//select[@id='dropdown']/option")   # dropdown list path
 
 
-    def dropDown_Link(self):
-        return self.driver.find_element(*DropDownPage.drop_LinkText)
+    def dropDown_LinkText(self):
+        return self.driver.find_element(*DropDownPage.drop_Link)
 
     def dropDown_HeaderText(self):
         return self.driver.find_element(*DropDownPage.drop_Header)

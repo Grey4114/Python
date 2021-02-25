@@ -7,6 +7,8 @@ Notes:
 
 import time
 import pytest
+from selenium.common.exceptions import NoSuchElementException
+
 from utilities.BaseClass import BaseClass
 from pageObjects.DynamicControlsPage import DynamicControlsPage
 
@@ -18,7 +20,7 @@ class TestDynamicControls(BaseClass):
         log = self.getLogger()
         dynamicControls_page = DynamicControlsPage(self.driver)
         log.info("TEST START")
-        dynamicControls_page.dynamicControls_Link().click()
+        dynamicControls_page.dynamicControls_LinkText().click()
 
 
         # Verify the URL
@@ -33,30 +35,30 @@ class TestDynamicControls(BaseClass):
         log.info("Header Passed: " + header_text)
 
 
+        # Verify Remove button - checkbox removal & message text
+        messagetext = "No Message"      # Place holder
+        dynamicControls_page.dynamicControls_AddRemoveButton().click()
+        time.sleep(10)      # todo - replace with Wait
+        try:
+            dynamicControls_page.dynamicControls_Checkbox().click()
+        except NoSuchElementException:
+            messagetext = dynamicControls_page.dynamicControls_MessageText().text
 
-        # todo - Verify remove checkbox & text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        assert messagetext == "It's gone!"
+        log.info("Add/Remove Button: " + messagetext)
 
-        # todo - Verify add checkbox & text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify enable field & text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify Enable button - enable text box & message text
+        dynamicControls_page.dynamicControls_EnableDisableButton().click()
+        time.sleep(10)      # todo - replace with Wait
+        try:
+            dynamicControls_page.dynamicControls_TextField().click()
+            messagetext = dynamicControls_page.dynamicControls_MessageText().text
+        except NoSuchElementException:
+            messagetext = "No Message"
 
-        # todo - Verify disable field & text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        assert messagetext == "It's enabled!"
+        log.info("Enable/Disable Button: " + messagetext)
 
 
         # Exit the Page

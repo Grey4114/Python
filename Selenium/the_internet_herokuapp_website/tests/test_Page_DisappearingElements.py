@@ -7,61 +7,80 @@ Notes:
 
 import time
 import pytest
+from selenium.common.exceptions import NoSuchElementException
+
 from utilities.BaseClass import BaseClass
 from pageObjects.DisappearingElementsPage import DisappearingElementsPage
 
+
 class TestDisappearingElements(BaseClass):
 
-    def test_disappearing_elements(self):
+    main_url = "https://the-internet.herokuapp.com/"
+    disappear_url = "https://the-internet.herokuapp.com/disappearing_elements"
+    about_url = "https://the-internet.herokuapp.com/about/"
+    contact_url = "https://the-internet.herokuapp.com/contact-us/"
+    portfolio_url = "https://the-internet.herokuapp.com/portfolio/"
+    gallery_url = "https://the-internet.herokuapp.com/gallery/"
 
+
+    def test_disappearing_elements(self):
         # Enter the Page
         log = self.getLogger()
         disappearingElements_page = DisappearingElementsPage(self.driver)
         log.info("TEST START")
-        disappearingElements_page.disappearingElements_Link().click()
-
+        disappearingElements_page.disappearingElements_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/disappearing_elements"
-        log.info("URL Passed: " + url)
+        assert url == TestDisappearingElements.disappear_url
+        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = disappearingElements_page.disappearingElements_HeaderText().text
         assert ("Disappearing Elements" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
-        # todo - Verify Home Button & Page
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify Home Button to Main (test not required - just for practice)
+        disappearingElements_page.disappearingElements_HomeButton().click()
+        url = self.driver.current_url
+        assert url == TestDisappearingElements.main_url
+        self.driver.back()
 
-        # todo - Verify About Button & Page
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify Contact Button & Page
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify About Button to blank page (test not required - just for practice)
+        disappearingElements_page.disappearingElements_AboutButton().click()
+        url = self.driver.current_url
+        assert url == TestDisappearingElements.about_url
+        self.driver.back()
 
-        # todo - Verify Portfolio Button & Page
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify Gallery Button & Page - Appear/Disappear
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify Contact Button to blank page (test not required - just for practice)
+        disappearingElements_page.disappearingElements_ContactButton().click()
+        url = self.driver.current_url
+        assert url == TestDisappearingElements.contact_url
+        self.driver.back()
+
+
+        # Verify Portfolio Button to blank page (test not required - just for practice)
+        disappearingElements_page.disappearingElements_PortfilioButton().click()
+        url = self.driver.current_url
+        assert url == TestDisappearingElements.portfolio_url
+        self.driver.back()
+
+
+        # Verify Gallery Button - Appear/Disappear
+        check = True
+        while check:
+            try:
+                gallery = disappearingElements_page.disappearingElements_GalleryButton().text
+                self.driver.refresh()
+            except NoSuchElementException:
+                check = False
+
+        log.info("Gallery Button: Passed")
+
 
 
         # Exit the Page

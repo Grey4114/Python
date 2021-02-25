@@ -12,29 +12,18 @@ class DisappearingElementsPage:
     def __init__(self, driver):
         self.driver = driver
 
-    disappearing_LinkText = (By.XPATH, "//a[text()='Disappearing Elements']")
-    disappearing_Header = (By.XPATH, "//h3[text()='Disappearing Elements']")
+    disappearing_Link = (By.XPATH, "//a[text()='Disappearing Elements']")       # Main Page link
+    disappearing_Header = (By.XPATH, "//h3[text()='Disappearing Elements']")    # Page header text
 
-    # todo - Home button path
-    disappearing_Home = (By.XPATH, "")
-
-    # todo - About button path
-    disappearing_About = (By.XPATH, "")
-
-    # todo - Contact button path
-    disappearing_Contact = (By.XPATH, "")
-
-    # todo - Portfolio button path
-    disappearing_Portfolio = (By.XPATH, "")
-
-    # todo - Gallery button path
-    disappearing_Gallery = (By.XPATH, "")
+    disappearing_Home = (By.XPATH, "//a[@href='/']")                     # Home button path
+    disappearing_About = (By.XPATH, "//a[@href='/about/']")              # About button path
+    disappearing_Contact = (By.XPATH, "//a[@href='/contact-us/']")       # Contact button path
+    disappearing_Portfolio = (By.XPATH, "//a[@href='/portfolio/']")      # Portfolio button path
+    disappearing_Gallery = (By.XPATH, "//a[@href='/gallery/']")          # Gallery button path
 
 
-
-
-    def disappearingElements_Link(self):
-        return self.driver.find_element(*DisappearingElementsPage.disappearing_LinkText)
+    def disappearingElements_LinkText(self):
+        return self.driver.find_element(*DisappearingElementsPage.disappearing_Link)
 
     def disappearingElements_HeaderText(self):
         return self.driver.find_element(*DisappearingElementsPage.disappearing_Header)

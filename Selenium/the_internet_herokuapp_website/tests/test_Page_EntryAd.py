@@ -7,6 +7,8 @@ Notes:
 
 import time
 import pytest
+from selenium.common.exceptions import NoSuchElementException
+
 from utilities.BaseClass import BaseClass
 from pageObjects.EntryAdPage import EntryAdPage
 
@@ -17,38 +19,39 @@ class TestEntryAd(BaseClass):
         log = self.getLogger()
         entryad_page = EntryAdPage(self.driver)
         log.info("TEST START")
-        entryad_page.entry_LinkText().click()
+        entryad_page.entryAd_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/entry_ad"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
-        header_text = entryad_page.entry_Header().text
+        header_text = entryad_page.entryAd_HeaderText().text
         assert ("Entry Ad" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
-        # todo - Verify window header text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify Modal window header text
+        entry = entryad_page.entryAd_ModalWindowHeader().text    # todo - fix
+        assert entry in "This is a modal window"
+        log.info("Modal Header: " + entry)
 
-        # todo - Verify window close
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # todo - Verify Modal Window open and close
+        modal = entryad_page.entryAd_ModalWindowState().is_displayed()   # todo - fix
+        assert not modal
 
-        # todo - Verify click here
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        time.sleep(2)
+        entryad_page.entryAd_ModalWindowClose().click()
+        time.sleep(2)
+        try:
+            modal = entryad_page.entryAd_ModalWindowState().is_displayed()   # todo - fix
+        except NoSuchElementException:
+            modal = True
+
+        log.info("Modal Window: Passed")
 
 
         # Exit the Page

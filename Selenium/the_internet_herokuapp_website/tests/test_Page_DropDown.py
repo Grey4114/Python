@@ -18,38 +18,32 @@ class TestDropdown(BaseClass):
         log = self.getLogger()
         dropdown_page = DropDownPage(self.driver)
         log.info("TEST START")
-        dropdown_page.dropDown_Link().click()
+        dropdown_page.dropDown_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/dropdown"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = dropdown_page.dropDown_HeaderText().text
         assert ("Dropdown List" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
 
-        # todo - Verify List no option
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify List all options
+        options = dropdown_page.dropDown_List()
+        options_text = ["Please select an option", "Option 1", "Option 2"]
+        count = 0
 
-        # todo - Verify List option 1
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify List option 2
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        for opt in options:
+            opt.click()
+            assert opt.text == options_text[count]
+            log.info("Dropdown: " + opt.text)
+            # time.sleep(2)
+            count += 1
 
 
         # Exit the Page

@@ -12,15 +12,15 @@ class CheckboxesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    check_LinkText = (By.XPATH, "//a[text()='Checkboxes']")
-    check_Header = (By.XPATH, "//h3[text()='Checkboxes']")
-    check_Boxes = (By.XPATH, "//input[@type='checkbox']")
-    checked = (By.CSS_SELECTOR, "input:checked[type='checkbox']")   # Checks if the boxes are checked
+    check_Link = (By.XPATH, "//a[text()='Checkboxes']")                     # Main Page link
+    check_Header = (By.XPATH, "//h3[text()='Checkboxes']")                  # Page header text
+    check_Boxes = (By.XPATH, "//input[@type='checkbox']")                   # Check how many check boxes there are
+    checked = (By.CSS_SELECTOR, "input:checked[type='checkbox']")           # Checks if the boxes are checked
     notchecked = (By.CSS_SELECTOR, "input:not(:checked)[type='checkbox']")  # Checks if the boxes are not checked
 
 
-    def checkboxes_Link(self):
-        return self.driver.find_element(*CheckboxesPage.check_LinkText)
+    def checkboxes_LinkText(self):
+        return self.driver.find_element(*CheckboxesPage.check_Link)
 
     def checkbox_HeaderText(self):
         return self.driver.find_element(*CheckboxesPage.check_Header)

@@ -10,37 +10,51 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.BasicAuthPage import BasicAuthPage
 
-
-# todo - add page tests
-# todo - grab page header text
-# todo - assert header text or other text
+# NOTE - user and pass: admin
 
 class TestBasicAuth(BaseClass):
-    # NOTE - user and pass: admin
 
     def test_basic_auth(self):
         # Enter the Page
         log = self.getLogger()
         basic_auth_page = BasicAuthPage(self.driver)
-        log.info("TEST PAGE: Basic Auth")
-        basic_auth_page.basicAuth_Link().click()
+        log.info("TEST START")
+        basic_auth_page.basicAuth_LinkText().click()
 
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/basic_auth"
-        log.info("URL - Passed: " + url)
+        log.info("URL: " + url)
 
 
-        # Verify the Header
+        # todo - Verify the Header
         # header_text = add_remove_page.addremove_HeaderText().text
         # assert ("Add/Remove Elements" in header_text)
         # log.info("Header - Passed: " + header_text)
 
 
+        # todo - Verify cancel from pop up
+        # xxx_page.xxxx_Item().click()
+        # xXxX = xxxx_page.xxxx_Elements()
+        # assert (xXxX in xxxx)
+        # log.info("Elements Passed")
+
+        # todo - Verify incorrect info in pop up
+        # xxx_page.xxxx_Item().click()
+        # xXxX = xxxx_page.xxxx_Elements()
+        # assert (xXxX in xxxx)
+        # log.info("Elements Passed")
+
+        # todo - Verify correct info in pop up
+        # xxx_page.xxxx_Item().click()
+        # xXxX = xxxx_page.xxxx_Elements()
+        # assert (xXxX in xxxx)
+        # log.info("Elements Passed")
+
         # Exit the Page
         # log.info(header_text + " - All Tests Passed")
-        time.sleep(2)
+        # time.sleep(2)
         self.driver.back()
         self.driver.refresh()
 
