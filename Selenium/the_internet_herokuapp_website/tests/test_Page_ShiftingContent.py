@@ -18,86 +18,47 @@ class TestShiftingContent(BaseClass):
         log = self.getLogger()
         shiftingContent_page = ShiftingContentPage(self.driver)
         log.info("TEST START")
-        shiftingContent_page.shiftingContent_Link().click()
+        shiftingContent_page.shiftingContent_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/shifting_content"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = shiftingContent_page.shiftingContent_HeaderText().text
         assert ("Shifting Content" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify Content - menu link and Header
+
+        # todo - Verify Menu page
+        shiftingContent_page.shiftingContent_MenuLink().click()
+        ex1_header = shiftingContent_page.shiftingContent_Example1_HeaderText().text
+        assert ("Shifting Content: Menu Element" in ex1_header)
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
-        # todo - Verify Content - image link and Header
+        # todo - Verify Image page
+        shiftingContent_page.shiftingContent_ImageLink().click()
+        ex2_header = shiftingContent_page.shiftingContent_Example2_HeaderText().text
+        assert ("Shifting Content: Image" in ex2_header)
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
-        # todo - Verify Content - List link and Header
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify Menu - URL
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify Menu - Shift
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify Menu - Random
+        # todo - Verify List page
+        shiftingContent_page.shiftingContent_ListLink().click()
+        ex3_header = shiftingContent_page.shiftingContent_Example3_HeaderText().text
+        assert ("Shifting Content: List" in ex3_header)
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
 
-        # todo - Verify Image - URL
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify Image - Shift
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify Image - Random
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify Image - Simple
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-
-
-        # todo - Verify List - Random
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
         # Exit the Page
@@ -107,5 +68,16 @@ class TestShiftingContent(BaseClass):
         self.driver.refresh()
 
 
+
+
+"Et numquam et aliquam."
+
+"Nesciunt autem eum odit fuga tempora deleniti."
+
+"Vel aliquid dolores veniam enim nesciunt libero quaerat."
+
+"Important Information You're Looking For"
+
+"Sed deleniti blanditiis odio laudantium."
 
 

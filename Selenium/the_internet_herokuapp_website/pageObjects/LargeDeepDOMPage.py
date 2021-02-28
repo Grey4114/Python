@@ -12,21 +12,19 @@ class LargeDeepDOMPage:
     def __init__(self, driver):
         self.driver = driver
 
-    largeDeep_LinkText = (By.XPATH, "//a[text()='Large & Deep DOM']")
-    largeDeep_Header = (By.XPATH, "//h3[text()='Large & Deep DOM']")
+    largeDeep_Link = (By.XPATH, "//a[text()='Large & Deep DOM']")       # Main Page link
+    largeDeep_Header = (By.XPATH, "//h3[text()='Large & Deep DOM']")        # Page header text
 
-    # todo - scroll down path
-    largeDeep_Down = (By.XPATH, " ")
+    # todo - not sure what to test for
 
-    # todo - scroll across path
-    largeDeep_Across = (By.XPATH, " ")
-
-    # todo - table last number
-    largeDeep_LastNumber = (By.XPATH, " ")
+    largeDeep_Down = (By.XPATH, " ")        # todo - scroll down path
+    largeDeep_Across = (By.XPATH, " ")      # todo - scroll across path
+    largeDeep_LastNumber = (By.XPATH, " ")      # todo - table last number
 
 
-    def largeDeepDOM_Link(self):
-        return self.driver.find_element(*LargeDeepDOMPage.largeDeep_LinkText)
+
+    def largeDeepDOM_LinkText(self):
+        return self.driver.find_element(*LargeDeepDOMPage.largeDeep_Link)
 
     def largeDeepDOM_HeaderText(self):
         return self.driver.find_element(*LargeDeepDOMPage.largeDeep_Header)

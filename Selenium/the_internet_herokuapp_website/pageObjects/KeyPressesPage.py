@@ -12,17 +12,14 @@ class KeyPressesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    keyPress_LinkText = (By.XPATH, "//a[text()='Key Presses']")
-    keyPress_Header = (By.XPATH, "//h3[text()='Key Presses']")
-
-    # todo - field path
-    keyPress_Field = (By.XPATH, " ")
-    # todo - Text path
-    keyPress_Text = (By.XPATH, " ")
+    keyPress_Link = (By.XPATH, "//a[text()='Key Presses']")     # Main Page link
+    keyPress_Header = (By.XPATH, "//h3[text()='Key Presses']")      # Page header text
+    keyPress_Field = (By.ID, "target")    # Text field
+    keyPress_Text = (By.ID, "result")     # Shows the key press entered
 
 
-    def keyPresses_Link(self):
-        return self.driver.find_element(*KeyPressesPage.keyPress_LinkText)
+    def keyPresses_LinkText(self):
+        return self.driver.find_element(*KeyPressesPage.keyPress_Link)
 
     def keyPresses_HeaderText(self):
         return self.driver.find_element(*KeyPressesPage.keyPress_Header)

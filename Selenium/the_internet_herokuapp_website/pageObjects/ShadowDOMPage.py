@@ -11,17 +11,15 @@ class ShadowDOMPage:
     def __init__(self, driver):
         self.driver = driver
 
-    shadow_LinkText = (By.XPATH, "//a[text()='Shadow DOM']")
-    shadow_Header = (By.XPATH, "//h3[text()='Shadow DOM']")
+    shadow_Link = (By.XPATH, "//a[text()='Shadow DOM']")        # Main Page link
+    shadow_Header = (By.XPATH, "//h1[text()='Simple template']")     # Page header text
 
-    # todo - text 1 path
-    shadow_Text1 = (By.XPATH, " ")
-    # todo - text 2 path
-    shadow_Text2 = (By.XPATH, " ")
+    shadow_Text1 = (By.CSS_SELECTOR, "span[slot='my-text']")    # Text 1
+    shadow_Text2 = (By.CSS_SELECTOR, "ul[slot='my-text']")      # Text 2
 
 
-    def shadowDOM_Link(self):
-        return self.driver.find_element(*ShadowDOMPage.shadow_LinkText)
+    def shadowDOM_LinkText(self):
+        return self.driver.find_element(*ShadowDOMPage.shadow_Link)
 
     def shadowDOM_HeaderText(self):
         return self.driver.find_element(*ShadowDOMPage.shadow_Header)

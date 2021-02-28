@@ -7,6 +7,8 @@ Notes:
 
 import time
 import pytest
+from selenium.webdriver import ActionChains
+
 from utilities.BaseClass import BaseClass
 from pageObjects.HorizontalSliderPage import HorizontalSliderPage
 
@@ -17,35 +19,27 @@ class TestHorizontalSlider(BaseClass):
         log = self.getLogger()
         horizontalSlider_page = HorizontalSliderPage(self.driver)
         log.info("TEST START")
-        horizontalSlider_page.horizontalSlider_Link().click()
+        horizontalSlider_page.horizontalSlider_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/horizontal_slider"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = horizontalSlider_page.horizontalSlider_HeaderText().text
         assert ("Horizontal Slider" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify slider 0
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify slider 3
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify slider move
+        assert horizontalSlider_page.horizontalSlider_SliderValue().text == "0"
+        slider = horizontalSlider_page.horizontalSlider_Slider()
+        ActionChains(self.driver).drag_and_drop_by_offset(slider, 0, 5).perform()
+        assert horizontalSlider_page.horizontalSlider_SliderValue().text == "2.5"
+        log.info("Moved: " + horizontalSlider_page.horizontalSlider_SliderValue().text)
 
-        # todo - Verify slider 5
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

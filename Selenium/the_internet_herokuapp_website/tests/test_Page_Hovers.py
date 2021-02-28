@@ -16,19 +16,25 @@ class TestHovers(BaseClass):
         log = self.getLogger()
         hover_page = HoversPage(self.driver)
         log.info("TEST START")
-        hover_page.hovers_Link().click()
+        hover_page.hovers_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/hovers"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = hover_page.hovers_HeaderText().text
         assert ("Hovers" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
+
+
 
         # todo - Verify image & info 1
+        time.sleep(3)
+        hover_page.hovers_Picture_1().click()
+        time.sleep(3)
+
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)

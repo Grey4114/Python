@@ -12,32 +12,18 @@ class RedirectLinkPage:
     def __init__(self, driver):
         self.driver = driver
 
-    redirect_LinkText = (By.XPATH, "//a[text()='Redirect Link']")
-    redirect_Header = (By.XPATH, "//h3[text()='Redirect Link']")
-
-    # todo - click here path
-    redirect_Click = (By.XPATH, " ")
-
-    # todo - New Page path
-    redirect_NewPage = (By.XPATH, " ")
-
-    # todo - New Header path
-    redirect_NewHeader = (By.XPATH, " ")
+    redirect_Link = (By.XPATH, "//a[text()='Redirect Link']")       # Main Page link
+    redirect_Header = (By.XPATH, "//h3[text()='Redirection']")        # Page header text
+    redirect_Click = (By.XPATH, "//a[@href='redirect']")        # Click link
 
 
 
-    def redirectLink_Link(self):
-        return self.driver.find_element(*RedirectLinkPage.redirect_LinkText)
+    def redirectLink_LinkText(self):
+        return self.driver.find_element(*RedirectLinkPage.redirect_Link)
 
     def redirectLink_HeaderText(self):
         return self.driver.find_element(*RedirectLinkPage.redirect_Header)
 
     def redirectLink_ClickHere(self):
         return self.driver.find_element(*RedirectLinkPage.redirect_Click)
-
-    def redirectLink_NewPageURL(self):
-        return self.driver.find_element(*RedirectLinkPage.redirect_NewPage)
-
-    def redirectLink_NewPageHeader(self):
-        return self.driver.find_element(*RedirectLinkPage.redirect_NewHeader)
 

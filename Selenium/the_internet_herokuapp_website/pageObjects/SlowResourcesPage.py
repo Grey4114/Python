@@ -12,15 +12,16 @@ class SlowResourcesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    slow_LinkText = (By.XPATH, "//a[text()='Slow Resources']")
-    slow_Header = (By.XPATH, "//h3[text()='Slow Resources']")
+    slow_Link = (By.XPATH, "//a[text()='Slow Resources']")      # Main Page link
+    slow_Header = (By.XPATH, "//h3[text()='Slow Resources']")       # Page header text
 
-    # todo - request path
-    slow_Request = (By.XPATH, " ")
+    # todo - not sure how to test this
+
+    slow_Request = (By.XPATH, " ")      # todo - request path
 
 
-    def slowResources_Link(self):
-        return self.driver.find_element(*SlowResourcesPage.slow_LinkText)
+    def slowResources_LinkText(self):
+        return self.driver.find_element(*SlowResourcesPage.slow_Link)
 
     def slowResources_HeaderText(self):
         return self.driver.find_element(*SlowResourcesPage.slow_Header)

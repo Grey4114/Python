@@ -13,33 +13,32 @@ class FramesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    frames_LinkText = (By.XPATH, "//a[text()='Frames']")
-    frames_Header = (By.XPATH, "//h3[text()='Frames']")
+    frames_Link = (By.XPATH, "//a[text()='Frames']")        # Main Page link
+    frames_Header = (By.XPATH, "//h3[text()='Frames']")         # Page header text
 
-    # todo - nested link path
-    frames_Nested = (By.XPATH, " ")
-    # todo - nested text path
-    frames_NText = (By.XPATH, " ")
-    # todo - nested right path
-    frames_NRight = (By.XPATH, " ")
-    # todo - nested left path
-    frames_NLeft = (By.XPATH, " ")
-    # todo - nested bottom path
-    frames_NBottom = (By.XPATH, " ")
 
-    # todo - iframe text path
-    frames_iFrame = (By.XPATH, " ")
-    # todo - iframe heading path
-    frames_iHeading = (By.XPATH, " ")
-    # todo - iframe area path
-    frames_iArea = (By.XPATH, " ")
+    frames_Nested = (By.XPATH, " ")         # todo - nested link path
+
+    frames_NText = (By.XPATH, " ")          # todo - nested text path
+
+    frames_NRight = (By.XPATH, " ")         # todo - nested right path
+
+    frames_NLeft = (By.XPATH, " ")          # todo - nested left path
+
+    frames_NBottom = (By.XPATH, " ")        # todo - nested bottom path
+
+    frames_iFrame = (By.XPATH, " ")         # todo - iframe text path
+
+    frames_iHeading = (By.XPATH, " ")       # todo - iframe heading path
+
+    frames_iArea = (By.XPATH, " ")          # todo - iframe area path
 
     # todo - iFrame add all other parameters
 
 
 
-    def frames_Link(self):
-        return self.driver.find_element(*FramesPage.frames_LinkText)
+    def frames_LinkText(self):
+        return self.driver.find_element(*FramesPage.frames_Link)
 
     def frames_HeaderText(self):
         return self.driver.find_element(*FramesPage.frames_Header)

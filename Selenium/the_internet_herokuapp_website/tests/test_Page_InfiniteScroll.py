@@ -18,17 +18,17 @@ class TestInfiniteScroll(BaseClass):
         log = self.getLogger()
         infiniteScroll_page = InfiniteScrollPage(self.driver)
         log.info("TEST START")
-        infiniteScroll_page.infiniteScroll_Link().click()
+        infiniteScroll_page.infiniteScroll_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/infinite_scroll"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = infiniteScroll_page.infiniteScroll_HeaderText().text
         assert ("Infinite Scroll" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
         # todo - Verify scroll 1
         # xxx_page.xxxx_Item().click()

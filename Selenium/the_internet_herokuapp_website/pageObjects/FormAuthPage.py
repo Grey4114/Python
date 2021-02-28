@@ -2,32 +2,29 @@
 Website:  https://the-internet.herokuapp.com/
 Date:  2/14/2021
 Notes:
-    This script tests the Exit Intent page
+    username: tomsmith
+    password: SuperSecretPassword!
 """
 
 
 from selenium.webdriver.common.by import By
 
-# username: tomsmith
-# password: SuperSecretPassword!
+
 
 class FormAuthPage:
     def __init__(self, driver):
         self.driver = driver
 
-    form_Link = (By.XPATH, "//a[text()='Form Authentication']")
-    form_Header = (By.XPATH, "//h3[text()='Login Page']")
+    form_Link = (By.XPATH, "//a[text()='Form Authentication']")         # Main Page link
+    form_Header = (By.XPATH, "//h2[text()='Login Page']")               # Page header text
 
+    form_User = (By.XPATH, "//input[@id='username']")                   # Username field
+    form_Pass = (By.XPATH, "//input[@id='password']")                   # Password Field
+    form_Login = (By.XPATH, "//i[@class='fa fa-2x fa-sign-in']")        # Login button
+    form_Valid = (By.XPATH, "//div[@class='flash success']")            # Valid flash message
+    form_Invalid = (By.XPATH, "//div[@class='flash error']")            # Invalid flash message
+    form_Logout = (By.XPATH, "//i[@class='icon-2x icon-signout']")      # Login button
 
-    form_User = (By.XPATH, " ")     # todo - user path
-
-    form_Pass = (By.XPATH, " ")     # todo - password path
-
-    form_Login = (By.XPATH, " ")        # todo - login path
-
-    form_Valid = (By.XPATH, " ")        # todo - valid path
-
-    form_Invalid = (By.XPATH, " ")      # todo - invalid path
 
 
     def formAuth_LinkText(self):
@@ -51,4 +48,6 @@ class FormAuthPage:
     def formAuth_InvalidText(self):
         return self.driver.find_element(*FormAuthPage.form_Invalid)
 
+    def formAuth_LogoutButton(self):
+        return self.driver.find_element(*FormAuthPage.form_Logout)
 

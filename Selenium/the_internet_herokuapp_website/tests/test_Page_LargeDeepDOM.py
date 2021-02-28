@@ -17,23 +17,26 @@ class TestLargeDeepDOM(BaseClass):
         log = self.getLogger()
         largeDeepDOM_page = LargeDeepDOMPage(self.driver)
         log.info("TEST START")
-        largeDeepDOM_page.largeDeepDOM_Link().click()
+        largeDeepDOM_page.largeDeepDOM_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/large"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = largeDeepDOM_page.largeDeepDOM_HeaderText().text
         assert ("Large & Deep DOM" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
+
+        # todo - not sure what to test for
         # todo - Verify scroll down
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
+
 
         # todo - Verify scroll across
         # xxx_page.xxxx_Item().click()
@@ -41,11 +44,14 @@ class TestLargeDeepDOM(BaseClass):
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
+
         # todo - Verify text
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
+
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

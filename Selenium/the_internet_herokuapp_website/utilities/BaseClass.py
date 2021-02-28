@@ -10,7 +10,6 @@ import pytest
 import inspect
 import logging
 
-# todo - add more info to logs
 
 
 @pytest.mark.usefixtures("setup")

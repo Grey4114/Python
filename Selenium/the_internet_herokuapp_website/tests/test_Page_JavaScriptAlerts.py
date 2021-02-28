@@ -18,35 +18,81 @@ class TestJavaScriptAlerts(BaseClass):
         log = self.getLogger()
         javaScriptAlerts_page = JavaScriptAlertsPage(self.driver)
         log.info("TEST START")
-        javaScriptAlerts_page.javaScriptAlerts_Link().click()
+        javaScriptAlerts_page.javaScriptAlerts_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/javascript_alerts"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = javaScriptAlerts_page.javaScriptAlerts_HeaderText().text
         assert ("JavaScript Alerts" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify JS Alert page
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify JS Confirm
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify JS Prompt
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify JSAlert window open & close
+        javaScriptAlerts_page.javaScriptAlerts_AlertButton().click()
+        time.sleep(3)
+        alert = self.driver.switch_to.alert
+        alert.accept()
+        time.sleep(3)
+        assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You successfully clicked an alert"
+        log.info("JS Alert: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+
+
+        # Verify JSConfirm - Cancel
+        javaScriptAlerts_page.javaScriptAlerts_ConfirmButton().click()
+        time.sleep(3)
+        alert = self.driver.switch_to.alert
+        alert.dismiss()
+        time.sleep(3)
+        assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You clicked: Cancel"
+        log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+
+
+        # Verify JSConfirm - Cancel
+        javaScriptAlerts_page.javaScriptAlerts_ConfirmButton().click()
+        time.sleep(3)
+        alert = self.driver.switch_to.alert
+        alert.accept()
+        time.sleep(3)
+        assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You clicked: Ok"
+        log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+
+
+        # todo - Verify JS Prompt - Cancel
+        javaScriptAlerts_page.javaScriptAlerts_PromptButton().click()
+        # time.sleep(3)
+        alert = self.driver.switch_to.alert
+        alert.dismiss()
+        # time.sleep(3)
+        assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You entered: null"
+        log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+
+
+        # todo - Verify JS Prompt - OK w/Empty Text Field
+        javaScriptAlerts_page.javaScriptAlerts_PromptButton().click()
+        # time.sleep(2)
+        alert = self.driver.switch_to.alert
+        alert.accept()
+        # time.sleep(2)
+        assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You entered:"
+        log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+
+
+        # todo - Verify JS Prompt - OK w/Text Field
+        javaScriptAlerts_page.javaScriptAlerts_PromptButton().click()
+        time.sleep(2)
+        alert = self.driver.switch_to.alert
+        alert.send_keys("test")
+        time.sleep(2)
+        alert.accept()
+        time.sleep(2)
+        assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You entered: test"
+        log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

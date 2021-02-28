@@ -17,29 +17,26 @@ class TestMultipleWindows(BaseClass):
         log = self.getLogger()
         multipleWindows_page = MultipleWindowsPage(self.driver)
         log.info("TEST START")
-        multipleWindows_page.multipleWindows_Link().click()
+        multipleWindows_page.multipleWindows_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/windows"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = multipleWindows_page.multipleWindows_HeaderText().text
-        assert ("Open a new window" in header_text)
-        log.info("Header Passed: " + header_text)
+        assert ("Opening a new window" in header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify opem new window part 1
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify open new window
+        multipleWindows_page.multipleWindows_ClickHere().click()
+        self.driver.switch_to.window(self.driver.window_handles[1])
+        assert multipleWindows_page.multipleWindows_NewHeader().text == 'New Window'
+        log.info(multipleWindows_page.multipleWindows_NewHeader().text)
+        self.driver.close()
+        self.driver.switch_to.window(self.driver.window_handles[0])
 
-        # todo - Verify opem new window part 2
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

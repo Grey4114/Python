@@ -18,18 +18,21 @@ class TestSlowResources(BaseClass):
         log = self.getLogger()
         slowResources_page = SlowResourcesPage(self.driver)
         log.info("TEST START")
-        slowResources_page.slowResources_Link().click()
+        slowResources_page.slowResources_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/slow"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = slowResources_page.slowResources_HeaderText().text
         assert ("Slow Resources" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
+
+
+        # todo - not sure how to test this
         # todo - Verify get request
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()

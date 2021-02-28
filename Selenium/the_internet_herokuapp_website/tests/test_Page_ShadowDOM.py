@@ -17,29 +17,27 @@ class TestShadowDOM(BaseClass):
         log = self.getLogger()
         shadowDOM_page = ShadowDOMPage(self.driver)
         log.info("TEST START")
-        shadowDOM_page.shadowDOM_Link().click()
+        shadowDOM_page.shadowDOM_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/shadowdom"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # todo - Verify the Header
         header_text = shadowDOM_page.shadowDOM_HeaderText().text
         assert ("Simple template" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
         # todo - Verify text 1
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        text1 = shadowDOM_page.shadowDOM_Text_1().text
+        text2 = shadowDOM_page.shadowDOM_Text_2().text
 
-        # todo - Verify text 2
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        assert "Let's have some different text!" in text1
+        assert "In a list!" in text2
+
+        log.info("Text Elements Passed")
+
 
 
         # Exit the Page

@@ -16,41 +16,33 @@ class TestGeolocation(BaseClass):
         log = self.getLogger()
         geolocation_page = GeolocationPage(self.driver)
         log.info("TEST START")
-        geolocation_page.geolocation_Link().click()
+        geolocation_page.geolocation_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/geolocation"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = geolocation_page.geolocation_HeaderText().text
         assert ("Geolocation" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify button
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify latitiude
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify button, latitiude and longtitude
+        geolocation_page.geolocation_WhereAmI_Button().click()
+        time.sleep(3)
+        assert "37" in geolocation_page.geolocation_LatitudeText().text
+        assert "-121" in geolocation_page.geolocation_LongtitudeText().text
+        log.info("Location: Passed")
 
-        # todo - Verify longtitude
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify google link and page
+        time.sleep(3)
+        geolocation_page.geolocation_GoogleLink().click()
+        time.sleep(3)
+        assert "37" in geolocation_page.geolocation_GooglePage().text
+        log.info("Goolge Page: Passed")
 
-        # todo - Verify google link
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

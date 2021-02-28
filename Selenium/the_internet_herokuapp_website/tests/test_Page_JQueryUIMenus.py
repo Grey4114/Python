@@ -18,17 +18,18 @@ class TestJQueryUIMenus(BaseClass):
         log = self.getLogger()
         jqueryUIMenus_page = JQueryUIMenusPage(self.driver)
         log.info("TEST START")
-        jqueryUIMenus_page.jQueryUIMenus_Link().click()
+        jqueryUIMenus_page.jQueryUIMenus_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/jqueryui/menu"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = jqueryUIMenus_page.jQueryUIMenus_HeaderText().text
         assert ("JQueryUI-Menu" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
+
 
         # todo - Verify Disabled
         # xxx_page.xxxx_Item().click()
@@ -36,11 +37,13 @@ class TestJQueryUIMenus(BaseClass):
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
+
         # todo - Verify Enabled downloads pdf
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
+
 
         # todo - Verify Enabled downloads csv
         # xxx_page.xxxx_Item().click()
@@ -48,17 +51,20 @@ class TestJQueryUIMenus(BaseClass):
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
+
         # todo - Verify Enabled downloads xml
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
 
+
         # todo - Verify Enabled back header text
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
+
 
         # todo - Verify Enabled menu
         # xxx_page.xxxx_Item().click()

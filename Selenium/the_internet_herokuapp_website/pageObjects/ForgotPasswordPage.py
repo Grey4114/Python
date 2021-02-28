@@ -12,11 +12,11 @@ class ForgotPasswordPage:
     def __init__(self, driver):
         self.driver = driver
 
-    forgot_Link = (By.XPATH, "//a[text()='Forgot Password']")       # Main Page link
+    forgot_Link = (By.XPATH, "//a[text()='Forgot Password']")           # Main Page link
     forgot_Header = (By.XPATH, "//h2[text()='Forgot Password']")        # Page header text
     forgot_Email = (By.XPATH, "//input[@id='email']")                   # Email field
     forgot_Retrieve = (By.XPATH, "//i[@class='icon-2x icon-signin']")   # Retrieve Button
-    forgot_Error = (By.XPATH, "//h1[text()='Internal Server Error']")  # Error Text
+    forgot_Error = (By.XPATH, "//h1[text()='Internal Server Error']")   # Error Text
 
 
     def forgotPassword_LinkText(self):

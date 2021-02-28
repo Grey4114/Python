@@ -13,13 +13,13 @@ class SortableDataTablesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    sortable_LinkText = (By.XPATH, "//a[text()='Sortable Data Tables']")
-    sortable_Header = (By.XPATH, "//h3[text()='Sortable Data Tables']")
+    sortable_LinkText = (By.XPATH, "//a[text()='Sortable Data Tables']")        # Main Page link
+    sortable_Header = (By.XPATH, "//h3[text()='Sortable Data Tables']")         # Page header text
 
-    # todo - Table 1
-    sortable_Table1 = (By.XPATH, " ")
-    # todo - Table 2
-    sortable_Table2 = (By.XPATH, " ")
+    # todo - not sure how to test this
+    sortable_Table1 = (By.XPATH, " ")   # todo - Table 1
+
+    sortable_Table2 = (By.XPATH, " ")   # todo - Table 2
 
 
 

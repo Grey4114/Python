@@ -13,19 +13,20 @@ class NestedFramesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    nested_LinkText = (By.XPATH, "//a[text()='Nested Frames']")
-    nested_Header = (By.XPATH, "//h3[text()='Nested Frames']")
+    nested_Link = (By.XPATH, "//a[text()='Nested Frames']")     # Main Page link
+    nested_Header = (By.XPATH, "//h3[text()='Nested Frames']")      # Page header text
 
-    # todo - nested right path
-    nested_Right = (By.XPATH, " ")
-    # todo - nested left path
-    nested_Left = (By.XPATH, " ")
-    # todo - nested bottom path
-    nested_Bottom = (By.XPATH, " ")
+    # todo - not sure how to test this at this time
+
+    nested_Right = (By.XPATH, " ")      # todo - nested right path
+
+    nested_Left = (By.XPATH, " ")       # todo - nested left path
+
+    nested_Bottom = (By.XPATH, " ")     # todo - nested bottom path
 
 
-    def nestedFrames_Link(self):
-        return self.driver.find_element(*NestedFramesPage.nested_LinkText)
+    def nestedFrames_LinkText(self):
+        return self.driver.find_element(*NestedFramesPage.nested_Link)
 
     def nestedFrames_HeaderText(self):
         return self.driver.find_element(*NestedFramesPage.nested_Header)

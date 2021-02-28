@@ -11,34 +11,29 @@ class GeolocationPage:
     def __init__(self, driver):
         self.driver = driver
 
-    geo_LinkText = (By.XPATH, "//a[text()='Geolocation']")
-    geo_Header = (By.XPATH, "//h3[text()='Geolocation']")
+    geo_Link = (By.XPATH, "//a[text()='Geolocation']")                  # Main Page link
+    geo_Header = (By.XPATH, "//h3[text()='Geolocation']")               # Page header text
 
-    # todo - where am i path
-    geo_WhereAmI = (By.XPATH, " ")
-    # todo - latitude path
-    geo_Latitude = (By.XPATH, " ")
-    # todo - longtitude path
-    geo_Longtitude = (By.XPATH, " ")
-    # todo - google link path
-    geo_GLink = (By.XPATH, " ")
-    # todo - google page path
-    geo_GPage = (By.XPATH, " ")
+    geo_WhereAmI = (By.XPATH, "//button[@onclick='getLocation()']")     # Where am i? Button
+    geo_Latitude = (By.ID, "lat-value")                                 # Latitude info
+    geo_Longtitude = (By.ID, "long-value")                              # Longtitude info
+    geo_GLink = (By.XPATH, "//a[text()='See it on Google']")            # Google link text
+    geo_GPage = (By.XPATH, "//span[@jstcache='177']")              # Google page
 
 
-    def geolocation_Link(self):
-        return self.driver.find_element(*GeolocationPage.geo_LinkText)
+    def geolocation_LinkText(self):
+        return self.driver.find_element(*GeolocationPage.geo_Link)
 
     def geolocation_HeaderText(self):
-        return self.driver.find_element(*GeolocationPage.geo_LinkText)
+        return self.driver.find_element(*GeolocationPage.geo_Header)
 
     def geolocation_WhereAmI_Button(self):
         return self.driver.find_element(*GeolocationPage.geo_WhereAmI)
 
-    def geolocation_Latitude_Text(self):
+    def geolocation_LatitudeText(self):
         return self.driver.find_element(*GeolocationPage.geo_Latitude)
 
-    def geolocation_Longtitude_Text(self):
+    def geolocation_LongtitudeText(self):
         return self.driver.find_element(*GeolocationPage.geo_Longtitude)
 
     def geolocation_GoogleLink(self):

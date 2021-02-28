@@ -13,34 +13,34 @@ class JQueryUIMenusPage:
     def __init__(self, driver):
         self.driver = driver
 
-    jquery_LinkText = (By.XPATH, "//a[text()='JQuery UI Menus']")
-    jquery_Header = (By.XPATH, "//h3[text()='JQueryUI-Menu']")
-
-    # todo - Disabled path
-    jquery_Disabled = (By.XPATH, " ")
-
-    # todo - Enabled download pdf path
-    jquery_DownPDF = (By.XPATH, " ")
-
-    # todo - Enabled download csv path
-    jquery_DownCSV = (By.XPATH, " ")
-
-    # todo - Enabled download xml path
-    jquery_DownXML = (By.XPATH, " ")
-
-    # todo - Enabled back path
-    jquery_Back = (By.XPATH, " ")
-
-    # todo - Enabled back header path
-    jquery_BackHeader = (By.XPATH, " ")
-
-    # todo - Enabled back > Menu path
-    jquery_BackMenu = (By.XPATH, " ")
+    jquery_Link = (By.XPATH, "//a[text()='JQuery UI Menus']")       # Main Page link
+    jquery_Header = (By.XPATH, "//h3[text()='JQueryUI-Menu']")          # Page header text
 
 
+    jquery_Disabled = (By.XPATH, " ")       # todo - Disabled path
 
-    def jQueryUIMenus_Link(self):
-        return self.driver.find_element(*JQueryUIMenusPage.jquery_LinkText)
+
+    jquery_DownPDF = (By.XPATH, " ")        # todo - Enabled download pdf path
+
+
+    jquery_DownCSV = (By.XPATH, " ")        # todo - Enabled download csv path
+
+
+    jquery_DownXML = (By.XPATH, " ")        # todo - Enabled download xml path
+
+
+    jquery_Back = (By.XPATH, " ")       # todo - Enabled back path
+
+
+    jquery_BackHeader = (By.XPATH, " ")     # todo - Enabled back header path
+
+
+    jquery_BackMenu = (By.XPATH, " ")       # todo - Enabled back > Menu path
+
+
+
+    def jQueryUIMenus_LinkText(self):
+        return self.driver.find_element(*JQueryUIMenusPage.jquery_Link)
 
     def jQueryUIMenus_HeaderText(self):
         return self.driver.find_element(*JQueryUIMenusPage.jquery_Header)

@@ -17,13 +17,15 @@ class TestJavaScript_OnloadEventError(BaseClass):
         log = self.getLogger()
         jsOnloadEventErro_page = JavaScriptOnloadEventErrorPage(self.driver)
         log.info("TEST START")
-        jsOnloadEventErro_page.js_onloadEventError_Link().click()
+        jsOnloadEventErro_page.js_onloadEventError_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/javascript_error"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
+
+        # todo - not sure what this test is supposed to be
         # todo - Verify the text
         page_text = jsOnloadEventErro_page.js_onloadEventError_PageText().text
         assert ("This page has a JavaScript error in the onload event" in page_text)

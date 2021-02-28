@@ -18,35 +18,37 @@ class TestKeyPresses(BaseClass):
         log = self.getLogger()
         keyPresses_page = KeyPressesPage(self.driver)
         log.info("TEST START")
-        keyPresses_page.keyPresses_Link().click()
+        keyPresses_page.keyPresses_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/key_presses"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = keyPresses_page.keyPresses_HeaderText().text
         assert ("Key Presses" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify field & text: number
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify Verify field & text: letter
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify Verify field & text: character
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify field & text: number
+        keyPresses_page.keyPresses_Field().send_keys("7")
+        assert keyPresses_page.keyPresses_Text().text == "You entered: 7"
+        log.info(keyPresses_page.keyPresses_Text().text)
+
+
+        # Verify Verify field & text: letter
+        keyPresses_page.keyPresses_Field().send_keys("q")
+        assert keyPresses_page.keyPresses_Text().text == "You entered: Q"
+        log.info(keyPresses_page.keyPresses_Text().text)
+
+
+        # Verify Verify field & text: character
+        keyPresses_page.keyPresses_Field().send_keys("/")
+        assert keyPresses_page.keyPresses_Text().text == "You entered: SLASH"
+        log.info(keyPresses_page.keyPresses_Text().text)
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

@@ -13,19 +13,14 @@ class NotificationMessagesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    notification_LinkText = (By.XPATH, "//a[text()='Notification Messages']")
-    notification_Header = (By.XPATH, "//h3[text()='Notification Messages']")
-
-    # todo - click path
-    notification_Click = (By.XPATH, " ")
-
-    # todo - message path
-    notification_Message = (By.XPATH, " ")
+    notification_Link = (By.XPATH, "//a[text()='Notification Messages']")       # Main Page link
+    notification_Header = (By.XPATH, "//h3[text()='Notification Message']")    # Page header text
+    notification_Click = (By.XPATH, "//a[@href='/notification_message']")       # Click here link
+    notification_Message = (By.ID, "flash")                                     # Alert Message
 
 
-
-    def notificationMessages_Link(self):
-        return self.driver.find_element(*NotificationMessagesPage.notification_LinkText)
+    def notificationMessages_LinkText(self):
+        return self.driver.find_element(*NotificationMessagesPage.notification_Link)
 
     def notificationMessages_HeaderText(self):
         return self.driver.find_element(*NotificationMessagesPage.notification_Header)

@@ -7,6 +7,8 @@ Notes:
 
 import time
 import pytest
+from selenium.webdriver.common.keys import Keys
+
 from utilities.BaseClass import BaseClass
 from pageObjects.InputsPage import InputsPage
 
@@ -17,29 +19,36 @@ class TestInputs(BaseClass):
         log = self.getLogger()
         inputs_page = InputsPage(self.driver)
         log.info("TEST START")
-        inputs_page.inputs_Link().click()
+        inputs_page.inputs_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/inputs"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = inputs_page.inputs_HeaderText().text
         assert ("Inputs" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
 
-        # todo - Verify manual
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify decrease number value
+        time.sleep(2)
+        for x in range(0, 5):
+            inputs_page.inputs_NumberField().send_keys(Keys.ARROW_DOWN)
+        time.sleep(2)
 
-        # todo - Verify arrow input
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        assert inputs_page.inputs_NumberField().get_attribute('value') == '-5'
+        log.info("Decrease: " + inputs_page.inputs_NumberField().get_attribute('value'))
+
+
+        # Verify increase number value
+        for x in range(0, 10):
+            inputs_page.inputs_NumberField().send_keys(Keys.ARROW_UP)
+        time.sleep(2)
+
+        assert inputs_page.inputs_NumberField().get_attribute('value') == '5'
+        log.info("Increase: " + inputs_page.inputs_NumberField().get_attribute('value'))
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

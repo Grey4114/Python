@@ -13,18 +13,19 @@ class TyposPage:
     def __init__(self, driver):
         self.driver = driver
 
-    typos_LinkText = (By.XPATH, "//a[text()='Typos']")
-    typos_Header = (By.XPATH, "//h3[text()='Typos']")
-
-    # todo - text 1
-    typos_Text1 = (By.XPATH, " ")
-    # todo - text 2
-    typos_Text2 = (By.XPATH, " ")
+    typos_Link = (By.XPATH, "//a[text()='Typos']")      # Main Page link
+    typos_Header = (By.XPATH, "//h3[text()='Typos']")       # Page header text
 
 
+    # todo - not sure how to conduct the tests for this page
+    typos_Text1 = (By.XPATH, " ")   # todo - text 1
 
-    def typos_Link(self):
-        return self.driver.find_element(*TyposPage.typos_LinkText)
+    typos_Text2 = (By.XPATH, " ")   # todo - text 2
+
+
+
+    def typos_LinkText(self):
+        return self.driver.find_element(*TyposPage.typos_Link)
 
     def typos_HeaderText(self):
         return self.driver.find_element(*TyposPage.typos_Header)

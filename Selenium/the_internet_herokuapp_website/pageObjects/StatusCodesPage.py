@@ -12,24 +12,21 @@ class StatusCodesPage:
     def __init__(self, driver):
         self.driver = driver
 
-    status_LinkText = (By.XPATH, "//a[text()='Status Codes']")
-    status_Header = (By.XPATH, "//h3[text()='Status Codes']")
+    status_Link = (By.XPATH, "//a[text()='Status Codes']")      # Main Page link
+    status_Header = (By.XPATH, "//h3[text()='Status Codes']")       # Page header text
 
-    # todo - 200
-    status_200 = (By.XPATH, " ")
+    # todo - not sure how to conduct the tests for this page
+    status_200 = (By.XPATH, "//a[@href='status_codes/200']")    # Code 200
 
-    # todo - 301
-    status_301 = (By.XPATH, " ")
+    status_301 = (By.XPATH, "//a[@href='status_codes/301']")    # Code 301
 
-    # todo - 404
-    status_404 = (By.XPATH, " ")
+    status_404 = (By.XPATH, "//a[@href='status_codes/404']")    # Code 404
 
-    # todo - 500
-    status_500 = (By.XPATH, " ")
+    status_500 = (By.XPATH, "//a[@href='status_codes/500']")    # Code 500
 
 
-    def statusCodes_Link(self):
-        return self.driver.find_element(*StatusCodesPage.status_LinkText)
+    def statusCodes_LinkText(self):
+        return self.driver.find_element(*StatusCodesPage.status_Link)
 
     def statusCodes_HeaderText(self):
         return self.driver.find_element(*StatusCodesPage.status_Header)

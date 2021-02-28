@@ -12,21 +12,23 @@ class WYSIWYGEditorPage:
     def __init__(self, driver):
         self.driver = driver
 
-    wysiwyg_LinkText = (By.XPATH, "//a[text()='WYSIWYG Editor']")
-    wysiwyg_Header = (By.XPATH, "//h3[text()='WYSIWYG Editor']")
+    wysiwyg_Link = (By.XPATH, "//a[text()='WYSIWYG Editor']")       # Main Page link
+    wysiwyg_Header = (By.XPATH, "//h3[text()='An iFrame containing the TinyMCE WYSIWYG Editor']")    # Page header text
 
-    # todo - Area
-    wysiwyg_Area = (By.XPATH, " ")
-
-    # todo - all other options
+    wysiwyg_iFrame = (By.TAG_NAME, "iframe")  # iFrame location
+    wysiwyg_Area = (By.XPATH, "/html/body/p")  # iFrame Text Area
 
 
-    def WYSIWYGEditor_Link(self):
-        return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_LinkText)
+    def WYSIWYGEditor_LinkText(self):
+        return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_Link)
 
     def WYSIWYGEditor_HeaderText(self):
         return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_Header)
 
+    def WYSIWYGEditor_iFrame(self):
+        return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_iFrame)
+
     def WYSIWYGEditor_Area(self):
         return self.driver.find_element(*WYSIWYGEditorPage.wysiwyg_Area)
+
 

@@ -13,25 +13,17 @@ class InputsPage:
     def __init__(self, driver):
         self.driver = driver
 
-    inputs_LinkText = (By.XPATH, "//a[text()='Inputs']")
-    inputs_Header = (By.XPATH, "//h3[text()='Inputs']")
-
-    # todo - manual path
-    inputs_Manual = (By.XPATH, " ")
-    # todo - select arrow path
-    inputs_Arrows = (By.XPATH, " ")
+    inputs_Link = (By.XPATH, "//a[text()='Inputs']")    # Main Page link
+    inputs_Header = (By.XPATH, "//h3[text()='Inputs']")     # Page header text
+    inputs_Number = (By.XPATH, "//input[@type='number']")     # Number field
 
 
-
-
-    def inputs_Link(self):
-        return self.driver.find_element(*InputsPage.inputs_LinkText)
+    def inputs_LinkText(self):
+        return self.driver.find_element(*InputsPage.inputs_Link)
 
     def inputs_HeaderText(self):
         return self.driver.find_element(*InputsPage.inputs_Header)
 
-    def inputs_ManualNumber(self):
-        return self.driver.find_element(*InputsPage.inputs_Manual)
+    def inputs_NumberField(self):
+        return self.driver.find_element(*InputsPage.inputs_Number)
 
-    def inputs_SelectArrow(self):
-        return self.driver.find_element(*InputsPage.inputs_Arrows)

@@ -13,22 +13,22 @@ from pageObjects.SecureFileDownloadPage import SecureFileDownloadPage
 class TestSecureFileDownload(BaseClass):
 
     def test_secure_file_download(self):
-
         # Enter the Page
         log = self.getLogger()
         secureFileDownload_page = SecureFileDownloadPage(self.driver)
         log.info("TEST START")
-        secureFileDownload_page.secureFileDownload_Link().click()
+        secureFileDownload_page.secureFileDownload_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/download_secure"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = secureFileDownload_page.secureFileDownload_HeaderText().text
         assert ("Secure File Download" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
+
 
         # todo - Verify valid sign in
         # xxx_page.xxxx_Item().click()
@@ -47,6 +47,7 @@ class TestSecureFileDownload(BaseClass):
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)
         # log.info("Elements Passed")
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

@@ -14,28 +14,23 @@ class SecureFileDownloadPage:
     def __init__(self, driver):
         self.driver = driver
 
-    secure_LinkText = (By.XPATH, "//a[text()='Secure File Download']")
-    secure_Header = (By.XPATH, "//h3[text()='Secure File Download']")
+    secure_Link = (By.XPATH, "//a[text()='Secure File Download']")      # Main Page link
+    secure_Header = (By.XPATH, "//h3[text()='Secure File Download']")       # Page header text
 
-    # todo - user path
-    secure_User = (By.XPATH, " ")
+    secure_User = (By.XPATH, " ")       # todo - user path
 
-    # todo - pass path
-    secure_Pass = (By.XPATH, " ")
+    secure_Pass = (By.XPATH, " ")       # todo - pass path
 
-    # todo - sign in path
-    secure_Sign = (By.XPATH, " ")
+    secure_Sign = (By.XPATH, " ")       # todo - sign in path
 
-    # todo - cancel path
-    secure_Cancel = (By.XPATH, " ")
+    secure_Cancel = (By.XPATH, " ")     # todo - cancel path
 
-    # todo - auth text path
-    secure_Auth = (By.XPATH, " ")
+    secure_Auth = (By.XPATH, " ")       # todo - auth text path
 
 
 
-    def secureFileDownload_Link(self):
-        return self.driver.find_element(*SecureFileDownloadPage.secure_LinkText)
+    def secureFileDownload_LinkText(self):
+        return self.driver.find_element(*SecureFileDownloadPage.secure_Link)
 
     def secureFileDownload_HeaderText(self):
         return self.driver.find_element(*SecureFileDownloadPage.secure_Header)

@@ -17,17 +17,19 @@ class TestNestedFrames(BaseClass):
         log = self.getLogger()
         nestedFrames_page = NestedFramesPage(self.driver)
         log.info("TEST START")
-        nestedFrames_page.nestedFrames_Link().click()
+        nestedFrames_page.nestedFrames_LinkText().click()
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/nested_frames"
-        log.info("URL Passed: " + url)
+        log.info("URL: " + url)
 
         # Verify the Header
         header_text = nestedFrames_page.nestedFrames_HeaderText().text
         assert ("Xxxxx" in header_text)
-        log.info("Header Passed: " + header_text)
+        log.info("Header: " + header_text)
+
+        # todo - not sure how to test this at this time
 
         # todo - Verify right frame
         # xxx_page.xxxx_Item().click()

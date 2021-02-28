@@ -29,6 +29,8 @@ class TestSortableDataTables(BaseClass):
         assert ("Data Tables" in header_text)
         log.info("Header Passed: " + header_text)
 
+
+        # todo - not sure how to test this
         # todo - Verify table 1
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
