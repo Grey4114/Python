@@ -13,7 +13,7 @@ from utilities.BaseClass import BaseClass
 from pageObjects.abPage import abPage
 
 
-class TestAB(BaseClass):
+class TestPageAB(BaseClass):
     def test_ab_control(self):
         # Enter the Page
         log = self.getLogger()
