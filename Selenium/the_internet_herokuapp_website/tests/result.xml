@@ -1,0 +1,2186 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite errors="0" failures="17" hostname="ThanosGambit" name="pytest" skipped="0" tests="45" time="428.393" timestamp="2021-03-12T11:58:31.668775"><testcase classname="test_End_To_End.TestEndToEnd" file="test_End_To_End.py" line="56" name="test_RunAll" time="3.520"></testcase><testcase classname="test_End_To_End.TestPageAB" file="test_Page_AB.py" line="16" name="test_ab_control" time="6.806"></testcase><testcase classname="test_End_To_End.TestAddRemoveElements" file="test_Page_AddRemoveElements.py" line="15" name="test_add_remove" time="7.457"></testcase><testcase classname="test_End_To_End.TestBasicAuth" file="test_Page_BasicAuth.py" line="16" name="test_basic_auth" time="3.678"></testcase><testcase classname="test_End_To_End.TestBrokenImages" file="test_Page_BrokenImages.py" line="14" name="test_broken_images" time="6.673"></testcase><testcase classname="test_End_To_End.TestChallengingDOM" file="test_Page_ChallengingDOM.py" line="14" name="test_challenging_dom" time="6.657"><failure message="AssertionError: assert &apos;baz&apos; != &apos;baz&apos;">self = &lt;tests.test_Page_ChallengingDOM.TestChallengingDOM object at 0x000001B1D17DE3C8&gt;
+
+    def test_challenging_dom(self):
+        # Enter the Page
+        log = self.getLogger()
+        challenging_dom_page = ChallengingDomPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        challenging_dom_page.challengingDom_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/challenging_dom&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+        header_text = challenging_dom_page.challengingDom_HeaderText().text
+        assert (&quot;Challenging DOM&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # todo - Verify Blue Button
+        before = challenging_dom_page.challenging_ButtonBlue().text
+        challenging_dom_page.challenging_ButtonBlue().click()
+        after = challenging_dom_page.challenging_ButtonBlue().text
+        assert before != after
+        log.info(&quot;Blue Button: &quot; + before + &quot;-&quot; + after)
+    
+    
+        # todo - Verify Red Button
+        before = challenging_dom_page.challenging_ButtonRed().text
+        challenging_dom_page.challenging_ButtonRed().click()
+        after = challenging_dom_page.challenging_ButtonRed().text
+        assert before != after
+        log.info(&quot;Red Button: &quot; + before + &quot;-&quot; + after)
+    
+    
+        # todo - Verify Green Button
+        before = challenging_dom_page.challenging_ButtonGreen().text
+        challenging_dom_page.challenging_ButtonGreen().click()
+        after = challenging_dom_page.challenging_ButtonGreen().text
+&gt;       assert before != after
+E       AssertionError: assert &apos;baz&apos; != &apos;baz&apos;
+
+test_Page_ChallengingDOM.py:55: AssertionError</failure></testcase><testcase classname="test_End_To_End.TestCheckboxes" file="test_Page_Checkboxes.py" line="15" name="test_checkboxes" time="5.460"></testcase><testcase classname="test_End_To_End.TestContextMenu" file="test_Page_ContextMenu.py" line="17" name="test_contex_menu" time="14.804"><failure message="IndexError: list index out of range">self = &lt;tests.test_Page_ContextMenu.TestContextMenu object at 0x000001B1D1806388&gt;
+
+    def test_contex_menu(self):
+        # Enter the Page
+        log = self.getLogger()
+        contextmenu_page = ContextMenuPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        contextmenu_page.contextMenu_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/context_menu&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+        header_text = contextmenu_page.contextMenu_HeaderText().text
+        assert (&quot;Context Menu&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+        # Grab page handle
+        window_before = self.driver.window_handles[0]      # Page window
+    
+    
+        # Right click Context box &amp; Verify Alert message
+        action = ActionChains(self.driver)
+        action.context_click(contextmenu_page.contextMenu_RightClickBox()).perform()
+        # time.sleep(5)
+    
+        # Verify Alert message &amp; Dismiss alert box
+        alert = self.driver.switch_to.alert
+        alertText = alert.text
+        assert (&apos;You selected a context menu&apos; in alertText)
+        log.info(&quot;Alert Text: &quot; + alertText)
+        time.sleep(5)
+        alert.accept()
+        time.sleep(5)
+    
+    
+        # todo - Verify &amp; Dismiss popup box
+&gt;       window_after = self.driver.window_handles[1]       # Popup window
+E       IndexError: list index out of range
+
+test_Page_ContextMenu.py:57: IndexError</failure></testcase><testcase classname="test_End_To_End.TestDigestAuth" file="test_Page_DigestAuth.py" line="16" name="test_digest_auth" time="5.019"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;xxxxx&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_DigestAuth.TestDigestAuth object at 0x000001B1D1800888&gt;
+
+    def test_digest_auth(self):
+        # Enter the Page
+        log = self.getLogger()
+        digestauth_page = DigestAuthPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        digestauth_page.digestAuth_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/digest_auth&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+&gt;       header_text = digestauth_page.digestAuth_HeaderText().text
+
+test_Page_DigestAuth.py:32: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\DigestAuthPage.py:32: in digestAuth_HeaderText
+    return self.driver.find_element(*DigestAuthPage.digest_Header)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D1804808&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;xxxxx&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestDisappearingElements" file="test_Page_DisappearingElements.py" line="25" name="test_disappearing_elements" time="7.235"></testcase><testcase classname="test_End_To_End.TestDragDrop" file="test_Page_DragDrop.py" line="17" name="test_drag_and_drop" time="60.702"><failure message="AssertionError: assert (&apos;A&apos; == &apos;B&apos;
+  - B
+  + A)">self = &lt;tests.test_Page_DragDrop.TestDragDrop object at 0x000001B1D172CAC8&gt;
+
+    def test_drag_and_drop(self):
+    
+        # Enter the Page
+        log = self.getLogger()
+        dragdrop_page = DragDropPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        dragdrop_page.dragDrop_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/drag_and_drop&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+        header_text = dragdrop_page.dragDrop_HeaderText().text
+        assert (&quot;Drag and Drop&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+    
+        # todo - Verify drag A to B
+        boxA = dragdrop_page.dragDrop_Box_A()
+        boxB = dragdrop_page.dragDrop_Box_B()
+        boxA_text = dragdrop_page.dragDrop_Box_A().text
+        boxB_text = dragdrop_page.dragDrop_Box_B().text
+    
+        log.info(&quot;a = &quot; + boxA_text + &quot; &amp; &quot; + &quot;b = &quot; + boxB_text)   # quick check
+    
+        action = ActionChains(self.driver)
+        action.click_and_hold(boxA).pause(3).move_to_element(boxB).release(boxB).perform()
+        #action.drag_and_drop(boxA, boxB).perform()
+    
+&gt;       assert (boxA_text == &quot;B&quot; and boxB_text == &quot;A&quot;)
+E       AssertionError: assert (&apos;A&apos; == &apos;B&apos;
+E         - B
+E         + A)
+
+test_Page_DragDrop.py:52: AssertionError</failure></testcase><testcase classname="test_End_To_End.TestDropdown" file="test_Page_DropDown.py" line="15" name="test_dropdown" time="5.688"></testcase><testcase classname="test_End_To_End.TestDynamicContent" file="test_Page_DynamicContent.py" line="21" name="test_dynamic_content" time="21.375"></testcase><testcase classname="test_End_To_End.TestDynamicControls" file="test_Page_DynamicControls.py" line="16" name="test_dynamic_controls" time="26.061"></testcase><testcase classname="test_End_To_End.TestDynamicLoading" file="test_Page_DynamicLoading.py" line="16" name="test_dynamic_loading" time="29.444"></testcase><testcase classname="test_End_To_End.TestEntryAd" file="test_Page_EntryAd.py" line="16" name="test_entry_ad" time="9.925"></testcase><testcase classname="test_End_To_End.TestExitIntent" file="test_Page_ExitIntent.py" line="17" name="test_exit_intent" time="8.968"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@id=&apos;modal&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_ExitIntent.TestExitIntent object at 0x000001B1D2093488&gt;
+
+    def test_exit_intent(self):
+    
+        # Enter the Page
+        log = self.getLogger()
+        exitIntent_page = ExitIntentPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        exitIntent_page.exitIntent_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/exit_intent&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+        header_text = exitIntent_page.exitIntent_HeaderText().text
+        assert (&quot;Exit Intent&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # todo - Verify Move mouse - open Modal window
+        action = ActionChains(self.driver)
+        action.move_by_offset(100, 0).perform()
+        time.sleep(5)
+    
+        # Verify Modal window header text
+        entry = exitIntent_page.exitIntent_ModalWindowHeader().text    # todo - fix
+        assert entry in &quot;This is a modal window&quot;
+        log.info(&quot;Modal Header: &quot; + entry)
+    
+    
+    
+        # todo - Verify Modal Window open and close
+&gt;       modal = exitIntent_page.exitIntent_ModalWindowSate().is_displayed()   # todo - fix
+
+test_Page_ExitIntent.py:52: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\ExitIntentPage.py:40: in exitIntent_ModalWindowSate
+    return self.driver.find_element(*ExitIntentPage.exit_WindowState)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D2176C48&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//div[@id=&apos;modal&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestFileDownload" file="test_Page_FileDownload.py" line="17" name="test_file_download" time="3.547"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@href=&apos;download/Hello.docx&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_FileDownload.TestFileDownload object at 0x000001B1D21432C8&gt;
+
+    def test_file_download(self):
+        # Enter the Page
+        log = self.getLogger()
+        fileDownload_page = FileDownloadPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        fileDownload_page.fileDownload_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/download&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+        header_text = fileDownload_page.fileDownload_HeaderText().text
+        assert (&quot;File Downloader&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # Download all files
+&gt;       fileDownload_page.fileDownload_TextFile_1().click()     # Download text file 1
+
+test_Page_FileDownload.py:39: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\FileDownLoadPage.py:34: in fileDownload_TextFile_1
+    return self.driver.find_element(*FileDownloadPage.download_TextFile1)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D21227C8&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@href=&apos;download/Hello.docx&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestFileUpload" file="test_Page_FileUpload.py" line="15" name="test_file_upload" time="3.661"><failure message="selenium.common.exceptions.InvalidArgumentException: Message: invalid argument
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_FileUpload.TestFileUpload object at 0x000001B1D211FA08&gt;
+
+    def test_file_upload(self):
+        # Enter the Page
+        log = self.getLogger()
+        fileUpload_page = FileUploadPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        fileUpload_page.fileUpload_LinkText().click()
+    
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/upload&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # Verify the Header
+        header_text = fileUpload_page.fileUpload_HeaderText().text
+        assert (&quot;File Uploader&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # Choose a file and Upload
+&gt;       fileUpload_page.fileUpload_ChooseFile().click()
+
+test_Page_FileUpload.py:37: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click
+    self._execute(Command.CLICK_ELEMENT)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute
+    return self._parent.execute(command, params)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D21B3BC8&gt;
+response = {&apos;status&apos;: 400, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;invalid argument&quot;,&quot;message&quot;:&quot;invalid argument\\n  (Session info: chrome=8...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.InvalidArgumentException: Message: invalid argument
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: InvalidArgumentException</failure></testcase><testcase classname="test_End_To_End.TestFloatingMenu" file="test_Page_FloatingMenu.py" line="17" name="test_floating_menu" time="12.066"></testcase><testcase classname="test_End_To_End.TestForgotPassword" file="test_Page_ForgotPassword.py" line="16" name="test_forgot_password" time="6.167"></testcase><testcase classname="test_End_To_End.TestFormAuth" file="test_Page_FormAuth.py" line="18" name="test_form_authorities" time="9.772"></testcase><testcase classname="test_End_To_End.TestFrames" file="test_Page_Frames.py" line="14" name="test_frames" time="6.146"></testcase><testcase classname="test_End_To_End.TestGeolocation" file="test_Page_Geolocation.py" line="13" name="test_geolocation" time="6.798"><failure message="assert &apos;37&apos; in &apos;36.778261&apos;
+ +  where &apos;36.778261&apos; = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;0cd271c9a9a2a0e540aee88e66d29983&quot;, element=&quot;df742c7f-8ee9-4d9e-913f-cf4a2e0b8281&quot;)&gt;.text
+ +    where &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;0cd271c9a9a2a0e540aee88e66d29983&quot;, element=&quot;df742c7f-8ee9-4d9e-913f-cf4a2e0b8281&quot;)&gt; = &lt;bound method GeolocationPage.geolocation_LatitudeText of &lt;pageObjects.GeolocationPage.GeolocationPage object at 0x000001B1D2187DC8&gt;&gt;()
+ +      where &lt;bound method GeolocationPage.geolocation_LatitudeText of &lt;pageObjects.GeolocationPage.GeolocationPage object at 0x000001B1D2187DC8&gt;&gt; = &lt;pageObjects.GeolocationPage.GeolocationPage object at 0x000001B1D2187DC8&gt;.geolocation_LatitudeText">self = &lt;tests.test_Page_Geolocation.TestGeolocation object at 0x000001B1D2194E88&gt;
+
+    def test_geolocation(self):
+        # Enter the Page
+        log = self.getLogger()
+        geolocation_page = GeolocationPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        geolocation_page.geolocation_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/geolocation&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+        header_text = geolocation_page.geolocation_HeaderText().text
+        assert (&quot;Geolocation&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # Verify button, latitiude and longtitude
+        geolocation_page.geolocation_WhereAmI_Button().click()
+        time.sleep(3)
+&gt;       assert &quot;37&quot; in geolocation_page.geolocation_LatitudeText().text
+E       assert &apos;37&apos; in &apos;36.778261&apos;
+E        +  where &apos;36.778261&apos; = &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;0cd271c9a9a2a0e540aee88e66d29983&quot;, element=&quot;df742c7f-8ee9-4d9e-913f-cf4a2e0b8281&quot;)&gt;.text
+E        +    where &lt;selenium.webdriver.remote.webelement.WebElement (session=&quot;0cd271c9a9a2a0e540aee88e66d29983&quot;, element=&quot;df742c7f-8ee9-4d9e-913f-cf4a2e0b8281&quot;)&gt; = &lt;bound method GeolocationPage.geolocation_LatitudeText of &lt;pageObjects.GeolocationPage.GeolocationPage object at 0x000001B1D2187DC8&gt;&gt;()
+E        +      where &lt;bound method GeolocationPage.geolocation_LatitudeText of &lt;pageObjects.GeolocationPage.GeolocationPage object at 0x000001B1D2187DC8&gt;&gt; = &lt;pageObjects.GeolocationPage.GeolocationPage object at 0x000001B1D2187DC8&gt;.geolocation_LatitudeText
+
+test_Page_Geolocation.py:35: AssertionError</failure></testcase><testcase classname="test_End_To_End.TestHorizontalSlider" file="test_Page_HorizontalSlider.py" line="16" name="test_horizontal_slider" time="6.370"></testcase><testcase classname="test_End_To_End.TestHovers" file="test_Page_Hovers.py" line="13" name="test_hovers" time="6.758"><failure message="selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_Hovers.TestHovers object at 0x000001B1D2155EC8&gt;
+
+    def test_hovers(self):
+        # Enter the Page
+        log = self.getLogger()
+        hover_page = HoversPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        hover_page.hovers_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/hovers&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+        header_text = hover_page.hovers_HeaderText().text
+        assert (&quot;Hovers&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+    
+        # todo - Verify image &amp; info 1
+        time.sleep(3)
+&gt;       hover_page.hovers_Picture_1().click()
+
+test_Page_Hovers.py:35: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py:80: in click
+    self._execute(Command.CLICK_ELEMENT)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webelement.py:633: in _execute
+    return self._parent.execute(command, params)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D2196D48&gt;
+response = {&apos;status&apos;: 400, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;element not interactable&quot;,&quot;message&quot;:&quot;element not interactable\\n  (Sessio...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.ElementNotInteractableException: Message: element not interactable
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: ElementNotInteractableException</failure></testcase><testcase classname="test_End_To_End.TestInfiniteScroll" file="test_Page_InfiniteScroll.py" line="14" name="test_infinite_scroll" time="5.879"></testcase><testcase classname="test_End_To_End.TestInputs" file="test_Page_Inputs.py" line="16" name="test_inputs" time="12.508"></testcase><testcase classname="test_End_To_End.TestJQueryUIMenus" file="test_Page_JQueryUIMenus.py" line="14" name="test_jquery_ui_menus" time="4.287"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;JQueryUI-Menu&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_JQueryUIMenus.TestJQueryUIMenus object at 0x000001B1D2301D88&gt;
+
+    def test_jquery_ui_menus(self):
+    
+        # Enter the Page
+        log = self.getLogger()
+        jqueryUIMenus_page = JQueryUIMenusPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        jqueryUIMenus_page.jQueryUIMenus_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/jqueryui/menu&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+&gt;       header_text = jqueryUIMenus_page.jQueryUIMenus_HeaderText().text
+
+test_Page_JQueryUIMenus.py:29: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\JQueryUIMenusPage.py:46: in jQueryUIMenus_HeaderText
+    return self.driver.find_element(*JQueryUIMenusPage.jquery_Header)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D21A69C8&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;JQueryUI-Menu&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestJavaScriptAlerts" file="test_Page_JavaScriptAlerts.py" line="14" name="test_java_script_alerts" time="30.261"></testcase><testcase classname="test_End_To_End.TestJavaScript_OnloadEventError" file="test_Page_JavaScriptOnloadEventError.py" line="14" name="test_java_script_onload_event_error" time="3.556"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;JavaScript onload event error&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_JavaScriptOnloadEventError.TestJavaScript_OnloadEventError object at 0x000001B1D22CF408&gt;
+
+    def test_java_script_onload_event_error(self):
+        # Enter the Page
+        log = self.getLogger()
+        jsOnloadEventErro_page = JavaScriptOnloadEventErrorPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        jsOnloadEventErro_page.js_onloadEventError_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/javascript_error&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+    
+        # todo - not sure what this test is supposed to be
+        # todo - Verify the text
+&gt;       page_text = jsOnloadEventErro_page.js_onloadEventError_PageText().text
+
+test_Page_JavaScriptOnloadEventError.py:30: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\JavaScriptOnLoadEventErrorPage.py:25: in js_onloadEventError_PageText
+    return self.driver.find_element(*JavaScriptOnloadEventErrorPage.onloadEvent_Text)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D22C9808&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;JavaScript onload event error&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestKeyPresses" file="test_Page_KeyPresses.py" line="14" name="test_key_presses" time="5.902"></testcase><testcase classname="test_End_To_End.TestLargeDeepDOM" file="test_Page_LargeDeepDOM.py" line="14" name="test_large_deep_dom" time="6.242"></testcase><testcase classname="test_End_To_End.TestMultipleWindows" file="test_Page_MultipleWindows.py" line="14" name="test_multiple_windows" time="5.864"></testcase><testcase classname="test_End_To_End.TestNestedFrames" file="test_Page_NestedFrames.py" line="14" name="test_Nested_frames" time="3.747"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;Nested Frames&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_NestedFrames.TestNestedFrames object at 0x000001B1D223DF08&gt;
+
+    def test_Nested_frames(self):
+        # Enter the Page
+        log = self.getLogger()
+        nestedFrames_page = NestedFramesPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        nestedFrames_page.nestedFrames_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/nested_frames&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+&gt;       header_text = nestedFrames_page.nestedFrames_HeaderText().text
+
+test_Page_NestedFrames.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\NestedFramesPage.py:32: in nestedFrames_HeaderText
+    return self.driver.find_element(*NestedFramesPage.nested_Header)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D22DAC88&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;Nested Frames&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestNotificationMessages" file="test_Page_NotificationMessages.py" line="14" name="test_notification_messages" time="9.166"></testcase><testcase classname="test_End_To_End.TestRedirectLink" file="test_Page_RedirectLink.py" line="14" name="test_redirect_link" time="6.155"></testcase><testcase classname="test_End_To_End.TestSecureFileDownload" file="test_Page_SecureFileDownload.py" line="14" name="test_secure_file_download" time="3.356"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;Secure File Download&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_SecureFileDownload.TestSecureFileDownload object at 0x000001B1D220F188&gt;
+
+    def test_secure_file_download(self):
+        # Enter the Page
+        log = self.getLogger()
+        secureFileDownload_page = SecureFileDownloadPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        secureFileDownload_page.secureFileDownload_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/download_secure&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+&gt;       header_text = secureFileDownload_page.secureFileDownload_HeaderText().text
+
+test_Page_SecureFileDownload.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\SecureFileDownloadPage.py:36: in secureFileDownload_HeaderText
+    return self.driver.find_element(*SecureFileDownloadPage.secure_Header)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D22A3F48&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//h3[text()=&apos;Secure File Download&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestShadowDOM" file="test_Page_ShadowDOM.py" line="14" name="test_shadow_dom" time="5.881"></testcase><testcase classname="test_End_To_End.TestShiftingContent" file="test_Page_ShiftingContent.py" line="15" name="test_shifting_content" time="3.769"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@href=&apos;/shifting_content/image&apos;] &quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_ShiftingContent.TestShiftingContent object at 0x000001B1D20D6D08&gt;
+
+    def test_shifting_content(self):
+        # Enter the Page
+        log = self.getLogger()
+        shiftingContent_page = ShiftingContentPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        shiftingContent_page.shiftingContent_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/shifting_content&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+        header_text = shiftingContent_page.shiftingContent_HeaderText().text
+        assert (&quot;Shifting Content&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # todo - Verify Menu page
+        shiftingContent_page.shiftingContent_MenuLink().click()
+        ex1_header = shiftingContent_page.shiftingContent_Example1_HeaderText().text
+        assert (&quot;Shifting Content: Menu Element&quot; in ex1_header)
+        # xxx_page.xxxx_Item().click()
+        # xXxX = xxxx_page.xxxx_Elements()
+        # assert (xXxX in xxxx)
+        # log.info(&quot;Elements Passed&quot;)
+    
+        # todo - Verify Image page
+&gt;       shiftingContent_page.shiftingContent_ImageLink().click()
+
+test_Page_ShiftingContent.py:44: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\ShiftingContentPage.py:52: in shiftingContent_ImageLink
+    return self.driver.find_element(*ShiftingContentPage.shifting_Image)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D20D5D88&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@href=&apos;/shifting_content/image&apos;] &quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestSlowResources" file="test_Page_SlowResources.py" line="14" name="test_slow_resources" time="5.646"></testcase><testcase classname="test_End_To_End.TestSortableDataTables" file="test_Page_SortableDataTables.py" line="14" name="test_Sortable_data_tables" time="4.638"><failure message="AssertionError: assert &apos;https://the-...pp.com/tables&apos; == &apos;https://xxxx/xxxx&apos;
+  - https://xxxx/xxxx
+  + https://the-internet.herokuapp.com/tables">self = &lt;tests.test_Page_SortableDataTables.TestSortableDataTables object at 0x000001B1D23CE1C8&gt;
+
+    def test_Sortable_data_tables(self):
+        # Enter the Page
+        log = self.getLogger()
+        sortableDataTables_page = SortableDataTablesPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        sortableDataTables_page.sortableDataTables_Link().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+&gt;       assert url == &quot;https://xxxx/xxxx&quot;
+E       AssertionError: assert &apos;https://the-...pp.com/tables&apos; == &apos;https://xxxx/xxxx&apos;
+E         - https://xxxx/xxxx
+E         + https://the-internet.herokuapp.com/tables
+
+test_Page_SortableDataTables.py:24: AssertionError</failure></testcase><testcase classname="test_End_To_End.TestStatusCodes" file="test_Page_StatusCodes.py" line="14" name="test_status_codes" time="3.632"><failure message="selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@href=&apos;status_codes/301&apos;]&quot;}
+  (Session info: chrome=89.0.4389.82)">self = &lt;tests.test_Page_StatusCodes.TestStatusCodes object at 0x000001B1D22E2FC8&gt;
+
+    def test_status_codes(self):
+        # Enter the Page
+        log = self.getLogger()
+        statusCodes_page = StatusCodesPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+        statusCodes_page.statusCodes_LinkText().click()
+    
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == &quot;https://the-internet.herokuapp.com/status_codes&quot;
+        log.info(&quot;URL: &quot; + url)
+    
+        # Verify the Header
+        header_text = statusCodes_page.statusCodes_HeaderText().text
+        assert (&quot;Status Codes&quot; in header_text)
+        log.info(&quot;Header: &quot; + header_text)
+    
+    
+        # todo - not sure how to conduct the tests for this page
+        # todo - Verify 200
+        statusCodes_page.statusCodes_Code200().click()
+        # xxx_page.xxxx_Item().click()
+        # xXxX = xxxx_page.xxxx_Elements()
+        # assert (xXxX in xxxx)
+        # log.info(&quot;Elements Passed&quot;)
+    
+        # todo - Verify 301
+&gt;       statusCodes_page.statusCodes_Code301().click()
+
+test_Page_StatusCodes.py:42: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+..\pageObjects\StatusCodesPage.py:38: in statusCodes_Code301
+    return self.driver.find_element(*StatusCodesPage.status_301)
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:978: in find_element
+    &apos;value&apos;: value})[&apos;value&apos;]
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\webdriver.py:321: in execute
+    self.error_handler.check_response(response)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = &lt;selenium.webdriver.remote.errorhandler.ErrorHandler object at 0x000001B1D22F27C8&gt;
+response = {&apos;status&apos;: 404, &apos;value&apos;: &apos;{&quot;value&quot;:{&quot;error&quot;:&quot;no such element&quot;,&quot;message&quot;:&quot;no such element: Unable to locate element: {\...\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C7E+286]\\n\\tRtlGetAppContainerNamedObjectPath [0x778D7C4E+238]\\n&quot;}}&apos;}
+
+    def check_response(self, response):
+        &quot;&quot;&quot;
+        Checks that a JSON response from the WebDriver does not have an error.
+    
+        :Args:
+         - response - The JSON response from the WebDriver server as a dictionary
+           object.
+    
+        :Raises: If the response contains an error message.
+        &quot;&quot;&quot;
+        status = response.get(&apos;status&apos;, None)
+        if status is None or status == ErrorCode.SUCCESS:
+            return
+        value = None
+        message = response.get(&quot;message&quot;, &quot;&quot;)
+        screen = response.get(&quot;screen&quot;, &quot;&quot;)
+        stacktrace = None
+        if isinstance(status, int):
+            value_json = response.get(&apos;value&apos;, None)
+            if value_json and isinstance(value_json, basestring):
+                import json
+                try:
+                    value = json.loads(value_json)
+                    if len(value.keys()) == 1:
+                        value = value[&apos;value&apos;]
+                    status = value.get(&apos;error&apos;, None)
+                    if status is None:
+                        status = value[&quot;status&quot;]
+                        message = value[&quot;value&quot;]
+                        if not isinstance(message, basestring):
+                            value = message
+                            message = message.get(&apos;message&apos;)
+                    else:
+                        message = value.get(&apos;message&apos;, None)
+                except ValueError:
+                    pass
+    
+        exception_class = ErrorInResponseException
+        if status in ErrorCode.NO_SUCH_ELEMENT:
+            exception_class = NoSuchElementException
+        elif status in ErrorCode.NO_SUCH_FRAME:
+            exception_class = NoSuchFrameException
+        elif status in ErrorCode.NO_SUCH_WINDOW:
+            exception_class = NoSuchWindowException
+        elif status in ErrorCode.STALE_ELEMENT_REFERENCE:
+            exception_class = StaleElementReferenceException
+        elif status in ErrorCode.ELEMENT_NOT_VISIBLE:
+            exception_class = ElementNotVisibleException
+        elif status in ErrorCode.INVALID_ELEMENT_STATE:
+            exception_class = InvalidElementStateException
+        elif status in ErrorCode.INVALID_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR \
+                or status in ErrorCode.INVALID_XPATH_SELECTOR_RETURN_TYPER:
+            exception_class = InvalidSelectorException
+        elif status in ErrorCode.ELEMENT_IS_NOT_SELECTABLE:
+            exception_class = ElementNotSelectableException
+        elif status in ErrorCode.ELEMENT_NOT_INTERACTABLE:
+            exception_class = ElementNotInteractableException
+        elif status in ErrorCode.INVALID_COOKIE_DOMAIN:
+            exception_class = InvalidCookieDomainException
+        elif status in ErrorCode.UNABLE_TO_SET_COOKIE:
+            exception_class = UnableToSetCookieException
+        elif status in ErrorCode.TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.SCRIPT_TIMEOUT:
+            exception_class = TimeoutException
+        elif status in ErrorCode.UNKNOWN_ERROR:
+            exception_class = WebDriverException
+        elif status in ErrorCode.UNEXPECTED_ALERT_OPEN:
+            exception_class = UnexpectedAlertPresentException
+        elif status in ErrorCode.NO_ALERT_OPEN:
+            exception_class = NoAlertPresentException
+        elif status in ErrorCode.IME_NOT_AVAILABLE:
+            exception_class = ImeNotAvailableException
+        elif status in ErrorCode.IME_ENGINE_ACTIVATION_FAILED:
+            exception_class = ImeActivationFailedException
+        elif status in ErrorCode.MOVE_TARGET_OUT_OF_BOUNDS:
+            exception_class = MoveTargetOutOfBoundsException
+        elif status in ErrorCode.JAVASCRIPT_ERROR:
+            exception_class = JavascriptException
+        elif status in ErrorCode.SESSION_NOT_CREATED:
+            exception_class = SessionNotCreatedException
+        elif status in ErrorCode.INVALID_ARGUMENT:
+            exception_class = InvalidArgumentException
+        elif status in ErrorCode.NO_SUCH_COOKIE:
+            exception_class = NoSuchCookieException
+        elif status in ErrorCode.UNABLE_TO_CAPTURE_SCREEN:
+            exception_class = ScreenshotException
+        elif status in ErrorCode.ELEMENT_CLICK_INTERCEPTED:
+            exception_class = ElementClickInterceptedException
+        elif status in ErrorCode.INSECURE_CERTIFICATE:
+            exception_class = InsecureCertificateException
+        elif status in ErrorCode.INVALID_COORDINATES:
+            exception_class = InvalidCoordinatesException
+        elif status in ErrorCode.INVALID_SESSION_ID:
+            exception_class = InvalidSessionIdException
+        elif status in ErrorCode.UNKNOWN_METHOD:
+            exception_class = UnknownMethodException
+        else:
+            exception_class = WebDriverException
+        if value == &apos;&apos; or value is None:
+            value = response[&apos;value&apos;]
+        if isinstance(value, basestring):
+            if exception_class == ErrorInResponseException:
+                raise exception_class(response, value)
+            raise exception_class(value)
+        if message == &quot;&quot; and &apos;message&apos; in value:
+            message = value[&apos;message&apos;]
+    
+        screen = None
+        if &apos;screen&apos; in value:
+            screen = value[&apos;screen&apos;]
+    
+        stacktrace = None
+        if &apos;stackTrace&apos; in value and value[&apos;stackTrace&apos;]:
+            stacktrace = []
+            try:
+                for frame in value[&apos;stackTrace&apos;]:
+                    line = self._value_or_default(frame, &apos;lineNumber&apos;, &apos;&apos;)
+                    file = self._value_or_default(frame, &apos;fileName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if line:
+                        file = &quot;%s:%s&quot; % (file, line)
+                    meth = self._value_or_default(frame, &apos;methodName&apos;, &apos;&lt;anonymous&gt;&apos;)
+                    if &apos;className&apos; in frame:
+                        meth = &quot;%s.%s&quot; % (frame[&apos;className&apos;], meth)
+                    msg = &quot;    at %s (%s)&quot;
+                    msg = msg % (meth, file)
+                    stacktrace.append(msg)
+            except TypeError:
+                pass
+        if exception_class == ErrorInResponseException:
+            raise exception_class(response, message)
+        elif exception_class == UnexpectedAlertPresentException:
+            alert_text = None
+            if &apos;data&apos; in value:
+                alert_text = value[&apos;data&apos;].get(&apos;text&apos;)
+            elif &apos;alert&apos; in value:
+                alert_text = value[&apos;alert&apos;].get(&apos;text&apos;)
+            raise exception_class(message, screen, stacktrace, alert_text)
+&gt;       raise exception_class(message, screen, stacktrace)
+E       selenium.common.exceptions.NoSuchElementException: Message: no such element: Unable to locate element: {&quot;method&quot;:&quot;xpath&quot;,&quot;selector&quot;:&quot;//a[@href=&apos;status_codes/301&apos;]&quot;}
+E         (Session info: chrome=89.0.4389.82)
+
+c:\users\chris_000\appdata\local\programs\python\python37\lib\site-packages\selenium\webdriver\remote\errorhandler.py:242: NoSuchElementException</failure></testcase><testcase classname="test_End_To_End.TestTypos" file="test_Page_Typos.py" line="14" name="test_typos" time="3.547"><failure message="TypeError: &apos;tuple&apos; object is not callable">self = &lt;tests.test_Page_Typos.TestTypos object at 0x000001B1D23C04C8&gt;
+
+    def test_typos(self):
+        # Enter the Page
+        log = self.getLogger()
+        typos_page = TyposPage(self.driver)
+        log.info(&quot;TEST START&quot;)
+&gt;       typos_page.typos_Link().click()
+E       TypeError: &apos;tuple&apos; object is not callable
+
+test_Page_Typos.py:20: TypeError</failure></testcase><testcase classname="test_End_To_End.TestWYSIWYG_Editor" file="test_Page_WYSIWYG_Editor.py" line="17" name="test_wysiwyg_editor" time="6.633"></testcase></testsuite></testsuites>

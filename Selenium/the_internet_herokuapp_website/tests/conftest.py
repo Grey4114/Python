@@ -10,9 +10,10 @@ from selenium import webdriver
 import time
 driver = None
 
-# Todo - Add in screenshot - move to reports dir
-# todo - add in html report to reports dir for each test
-# todo - add browser config settings
+
+# html report - Run in Jenkins
+# Todo - screenshots - move to reports dir
+# todo - add all 3 browser config settings - Chome, Firefox and Edge
 
 
 # use to change browsers at launch
@@ -54,7 +55,7 @@ def pytest_runtest_makereport(item):
     if report.when == 'call' or report.when == "setup":
         xfail = hasattr(report, 'wasxfail')
         if (report.skipped and xfail) or (report.failed and not xfail):
-            file_name = report.nodeid.replace("::", "_") + "_%(date).png"
+            file_name = report.nodeid.replace("::", "_") + ".png"
             _capture_screenshot(file_name)
             if file_name:
                 html = '<div><img src="%s" alt="screenshot" style="width:304px;height:228px;" ' \

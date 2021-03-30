@@ -62,7 +62,7 @@ class TestJavaScriptAlerts(BaseClass):
         log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
-        # todo - Verify JS Prompt - Cancel
+        # Verify JS Prompt - Cancel
         javaScriptAlerts_page.javaScriptAlerts_PromptButton().click()
         # time.sleep(3)
         alert = self.driver.switch_to.alert
@@ -72,7 +72,7 @@ class TestJavaScriptAlerts(BaseClass):
         log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
-        # todo - Verify JS Prompt - OK w/Empty Text Field
+        # Verify JS Prompt - OK w/Empty Text Field
         javaScriptAlerts_page.javaScriptAlerts_PromptButton().click()
         # time.sleep(2)
         alert = self.driver.switch_to.alert
@@ -82,7 +82,7 @@ class TestJavaScriptAlerts(BaseClass):
         log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
-        # todo - Verify JS Prompt - OK w/Text Field
+        # Verify JS Prompt - OK w/Text Field
         javaScriptAlerts_page.javaScriptAlerts_PromptButton().click()
         time.sleep(2)
         alert = self.driver.switch_to.alert

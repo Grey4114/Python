@@ -54,8 +54,8 @@ class TestContextMenu(BaseClass):
 
 
         # todo - Verify & Dismiss popup box
-        window_after = self.driver.window_handles[1]       # Popup window
-        self.driver.switch_to.window(window_after).send_keys(Keys.ESCAPE)
+        window_after = self.driver.window_handles[0]       # Popup window
+        self.driver.switch_to.window().send_keys(Keys.ESCAPE)
         time.sleep(5)
 
 
