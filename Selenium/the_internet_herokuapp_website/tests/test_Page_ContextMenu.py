@@ -48,21 +48,23 @@ class TestContextMenu(BaseClass):
         alertText = alert.text
         assert ('You selected a context menu' in alertText)
         log.info("Alert Text: " + alertText)
-        time.sleep(5)
         alert.accept()
         time.sleep(5)
 
 
         # todo - Verify & Dismiss popup box
-        window_after = self.driver.window_handles[0]       # Popup window
-        self.driver.switch_to.window().send_keys(Keys.ESCAPE)
-        time.sleep(5)
+        # action.context_click().send_keys(Keys.BACKSPACE).perform()
+        # self.driver.switch_to.window(self.driver.window_handles[0])   # Popup window
+        # window.close()
+        # self.driver.quit()
+        # self.driver
+        # time.sleep(5)
 
 
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        # time.sleep(2)
+        time.sleep(2)
         self.driver.back()
         self.driver.refresh()
 

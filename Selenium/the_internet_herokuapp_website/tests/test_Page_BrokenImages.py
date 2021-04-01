@@ -7,6 +7,8 @@ Notes:
 
 import time
 import pytest
+from pip._vendor import requests
+
 from utilities.BaseClass import BaseClass
 from pageObjects.BrokenImagesPage import BrokenImagePage
 
@@ -32,22 +34,25 @@ class TestBrokenImages(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # todo - Verify Image 1
-        # size1 = broken_image_page.brokenImage_1()
-        # assert broken_image_page.brokenImage_1().is_displayed()
-        # log.info("Image 1 - Passed")
+        # Find Broken Images
+        image_list = broken_image_page.brokenImage_List()
+        iBrokenImageCount = 0
+        for img in image_list:
+            try:
+                response = requests.get(img.get_attribute('src'), stream=True)
+                if (response.status_code != 200):
+                    assert img.get_attribute('outerHTML') == '<img src="asdf.jpg">' or \
+                           img.get_attribute('outerHTML') == '<img src="hjkl.jpg">'
+                    # print(img.get_attribute('outerHTML') + " is broken.")
+                    log.info(img.get_attribute('outerHTML') + " is broken.")
 
+            except requests.exceptions.MissingSchema:
+                print("Encountered MissingSchema Exception")
+            except requests.exceptions.InvalidSchema:
+                print("Encountered InvalidSchema Exception")
+            except:
+                print("Encountered Some other Exception")
 
-        # todo - Verify Image 2
-        # broken_image_page.brokenImage_2()
-        # assert len(add_remove_page.delElements())
-        # log.info("Add Buttons - Passed")
-
-
-        # todo - Verify Image 2
-        # broken_image_page.brokenImage_3()
-        # assert len(add_remove_page.delElements())
-        # log.info("Add Buttons - Passed")
 
 
         # Exit the Page

@@ -13,10 +13,8 @@ class BrokenImagePage:
 
     broken_Link = (By.XPATH, "//a[text()='Broken Images']")            # Main Page link
     broken_Header = (By.XPATH, "//h3[text()='Broken Images']")         # Page header text
+    broken_List = (By.TAG_NAME, "img")                                  # List of all images
 
-    broken_Image1 = (By.XPATH, "//div[@class='example']/img[@src='asdf.jpg']")              # Broken Image 1
-    broken_Image2 = (By.XPATH, "//div[@class='example']/img[@src='hjkl.jpg']")              # Broken Image 2
-    broken_Image3 = (By.XPATH, "//div[@class='example']/img[@src='img/avatar-blank.jpg']")  # Broken Image 3
 
     def broken_LinkText(self):
         return self.driver.find_element(*BrokenImagePage.broken_Link)
@@ -24,12 +22,7 @@ class BrokenImagePage:
     def broken_HeaderText(self):
         return self.driver.find_element(*BrokenImagePage.broken_Header)
 
-    def brokenImage_1(self):
-        return self.driver.find_element(*BrokenImagePage.broken_Image1)
+    def brokenImage_List(self):
+        return self.driver.find_elements(*BrokenImagePage.broken_List)
 
-    def brokenImage_2(self):
-        return self.driver.find_element(*BrokenImagePage.broken_Image2)
-
-    def brokenImage_3(self):
-        return self.driver.find_element(*BrokenImagePage.broken_Image3)
 

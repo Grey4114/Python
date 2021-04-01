@@ -13,9 +13,12 @@ class ChallengingDomPage:
 
     challenging_Link = (By.XPATH, "//a[text()='Challenging DOM']")          # Main Page link
     challenging_Header = (By.XPATH, "//h3[text()='Challenging DOM']")       # Page header text
+
     challenging_Blue = (By.XPATH, "//a[@class='button']")                   # Blue Button
     challenging_Red = (By.XPATH, "//a[@class='button alert']")              # Red Button
     challenging_Green = (By.XPATH, "//a[@class='button success']")          # Green Button
+
+    challenging_Canvas = (By.XPATH, "//canvas[@id='canvas']")               # Canvas
 
 
     def challengingDom_LinkText(self):
@@ -32,6 +35,9 @@ class ChallengingDomPage:
 
     def challenging_ButtonGreen(self):
         return self.driver.find_element(*ChallengingDomPage.challenging_Green)
+
+    def challengingDom_Canvas(self):
+        return self.driver.find_element(*ChallengingDomPage.challenging_Canvas)
 
 
 

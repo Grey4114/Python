@@ -32,28 +32,28 @@ class TestChallengingDOM(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # todo - Verify Blue Button
-        before = challenging_dom_page.challenging_ButtonBlue().text
+
+        # Verify Blue, Red and Green Button id numbers change after clickin on one of the buttons
+        # Grab the id numbers prior to button click
+        blue_before = challenging_dom_page.challenging_ButtonBlue().get_attribute("id")
+        red_before = challenging_dom_page.challenging_ButtonRed().get_attribute("id")
+        green_before = challenging_dom_page.challenging_ButtonGreen().get_attribute("id")
         challenging_dom_page.challenging_ButtonBlue().click()
-        after = challenging_dom_page.challenging_ButtonBlue().text
-        assert before != after
-        log.info("Blue Button: " + before + "-" + after)
 
+        # Grab the id numbers after to button click
+        blue_after = challenging_dom_page.challenging_ButtonBlue().get_attribute("id")
+        red_after = challenging_dom_page.challenging_ButtonRed().get_attribute("id")
+        green_after = challenging_dom_page.challenging_ButtonGreen().get_attribute("id")
 
-        # todo - Verify Red Button
-        before = challenging_dom_page.challenging_ButtonRed().text
-        challenging_dom_page.challenging_ButtonRed().click()
-        after = challenging_dom_page.challenging_ButtonRed().text
-        assert before != after
-        log.info("Red Button: " + before + "-" + after)
+        # Logging the before and after id numbers for each button
+        log.info("Blue Button: " + blue_before + " - " + blue_after)
+        log.info("Red Button: " + red_before + " - " + red_after)
+        log.info("Green Button: " + green_before + " - " + green_after)
 
-
-        # todo - Verify Green Button
-        before = challenging_dom_page.challenging_ButtonGreen().text
-        challenging_dom_page.challenging_ButtonGreen().click()
-        after = challenging_dom_page.challenging_ButtonGreen().text
-        assert before != after
-        log.info("Blue Button: " + before + "-" + after)
+        # Verify that the id #'s have changed
+        assert blue_before != blue_after
+        assert red_before != red_after
+        assert green_before != green_after
 
 
         # Exit the Page
