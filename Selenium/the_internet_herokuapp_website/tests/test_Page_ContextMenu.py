@@ -42,6 +42,7 @@ class TestContextMenu(BaseClass):
         action = ActionChains(self.driver)
         action.context_click(contextmenu_page.contextMenu_RightClickBox()).perform()
         # time.sleep(5)
+        action.send_keys(Keys.ESCAPE)
 
         # Verify Alert message & Dismiss alert box
         alert = self.driver.switch_to.alert

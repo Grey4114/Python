@@ -7,6 +7,9 @@ Notes:
 
 import time
 import pytest
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 from utilities.BaseClass import BaseClass
 from pageObjects.DigestAuthPage import DigestAuthPage
 
@@ -28,52 +31,28 @@ class TestDigestAuth(BaseClass):
         log.info("URL: " + url)
 
 
-        # Verify the Header
-        header_text = digestauth_page.digestAuth_HeaderText().text
-        assert ("Digest Auth" in header_text)
-        log.info("Header: " + header_text)
+        # Verify enter a valid user & pass
+        self.driver.get('http://admin:admin@the-internet.herokuapp.com/digest_auth')
+        time.sleep(2)
+        assert digestauth_page.digestAuth_SuccessLogin().text == "Congratulations! You must have the proper credentials."
 
+        # Todo - Verify invalid name/pass and click on cancel
+        # unable to get a fail situation to work at this time
+        self.driver.back()
+        self.driver.back()
+        self.driver.refresh()
+        time.sleep(5)
+        action = ActionChains(self.driver)
+        self.driver.get('http://fail:fail@the-internet.herokuapp.com/digest_auth')
+        time.sleep(2)
+        action.send_keys(Keys.CANCEL)
+        time.sleep(2)
+        # assert digestauth_page.digestAuth_SuccessLogin().text == "Not Found"
 
-        # todo - Verify enter user & pass & sign in button
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-
-        # todo - Verify enter user & pass & cancel button
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify no user & no pass & sign in button
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify no user & no pass & cancel button
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify no user & no pass & cancel button
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify login failed text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
         # Exit the Page
-        log.info(header_text + " - All Tests Passed")
+        log.info("Digital Auth - All Tests Passed")
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()

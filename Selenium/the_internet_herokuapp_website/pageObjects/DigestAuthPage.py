@@ -15,33 +15,16 @@ class DigestAuthPage:
         self.driver = driver
 
     digest_Link = (By.XPATH, "//a[text()='Digest Authentication']")     # Main Page link
-
-
-    digest_Header = (By.XPATH, "//h3[text()='xxxxx']")      # todo - Page header text
-    digest_User = (By.XPATH, "")                            # todo - user path
-    digest_Pass = (By.XPATH, "")                            # todo - pass path
-    digest_SignIn = (By.XPATH, "")                          # todo - sign in button
-    digest_Cancel = (By.XPATH, "")                          # todo - cancel button
-    digest_Failed = (By.XPATH, "")                          # todo - login failed text
+    digest_Success = (By.XPATH, "//p[contains(text(),'Congratulations')]")  # Successful login text
+    digest_Failed = (By.XPATH, "//h1[normalize-space()='Not Found']")  # Failed login text
 
 
     def digestAuth_LinkText(self):
         return self.driver.find_element(*DigestAuthPage.digest_Link)
 
-    def digestAuth_HeaderText(self):
-        return self.driver.find_element(*DigestAuthPage.digest_Header)
+    def digestAuth_SuccessLogin(self):
+        return self.driver.find_element(*DigestAuthPage.digest_Success)
 
-    def digestAuth_UserField(self):
-        return self.driver.find_element(*DigestAuthPage.digest_User)
-
-    def digestAuth_PassField(self):
-        return self.driver.find_element(*DigestAuthPage.digest_Pass)
-
-    def digestAuth_SignInButton(self):
-        return self.driver.find_element(*DigestAuthPage.digest_SignIn)
-
-    def digestAuth_CancelButton(self):
-        return self.driver.find_element(*DigestAuthPage.digest_Cancel)
 
     def digestAuth_FailedLogin(self):
         return self.driver.find_element(*DigestAuthPage.digest_Failed)
