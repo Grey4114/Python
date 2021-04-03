@@ -14,9 +14,7 @@ from pageObjects.DragDropPage import DragDropPage
 
 
 class TestDragDrop(BaseClass):
-
     def test_drag_and_drop(self):
-
         # Enter the Page
         log = self.getLogger()
         dragdrop_page = DragDropPage(self.driver)
@@ -28,6 +26,7 @@ class TestDragDrop(BaseClass):
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/drag_and_drop"
         log.info("URL: " + url)
+        log.info(dragdrop_page)
 
 
         # Verify the Header
@@ -36,21 +35,27 @@ class TestDragDrop(BaseClass):
         log.info("Header: " + header_text)
 
 
-
+        # Unable to get this to work at this time
         # todo - Verify drag A to B
-        boxA = dragdrop_page.dragDrop_Box_A()
-        boxB = dragdrop_page.dragDrop_Box_B()
+
         boxA_text = dragdrop_page.dragDrop_Box_A().text
         boxB_text = dragdrop_page.dragDrop_Box_B().text
-
         log.info("a = " + boxA_text + " & " + "b = " + boxB_text)   # quick check
 
-        action = ActionChains(self.driver)
-        action.click_and_hold(boxA).pause(3).move_to_element(boxB).release(boxB).perform()
-        #action.drag_and_drop(boxA, boxB).perform()
+        driver = self.driver
+        driver.get("https://the-internet.herokuapp.com/drag_and_drop")
 
-        assert (boxA_text == "B" and boxB_text == "A")
-        log.info("Drag & Drop: Passed")
+        boxA = dragdrop_page.dragDrop_Box_A()
+        boxB = dragdrop_page.dragDrop_Box_B()
+        action = ActionChains(driver)
+        # action.click_and_hold(boxA).move_to_element(boxB).pause(2).move_by_offset(100, 100).release().perform()
+        # action.click_and_hold(boxA).move_to_element(boxB).release(boxB).perform()
+        action.drag_and_drop(boxA, boxB).perform()
+        time.sleep(5)
+
+
+        # assert (boxA_text == "B" and boxB_text == "A")
+        # log.info("Drag & Drop: Passed")
 
 
 

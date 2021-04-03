@@ -13,9 +13,7 @@ from utilities.BaseClass import BaseClass
 from pageObjects.DynamicControlsPage import DynamicControlsPage
 
 class TestDynamicControls(BaseClass):
-
     def test_dynamic_controls(self):
-
         # Enter the Page
         log = self.getLogger()
         dynamicControls_page = DynamicControlsPage(self.driver)
