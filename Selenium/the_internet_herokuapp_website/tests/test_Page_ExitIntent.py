@@ -14,9 +14,7 @@ from utilities.BaseClass import BaseClass
 from pageObjects.ExitIntentPage import ExitIntentPage
 
 class TestExitIntent(BaseClass):
-
     def test_exit_intent(self):
-
         # Enter the Page
         log = self.getLogger()
         exitIntent_page = ExitIntentPage(self.driver)
@@ -38,7 +36,7 @@ class TestExitIntent(BaseClass):
 
         # todo - Verify Move mouse - open Modal window
         action = ActionChains(self.driver)
-        action.move_by_offset(100, 0).perform()
+        action.move_by_offset(0, 1000).click().perform()
         time.sleep(5)
 
         # Verify Modal window header text

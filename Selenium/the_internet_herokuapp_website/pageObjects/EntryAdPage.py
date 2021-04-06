@@ -14,7 +14,7 @@ class EntryAdPage:
     entry_Link = (By.XPATH, "//a[text()='Entry Ad']")                   # Main Page link
     entry_Header = (By.XPATH, "//h3[text()='Entry Ad']")                # Page header text
 
-    entry_WindowHeader = (By.XPATH, "//div[@class='modal-title']")     # Modal Window - Header text
+    entry_WindowHeader = (By.CSS_SELECTOR, "div[class='modal-title'] h3")     # Modal Window - Header text
     entry_WindowState = (By.XPATH, "//div[@id='modal']")               # Modal Window - State
     entry_WindowClose = (By.XPATH, "//div[@class='modal-footer']")     # Modal Window - Close button
 

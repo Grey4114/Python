@@ -8,9 +8,13 @@ Notes:
 import time
 import pytest
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 from utilities.BaseClass import BaseClass
 from pageObjects.DynamicLoadingPage import DynamicLoadingPage
+
 
 class TestDynamicLoading(BaseClass):
 
@@ -20,6 +24,7 @@ class TestDynamicLoading(BaseClass):
         dynamicLoading_page = DynamicLoadingPage(self.driver)
         log.info("TEST START")
         dynamicLoading_page.dynamicLoading_LinkText().click()
+        wait = WebDriverWait(self.driver, 10)  # Waits 10 seconds when called
 
 
         # Verify the URL
@@ -38,14 +43,14 @@ class TestDynamicLoading(BaseClass):
         dynamicLoading_page.dynamicLoading_ExampleLink_1().click()
         display = dynamicLoading_page.dynamicLoading_ExampleHello_1().is_displayed()
         assert not display
-        time.sleep(5)       # todo - replace with Wait
+
         dynamicLoading_page.dynamicLoading_ExampleStart_1().click()
-        time.sleep(5)       # todo - replace with Wait
+        wait.until(EC.visibility_of_element_located((By.ID, "finish")))  # Explicit Wait - Targeted Wait
         display = dynamicLoading_page.dynamicLoading_ExampleHello_1().is_displayed()
         assert display
         log.info("Example 1: Passed")
         self.driver.back()
-        time.sleep(3)       # todo - replace with Wait
+
 
 
         # Example 2 - Verify text is not on the page
@@ -56,9 +61,8 @@ class TestDynamicLoading(BaseClass):
             display = "No Message"
         assert display == "No Message"
 
-        time.sleep(5)       # todo - replace with Wait
         dynamicLoading_page.dynamicLoading_ExampleStart_2().click()
-        time.sleep(5)       # todo - replace with Wait
+        wait.until(EC.presence_of_element_located((By.ID, "finish")))  # Explicit Wait - Targeted Wait
         display = dynamicLoading_page.dynamicLoading_ExampleHello_2().is_displayed()
         assert display
         log.info("Example 2: Passed")

@@ -8,6 +8,9 @@ Notes:
 import time
 import pytest
 from selenium.common.exceptions import NoSuchElementException
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.support.wait import WebDriverWait
 
 from utilities.BaseClass import BaseClass
 from pageObjects.DynamicControlsPage import DynamicControlsPage
@@ -19,7 +22,7 @@ class TestDynamicControls(BaseClass):
         dynamicControls_page = DynamicControlsPage(self.driver)
         log.info("TEST START")
         dynamicControls_page.dynamicControls_LinkText().click()
-
+        wait = WebDriverWait(self.driver, 10)       # Waits 10 seconds when called
 
         # Verify the URL
         url = self.driver.current_url
@@ -35,21 +38,23 @@ class TestDynamicControls(BaseClass):
 
         # Verify Remove button - checkbox removal & message text
         messagetext = "No Message"      # Place holder
-        dynamicControls_page.dynamicControls_AddRemoveButton().click()
-        time.sleep(10)      # todo - replace with Wait
         try:
-            dynamicControls_page.dynamicControls_Checkbox().click()
-        except NoSuchElementException:
+            dynamicControls_page.dynamicControls_AddRemoveButton().click()
+            wait.until(EC.presence_of_element_located((By.ID, "message")))      # Explicit Wait - Targeted Wait
+            # dynamicControls_page.dynamicControls_Checkbox().click()
             messagetext = dynamicControls_page.dynamicControls_MessageText().text
+        except NoSuchElementException:
+            messagetext = "No Message"
 
         assert messagetext == "It's gone!"
         log.info("Add/Remove Button: " + messagetext)
 
 
+
         # Verify Enable button - enable text box & message text
-        dynamicControls_page.dynamicControls_EnableDisableButton().click()
-        time.sleep(10)      # todo - replace with Wait
         try:
+            dynamicControls_page.dynamicControls_EnableDisableButton().click()
+            wait.until(EC.presence_of_element_located((By.ID, "message")))      # Explicit Wait - Targeted Wait
             dynamicControls_page.dynamicControls_TextField().click()
             messagetext = dynamicControls_page.dynamicControls_MessageText().text
         except NoSuchElementException:

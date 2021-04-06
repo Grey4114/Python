@@ -35,29 +35,28 @@ class TestFileDownload(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # Download all files
-        fileDownload_page.fileDownload_TextFile_1().click()     # Download text file 1
-        fileDownload_page.fileDownload_TextFile_2().click()     # download text file 2
-        fileDownload_page.fileDownload_PNGFile_1().click()      # download png file 1
-        fileDownload_page.fileDownload_PNGFile_2().click()      # download png file 2
-        fileDownload_page.fileDownload_PNGFile_3().click()      # download png file 3
-        fileDownload_page.fileDownload_XLSMFile().click()       # download xmsl file
-        fileDownload_page.fileDownload_ZipFile().click()        # download zip file
+        # Find files and download
+        count = 0
+        filelist = fileDownload_page.fileDownload_FileList()
+        for file in filelist:
+            file.click()
+            count += 1
 
 
-        # Verify all files downloaded
-        pathDir = "C:/Users/chris_000/Downloads"
-        os.chdir(pathDir)
-        assert path.isfile("Hello.docx")
-        assert path.isfile("upload_file.xlsx")
-        assert path.isfile("Colbyashi Maru - Khaled Garbaya - Social.jpg")
-        assert path.isfile("luminoslogo.png")
-        assert path.isfile("some-file.txt")
-        assert path.isfile("Testphoto.jpg")
+        # Get a count of the files in the directory
+        time.sleep(30)
+        dir_list = os.listdir("C:/Users/chris_000/Downloads")
+        num_files = len(dir_list)
+
+        # Verify that the # of files in the dir = the # of downloaded files
+        assert count == num_files
+
+        # Todo - RAR files sometimes do not delete
+        # Remove all of the downloaded files from the directory
+        os.chdir("C:/Users/chris_000/Downloads")
+        for f in dir_list:
+            os.remove(f)
         log.info("Downloads: Passed")
-
-
-        # todo - add code to delete all files in the downloads directory
 
 
         # Exit the Page
@@ -65,6 +64,4 @@ class TestFileDownload(BaseClass):
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()
-
-
 

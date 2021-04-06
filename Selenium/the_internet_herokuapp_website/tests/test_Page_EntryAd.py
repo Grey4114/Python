@@ -34,24 +34,17 @@ class TestEntryAd(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # Verify Modal window header text
-        entry = entryad_page.entryAd_ModalWindowHeader().text    # todo - fix
-        assert entry in "This is a modal window"
-        log.info("Modal Header: " + entry)
-
-        # todo - Verify Modal Window open and close
-        modal = entryad_page.entryAd_ModalWindowState().is_displayed()   # todo - fix
-        assert not modal
-
-        time.sleep(2)
+        # Verify Modal Window open and close
+        time.sleep(3)
+        modal = entryad_page.entryAd_ModalWindowState().is_displayed()
+        assert modal    # verify open
         entryad_page.entryAd_ModalWindowClose().click()
         time.sleep(2)
-        try:
-            modal = entryad_page.entryAd_ModalWindowState().is_displayed()   # todo - fix
-        except NoSuchElementException:
-            modal = True
 
-        log.info("Modal Window: Passed")
+
+        # Verify Modal Window is closed
+        modal = entryad_page.entryAd_ModalWindowState().is_displayed()
+        assert not modal
 
 
         # Exit the Page
@@ -59,4 +52,3 @@ class TestEntryAd(BaseClass):
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()
-
