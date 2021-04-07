@@ -27,5 +27,7 @@ class InfiniteScrollPage:
     def infiniteScroll_HeaderText(self):
         return self.driver.find_element(*InfiniteScrollPage.infinite_Header)
 
+
+
     def infiniteScroll_Scroll(self):
         return self.driver.find_element(*InfiniteScrollPage.infinite_Scroll)

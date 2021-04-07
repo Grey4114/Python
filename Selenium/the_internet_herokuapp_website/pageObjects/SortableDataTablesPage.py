@@ -14,13 +14,8 @@ class SortableDataTablesPage:
         self.driver = driver
 
     sortable_LinkText = (By.XPATH, "//a[text()='Sortable Data Tables']")        # Main Page link
-    sortable_Header = (By.XPATH, "//h3[text()='Sortable Data Tables']")         # Page header text
-
-    # todo - not sure how to test this
-    sortable_Table1 = (By.XPATH, " ")   # todo - Table 1
-
-    sortable_Table2 = (By.XPATH, " ")   # todo - Table 2
-
+    sortable_Header = (By.XPATH, "//h3[text()='Data Tables']")         # Page header text
+    sortable_Table2 = (By.XPATH, "//td[@class='last-name']")
 
 
     def sortableDataTables_Link(self):
@@ -29,9 +24,6 @@ class SortableDataTablesPage:
     def sortableDataTables_HeaderText(self):
         return self.driver.find_element(*SortableDataTablesPage.sortable_Header)
 
-    def sortableDataTables_Table_1(self):
-        return self.driver.find_element(*SortableDataTablesPage.sortable_Table1)
-
-    def sortableDataTables_Table_2(self):
-        return self.driver.find_element(*SortableDataTablesPage.sortable_Table2)
+    def sortableDataTables_Table_2_Names(self):
+        return self.driver.find_elements(*SortableDataTablesPage.sortable_Table2)
 

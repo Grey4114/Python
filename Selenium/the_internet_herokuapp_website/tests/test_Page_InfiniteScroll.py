@@ -31,6 +31,7 @@ class TestInfiniteScroll(BaseClass):
         log.info("Header: " + header_text)
 
         # todo - Verify scroll 1
+
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)

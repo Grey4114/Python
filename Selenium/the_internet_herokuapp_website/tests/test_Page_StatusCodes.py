@@ -30,34 +30,8 @@ class TestStatusCodes(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # todo - not sure how to conduct the tests for this page
-        # todo - Verify 200
-        statusCodes_page.statusCodes_Code200().click()
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        """According to online info there is no way for Selenium to get status codes for a web page"""
 
-        # todo - Verify 301
-        statusCodes_page.statusCodes_Code301().click()
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify 404
-        statusCodes_page.statusCodes_Code404().click()
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify 500
-        statusCodes_page.statusCodes_Code500().click()
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

@@ -1,0 +1,4 @@
+Typos
+This example demonstrates a typo being introduced. It does it randomly on each page load.
+Sometimes you'll see a typo, other times you won't.
+Powered by Elemental Selenium

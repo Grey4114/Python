@@ -2,7 +2,9 @@
 Website:  https://the-internet.herokuapp.com/
 Date:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Data Tables page
+    This web page seems to be more of an example page then a selenium test page
+    Created a test for checking the names in the example 2 list.
 """
 
 import time
@@ -21,7 +23,7 @@ class TestSortableDataTables(BaseClass):
 
         # Verify the URL
         url = self.driver.current_url
-        assert url == "https://xxxx/xxxx"
+        assert url == "https://the-internet.herokuapp.com/tables"
         log.info("URL Passed: " + url)
 
         # Verify the Header
@@ -30,18 +32,11 @@ class TestSortableDataTables(BaseClass):
         log.info("Header Passed: " + header_text)
 
 
-        # todo - not sure how to test this
-        # todo - Verify table 1
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify table 2
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify Table 2 Names
+        names = ("Smith", "Bach", "Doe", "Conway")
+        nameList = sortableDataTables_page.sortableDataTables_Table_2_Names()
+        for n in range(len(names)):
+            assert names[n] == nameList[n].text
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
