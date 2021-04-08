@@ -2,16 +2,17 @@
 Website:  https://the-internet.herokuapp.com/
 Date:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Web Page Info - pageObjects/SlowResourcesPage.py
 """
 
 import time
 import pytest
+import requests
+
 from utilities.BaseClass import BaseClass
 from pageObjects.SlowResourcesPage import SlowResourcesPage
 
 class TestSlowResources(BaseClass):
-
     def test_slow_resources(self):
 
         # Enter the Page
@@ -31,19 +32,13 @@ class TestSlowResources(BaseClass):
         log.info("Header: " + header_text)
 
 
+        # Todo - not sure how to verify GET request at this time
+        # Verify GET request
+        req = requests.get("https://the-internet.herokuapp.com/slow")
+        # assert req.status_code == 200
+        log.info(req.status_code)
+        time.sleep(30)
 
-        # todo - not sure how to test this
-        # todo - Verify get request
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify get request
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

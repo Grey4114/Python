@@ -10,10 +10,11 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.NestedFramesPage import NestedFramesPage
 
-class TestNestedFrames(BaseClass):
 
+class TestNestedFrames(BaseClass):
     def test_Nested_frames(self):
         # Enter the Page
+        driver = self.driver
         log = self.getLogger()
         nestedFrames_page = NestedFramesPage(self.driver)
         log.info("TEST START")
@@ -24,33 +25,48 @@ class TestNestedFrames(BaseClass):
         assert url == "https://the-internet.herokuapp.com/nested_frames"
         log.info("URL: " + url)
 
-        # Verify the Header
-        header_text = nestedFrames_page.nestedFrames_HeaderText().text
-        assert ("Xxxxx" in header_text)
-        log.info("Header: " + header_text)
+        # Verify the Header - No actual header text on this page
+        log.info("Nested Frames")
 
-        # todo - not sure how to test this at this time
 
-        # todo - Verify right frame
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify left frame
+        self.driver.refresh()
+        # NOTE - to get to the left, middle and right frames must go through the top frame first
+        self.driver.switch_to.frame('frame-top')
+        self.driver.switch_to.frame('frame-left')
+        left = nestedFrames_page.nestedFrames_BodyText().text
+        # log.info(left)
+        assert left == 'LEFT'
 
-        # todo - Verify left frame
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify bottom frame
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Verify middle frame
+        self.driver.refresh()
+        self.driver.switch_to.frame('frame-top')
+        self.driver.switch_to.frame('frame-middle')
+        middle = nestedFrames_page.nestedFrames_BodyText().text
+        # log.info(middle)
+        assert middle == 'MIDDLE'
+
+
+        # Verify right frame
+        self.driver.refresh()
+        self.driver.switch_to.frame('frame-top')
+        self.driver.switch_to.frame('frame-right')
+        right = nestedFrames_page.nestedFrames_BodyText().text
+        # log.info(right)
+        assert right == 'RIGHT'
+
+
+        # Verify bottom frame
+        self.driver.refresh()
+        driver.switch_to.frame('frame-bottom')
+        bottom = nestedFrames_page.nestedFrames_BodyText().text
+        # log.info(bottom)
+        assert bottom == 'BOTTOM'
+
 
         # Exit the Page
-        log.info(header_text + " - All Tests Passed")
+        log.info("Nested Frames - All Tests Passed")
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()

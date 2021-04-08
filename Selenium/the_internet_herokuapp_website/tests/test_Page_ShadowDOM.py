@@ -24,20 +24,16 @@ class TestShadowDOM(BaseClass):
         assert url == "https://the-internet.herokuapp.com/shadowdom"
         log.info("URL: " + url)
 
-        # todo - Verify the Header
+        # Verify the Header
         header_text = shadowDOM_page.shadowDOM_HeaderText().text
         assert ("Simple template" in header_text)
         log.info("Header: " + header_text)
 
-        # todo - Verify text 1
+        # Verify the text
         text1 = shadowDOM_page.shadowDOM_Text_1().text
         text2 = shadowDOM_page.shadowDOM_Text_2().text
-
         assert "Let's have some different text!" in text1
         assert "In a list!" in text2
-
-        log.info("Text Elements Passed")
-
 
 
         # Exit the Page

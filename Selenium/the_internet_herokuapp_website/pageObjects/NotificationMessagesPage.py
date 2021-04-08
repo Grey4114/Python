@@ -5,7 +5,6 @@ Notes:
     This script tests the Exit Intent page
 """
 
-
 from selenium.webdriver.common.by import By
 
 
@@ -28,7 +27,7 @@ class NotificationMessagesPage:
     def notificationMessages_ClickHere(self):
         return self.driver.find_element(*NotificationMessagesPage.notification_Click)
 
-    def notificationMessages_Message(self):
+    def notificationMessages_MessageText(self):
         return self.driver.find_element(*NotificationMessagesPage.notification_Message)
 
 

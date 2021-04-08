@@ -1,0 +1,15 @@
+Shifting Content: List
+This example demonstrates a list of dynamic content with a static record that constantly moves around.
+
+
+Nesciunt autem eum odit fuga tempora deleniti.
+
+Important Information You're Looking For
+
+Vel aliquid dolores veniam enim nesciunt libero quaerat.
+
+Et numquam et aliquam.
+
+Sed deleniti blanditiis odio laudantium.
+
+Powered by Elemental Selenium

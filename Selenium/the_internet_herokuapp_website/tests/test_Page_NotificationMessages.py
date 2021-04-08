@@ -30,32 +30,19 @@ class TestNotificationMessages(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # todo - Verify Notification Message
-        time.sleep(3)
-        count = 0
+        # Verify Notification Message
+        first_msg = notificationMessages_page.notificationMessages_MessageText().text
 
-
-        while count > 2:
+        while True:
             notificationMessages_page.notificationMessages_ClickHere().click()
-            message = notificationMessages_page.notificationMessages_Message().text
-            log.info(message)
+            next_msg = notificationMessages_page.notificationMessages_MessageText().text
 
+            if first_msg != next_msg:
+                # log.info(first_msg)
+                # log.info(next_msg)
+                break
 
-            """
-            if "Action succesful" in message:
-                if count > 1:
-                    log.info("Action succesful")
-                    count += 1
-
-            elif "Action unsuccesful" in message:
-                if count > 1:
-                    log.info("Action unsuccesful, please try again")
-                    count += 1
-            else:
-                log.info("no check")
-
-            """
-
+        assert first_msg != next_msg
 
 
         # Exit the Page
