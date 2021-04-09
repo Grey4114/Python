@@ -15,9 +15,11 @@ class ExitIntentPage:
     exit_Link = (By.XPATH, "//a[text()='Exit Intent']")         # Main Page link
     exit_Header = (By.XPATH, "//h3[text()='Exit Intent']")      # Page header text
 
-    exit_WindowHeader = (By.XPATH, "//h3[text()='This is a modal window']")     # Modal window header text
-    exit_WindowClose = (By.XPATH, "//div[@class='modal-footer']")               # Modal window close
-    exit_WindowState = (By.XPATH, "//div[@id='modal']")                         # Modal window state
+    exit_Window = (By.XPATH, "//body")     # Click outside webpage
+
+
+    exit_Model = (By.XPATH, "//div[@class='modal-footer']")               # Modal window close
+    exit_State = (By.XPATH, "//div[@id='modal']")                         # Modal window state
 
 
 
@@ -27,14 +29,13 @@ class ExitIntentPage:
     def exitIntent_HeaderText(self):
         return self.driver.find_element(*ExitIntentPage.exit_Header)
 
-    def exitIntent_MouseOut(self):
-        return self.driver.find_element(*ExitIntentPage.exit_Mouse)
 
-    def exitIntent_ModalWindowHeader(self):
-        return self.driver.find_element(*ExitIntentPage.exit_WindowHeader)
+
+    def exitIntent_WindowOutside(self):
+        return self.driver.find_element(*ExitIntentPage.exit_Window)
 
     def exitIntent_ModalWindowClose(self):
-        return self.driver.find_element(*ExitIntentPage.exit_WindowClose)
+        return self.driver.find_element(*ExitIntentPage.exit_Model)
 
     def exitIntent_ModalWindowSate(self):
-        return self.driver.find_element(*ExitIntentPage.exit_WindowState)
+        return self.driver.find_element(*ExitIntentPage.exit_State)

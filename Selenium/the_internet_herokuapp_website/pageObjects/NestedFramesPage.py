@@ -15,8 +15,7 @@ class NestedFramesPage:
 
     nested_Link = (By.XPATH, "//a[text()='Nested Frames']")     # Main Page link
     nested_Header = (By.XPATH, "//h3[text()='Nested Frames']")      # Page header text
-
-    nested_Body = (By.XPATH, "/html/body")     # todo - nested bottom path
+    nested_Body = (By.XPATH, "/html/body")     # Gets the body info for any frame
 
 
     def nestedFrames_LinkText(self):

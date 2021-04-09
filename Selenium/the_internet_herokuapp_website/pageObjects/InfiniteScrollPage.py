@@ -16,18 +16,12 @@ class InfiniteScrollPage:
     infinite_Link = (By.XPATH, "//a[text()='Infinite Scroll']")     # Main Page link
     infinite_Header = (By.XPATH, "//h3[text()='Infinite Scroll']")      # Page header text
 
-    # todo - scroll path
-    infinite_Scroll = (By.XPATH, " ")
-
-
 
     def infiniteScroll_LinkText(self):
         return self.driver.find_element(*InfiniteScrollPage.infinite_Link)
 
     def infiniteScroll_HeaderText(self):
         return self.driver.find_element(*InfiniteScrollPage.infinite_Header)
-
-
 
     def infiniteScroll_Scroll(self):
         return self.driver.find_element(*InfiniteScrollPage.infinite_Scroll)

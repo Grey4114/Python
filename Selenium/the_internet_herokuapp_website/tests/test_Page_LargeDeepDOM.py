@@ -30,26 +30,27 @@ class TestLargeDeepDOM(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # todo - not sure what to test for
-        # todo - Verify scroll down
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+
+        # Move to down location
+        # time.sleep(2)
+        element = largeDeepDOM_page.largeDeepDOM_DownLocation()
+        self.driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element)
+        # loc = element.location
+        # log.info(loc)
+        # time.sleep(2)
+        assert element.text == '26.2'
 
 
-        # todo - Verify scroll across
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
+        # Move to table location
+        # time.sleep(2)
+        element2 = largeDeepDOM_page.largeDeepDOM_TableLocation()
+        self.driver.execute_script('arguments[0].scrollIntoView({block: "center", inline: "center"})', element2)
+        # loc = element2.location
+        # log.info(loc)
+        # time.sleep(2)
+        assert element2.text == '15.25'
 
-        # todo - Verify text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
 

@@ -10,10 +10,10 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.InfiniteScrollPage import InfiniteScrollPage
 
+# TODO - Not sure how to test and verify this at this time
+
 class TestInfiniteScroll(BaseClass):
-
     def test_infinite_scroll(self):
-
         # Enter the Page
         log = self.getLogger()
         infiniteScroll_page = InfiniteScrollPage(self.driver)
@@ -30,14 +30,7 @@ class TestInfiniteScroll(BaseClass):
         assert ("Infinite Scroll" in header_text)
         log.info("Header: " + header_text)
 
-        # todo - Verify scroll 1
 
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify scroll 2
         # xxx_page.xxxx_Item().click()
         # xXxX = xxxx_page.xxxx_Elements()
         # assert (xXxX in xxxx)

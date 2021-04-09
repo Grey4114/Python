@@ -13,13 +13,8 @@ class FloatingMenuPage:
 
     floating_LinkText = (By.XPATH, "//a[text()='Floating Menu']")       # Main Page link
     floating_Header = (By.XPATH, "//h3[text()='Floating Menu']")        # Page header text
-
-    floating_Page = (By.TAG_NAME, "html")                               # Webpage Info
-    floating_Scroll = (By.XPATH, "//div[@id='menu']")                   # Menu / Scroll page info
-    floating_Home = (By.XPATH, "//a[@href='#home']")                    # Home button
-    floating_News = (By.XPATH, "//a[@href='#news']")                    # News button
-    floating_Contact = (By.XPATH, "//a[@href='#contact']")              # Contact button
-    floating_About = (By.XPATH, "//a[@href='#about']")                  # About button
+    floating_Body = (By.XPATH, "//body")                               # Webpage Info
+    floating_Menu = (By.XPATH, "//div[@id='menu']")                    # Menu
 
 
     def floatingMenu_Link(self):
@@ -28,21 +23,10 @@ class FloatingMenuPage:
     def floatingMenu_HeaderText(self):
         return self.driver.find_element(*FloatingMenuPage.floating_Header)
 
-    def floatingMenu_PageInfo(self):
-        return self.driver.find_element(*FloatingMenuPage.floating_Page)
+    def floatingMenu_PageBody(self):
+        return self.driver.find_element(*FloatingMenuPage.floating_Body)
 
-    def floatingMenu_Scroll(self):
-        return self.driver.find_element(*FloatingMenuPage.floating_Scroll)
+    def floatingMenu_PageMenu(self):
+        return self.driver.find_element(*FloatingMenuPage.floating_Menu)
 
-    def floatingMenu_HomeButton(self):
-        return self.driver.find_element(*FloatingMenuPage.floating_Home)
-
-    def floatingMenu_NewsButton(self):
-        return self.driver.find_element(*FloatingMenuPage.floating_News)
-
-    def floatingMenu_ContactButton(self):
-        return self.driver.find_element(*FloatingMenuPage.floating_Contact)
-
-    def floatingMenu_AboutButton(self):
-        return self.driver.find_element(*FloatingMenuPage.floating_About)
 

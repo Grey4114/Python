@@ -16,7 +16,6 @@ from pageObjects.DigestAuthPage import DigestAuthPage
 # user and pass: admin
 
 class TestDigestAuth(BaseClass):
-
     def test_digest_auth(self):
         # Enter the Page
         log = self.getLogger()
@@ -36,8 +35,9 @@ class TestDigestAuth(BaseClass):
         time.sleep(2)
         assert digestauth_page.digestAuth_SuccessLogin().text == "Congratulations! You must have the proper credentials."
 
-        # Todo - Verify invalid name/pass and click on cancel
-        # unable to get a fail situation to work at this time
+
+        # Verify invalid name/pass and click on cancel
+        # TODO - unable to get a fail situation to work at this time
         self.driver.back()
         self.driver.back()
         self.driver.refresh()

@@ -12,15 +12,10 @@ class LargeDeepDOMPage:
     def __init__(self, driver):
         self.driver = driver
 
-    largeDeep_Link = (By.XPATH, "//a[text()='Large & Deep DOM']")       # Main Page link
+    largeDeep_Link = (By.XPATH, "//a[text()='Large & Deep DOM']")           # Main Page link
     largeDeep_Header = (By.XPATH, "//h3[text()='Large & Deep DOM']")        # Page header text
-
-    # todo - not sure what to test for
-
-    largeDeep_Down = (By.XPATH, " ")        # todo - scroll down path
-    largeDeep_Across = (By.XPATH, " ")      # todo - scroll across path
-    largeDeep_LastNumber = (By.XPATH, " ")      # todo - table last number
-
+    largeDeep_Down = (By.XPATH, "//div[@id='sibling-26.2']")                # DOM Down - select 26.2
+    largeDeep_Table = (By.XPATH, "//td[normalize-space()='15.25'] ")        # DOM Table - select 15.25
 
 
     def largeDeepDOM_LinkText(self):
@@ -29,14 +24,13 @@ class LargeDeepDOMPage:
     def largeDeepDOM_HeaderText(self):
         return self.driver.find_element(*LargeDeepDOMPage.largeDeep_Header)
 
-    def largeDeepDOM_ScrollDown(self):
+    def largeDeepDOM_DownLocation(self):
         return self.driver.find_element(*LargeDeepDOMPage.largeDeep_Down)
 
-    def largeDeepDOM_ScrollAcross(self):
-        return self.driver.find_element(*LargeDeepDOMPage.largeDeep_Across)
+    def largeDeepDOM_TableLocation(self):
+        return self.driver.find_element(*LargeDeepDOMPage.largeDeep_Table)
 
-    def largeDeepDOM_TablesLastNumber(self):
-        return self.driver.find_element(*LargeDeepDOMPage.largeDeep_LastNumber)
+
 
 
 

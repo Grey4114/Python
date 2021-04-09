@@ -10,10 +10,10 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.JQueryUIMenusPage import JQueryUIMenusPage
 
+# TODO - Not sure how to properly verify these tests at this time
+
 class TestJQueryUIMenus(BaseClass):
-
     def test_jquery_ui_menus(self):
-
         # Enter the Page
         log = self.getLogger()
         jqueryUIMenus_page = JQueryUIMenusPage(self.driver)
@@ -27,50 +27,39 @@ class TestJQueryUIMenus(BaseClass):
 
         # Verify the Header
         header_text = jqueryUIMenus_page.jQueryUIMenus_HeaderText().text
-        assert ("JQueryUI-Menu" in header_text)
+        assert ("JQueryUI" in header_text)
         log.info("Header: " + header_text)
 
 
-        # todo - Verify Disabled
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
+
+        # Verify Enabled
+        time.sleep(2)
+        enable = jqueryUIMenus_page.jQueryUIMenus_EnabledLink()
+        self.driver.execute_script("arguments[0].click()", enable)
+        time.sleep(2)
         # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
-        # todo - Verify Enabled downloads pdf
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
+        # Verify Enabled downloads pdf
+        pdf = jqueryUIMenus_page.jQueryUIMenus_Downloads_PDF()
+        self.driver.execute_script("arguments[0].click()", pdf)
+        time.sleep(2)
         # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
-        # todo - Verify Enabled downloads csv
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
+        # Verify Enabled downloads csv
+        csv = jqueryUIMenus_page.jQueryUIMenus_Downloads_CSV()
+        self.driver.execute_script("arguments[0].click()", csv)
+        time.sleep(2)
         # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
-        # todo - Verify Enabled downloads xml
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
+        # Verify Enabled downloads xml
+        xml = jqueryUIMenus_page.jQueryUIMenus_Downloads_XML()
+        self.driver.execute_script("arguments[0].click()", xml)
+        time.sleep(2)
         # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-
-        # todo - Verify Enabled back header text
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-
-        # todo - Verify Enabled menu
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")

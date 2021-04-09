@@ -8,10 +8,12 @@ Notes:
 import time
 import pytest
 from selenium.webdriver import ActionChains
+# from seletools.actions import drag_and_drop    - Not working
 
 from utilities.BaseClass import BaseClass
 from pageObjects.DragDropPage import DragDropPage
 
+# Todo - Unable to get this to work at this time, various websites claim it ia a broken feature
 
 class TestDragDrop(BaseClass):
     def test_drag_and_drop(self):
@@ -26,38 +28,28 @@ class TestDragDrop(BaseClass):
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/drag_and_drop"
         log.info("URL: " + url)
-        log.info(dragdrop_page)
-
 
         # Verify the Header
         header_text = dragdrop_page.dragDrop_HeaderText().text
         assert ("Drag and Drop" in header_text)
         log.info("Header: " + header_text)
 
+        # Verify drag A to B
+        # Action Chains
+        # action = ActionChains(self.driver)
+        # boxA = dragdrop_page.dragDrop_Box_A()
+        # boxB = dragdrop_page.dragDrop_Box_B()
+        # action.click_and_hold(boxA).move_to_element(boxB).click(boxB).perform()
 
-        # Unable to get this to work at this time
-        # todo - Verify drag A to B
+        # Seletools - Not working
+        # boxA = dragdrop_page.dragDrop_Box_A()
+        # boxB = dragdrop_page.dragDrop_Box_B()
+        # drag_and_drop(self.driver, boxA, boxB)
 
-        boxA_text = dragdrop_page.dragDrop_Box_A().text
-        boxB_text = dragdrop_page.dragDrop_Box_B().text
-        log.info("a = " + boxA_text + " & " + "b = " + boxB_text)   # quick check
-
-        driver = self.driver
-        driver.get("https://the-internet.herokuapp.com/drag_and_drop")
-
-        boxA = dragdrop_page.dragDrop_Box_A()
-        boxB = dragdrop_page.dragDrop_Box_B()
-        action = ActionChains(driver)
-        # action.click_and_hold(boxA).move_to_element(boxB).pause(2).move_by_offset(100, 100).release().perform()
-        # action.click_and_hold(boxA).move_to_element(boxB).release(boxB).perform()
-        action.drag_and_drop(boxA, boxB).perform()
-        time.sleep(5)
-
-
+        # time.sleep(5)
+        # boxA = dragdrop_page.dragDrop_Box_A()
+        # boxB = dragdrop_page.dragDrop_Box_B()
         # assert (boxA_text == "B" and boxB_text == "A")
-        # log.info("Drag & Drop: Passed")
-
-
 
 
         # Exit the Page

@@ -7,6 +7,8 @@ Notes:
 
 import time
 import pytest
+import requests
+
 from utilities.BaseClass import BaseClass
 from pageObjects.JavaScriptOnLoadEventErrorPage import JavaScriptOnloadEventErrorPage
 
@@ -19,17 +21,17 @@ class TestJavaScript_OnloadEventError(BaseClass):
         log.info("TEST START")
         jsOnloadEventErro_page.js_onloadEventError_LinkText().click()
 
+
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/javascript_error"
         log.info("URL: " + url)
 
 
-        # todo - not sure what this test is supposed to be
-        # todo - Verify the text
-        page_text = jsOnloadEventErro_page.js_onloadEventError_PageText().text
-        assert ("This page has a JavaScript error in the onload event" in page_text)
-        log.info("Text Passed")
+        # Get the logs and verify the error
+        error_log = self.driver.get_log("browser")[0]['message']
+        log.info(error_log)
+        assert '404' in error_log
 
 
         # Exit the Page

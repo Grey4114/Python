@@ -14,10 +14,12 @@ class DragDropPage:
     drag_Link = (By.XPATH, "//a[text()='Drag and Drop']")       # Main Page link
     drag_Header = (By.XPATH, "//h3[text()='Drag and Drop']")    # Page header text
 
-    drag_BoxA = (By.ID, "column-a")      # Box A path
-    drag_BoxB = (By.ID, "column-b")      # Box B path
+    # drag_BoxA = (By.XPATH, "//div[@id='column-a']")      # Box A path
+    # drag_BoxB = (By.XPATH, "//div[@id='column-b']")      # Box B path
 
-    #"div[id='column-b']"
+    drag_BoxA = (By.CSS_SELECTOR, "#column-a")      # Box A path
+    drag_BoxB = (By.CSS_SELECTOR, "#column-b")      # Box B path
+
 
     def dragDrop_LinkText(self):
         return self.driver.find_element(*DragDropPage.drag_Link)

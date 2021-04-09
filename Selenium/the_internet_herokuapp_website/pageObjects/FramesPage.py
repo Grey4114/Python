@@ -5,9 +5,7 @@ Notes:
     This script tests the Exit Intent page
 """
 
-
 from selenium.webdriver.common.by import By
-
 
 class FramesPage:
     def __init__(self, driver):
@@ -15,8 +13,6 @@ class FramesPage:
 
     frames_Link = (By.XPATH, "//a[text()='Frames']")        # Main Page link
     frames_Header = (By.XPATH, "//h3[text()='Frames']")         # Page header text
-
-    # todo - This page simply links to 2 other pages - write scripts fopr those pages first
 
 
     def frames_LinkText(self):

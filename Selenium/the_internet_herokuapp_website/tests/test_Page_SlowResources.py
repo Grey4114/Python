@@ -12,6 +12,8 @@ import requests
 from utilities.BaseClass import BaseClass
 from pageObjects.SlowResourcesPage import SlowResourcesPage
 
+# TODO - Not sure how to verify GET request at this time
+
 class TestSlowResources(BaseClass):
     def test_slow_resources(self):
 
@@ -32,12 +34,15 @@ class TestSlowResources(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # Todo - not sure how to verify GET request at this time
+
+
         # Verify GET request
-        req = requests.get("https://the-internet.herokuapp.com/slow")
+        # req = requests.get("https://the-internet.herokuapp.com/slow")
         # assert req.status_code == 200
-        log.info(req.status_code)
-        time.sleep(30)
+        # log.info(req.status_code)
+        # time.sleep(30)
+
+        # self.driver.execute_script("$.get('/slow_external').click()")
 
 
         # Exit the Page

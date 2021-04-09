@@ -2,7 +2,7 @@
 Website:  https://the-internet.herokuapp.com/
 Date:  2/16/2021
 Notes:
-    This script tests the XXX page
+    This page simply links to 2 other pages that already have test scripts writtem for them
 """
 
 import time
@@ -28,9 +28,6 @@ class TestFrames(BaseClass):
         header_text = frames_page.frames_HeaderText().text
         assert ("Frames" in header_text)
         log.info("Header: " + header_text)
-
-
-        # todo - This page simply links to 2 other pages - write scripts fopr those pages first
 
 
         # Exit the Page

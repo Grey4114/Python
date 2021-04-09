@@ -7,8 +7,12 @@ Notes:
 
 import time
 import pytest
+from selenium.webdriver import ActionChains
+
 from utilities.BaseClass import BaseClass
 from pageObjects.HoversPage import HoversPage
+
+# Todo - Hover is working on images, but unsure how to test that the hover text is shown
 
 class TestHovers(BaseClass):
     def test_hovers(self):
@@ -18,10 +22,12 @@ class TestHovers(BaseClass):
         log.info("TEST START")
         hover_page.hovers_LinkText().click()
 
+
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/hovers"
         log.info("URL: " + url)
+
 
         # Verify the Header
         header_text = hover_page.hovers_HeaderText().text
@@ -29,28 +35,29 @@ class TestHovers(BaseClass):
         log.info("Header: " + header_text)
 
 
-
-        # todo - Verify image & info 1
+        # Select & Verify image & info 1
+        action = ActionChains(self.driver)
+        image1 = hover_page.hovers_Picture_1()
+        action.move_to_element(image1).perform()
         time.sleep(3)
-        hover_page.hovers_Picture_1().click()
+        # assert image1.text == 'name: user1'
+
+
+        # Select & Verify image & info 2
+        action = ActionChains(self.driver)
+        image2 = hover_page.hovers_Picture_2()
+        action.move_to_element(image2).perform()
         time.sleep(3)
+        # assert image2.text == 'name: user1'
 
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
-        # todo - Verify image & info 2
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Select & Verify image & info 3
+        action = ActionChains(self.driver)
+        image3 = hover_page.hovers_Picture_3()
+        action.move_to_element(image3).perform()
+        time.sleep(3)
+        # assert image3.text == 'name: user1'
 
-        # todo - Verify image & info 3
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
