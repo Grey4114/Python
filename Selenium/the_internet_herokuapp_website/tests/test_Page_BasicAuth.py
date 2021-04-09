@@ -17,6 +17,8 @@ from utilities.BaseClass import BaseClass
 from pageObjects.BasicAuthPage import BasicAuthPage
 
 # NOTE - user and pass: admin
+# NOTE - Apparently there is only one way to test this type of pop-up Auth window
+# NOTE - According to the internet there is no way to test cancel button of the pop-up Auth window
 
 class TestBasicAuth(BaseClass):
     def test_basic_auth(self):
@@ -32,17 +34,6 @@ class TestBasicAuth(BaseClass):
         log.info("URL: " + url)
 
 
-        # Cannot test at this time
-        # Verify incorrect info in pop up
-        # time.sleep(10)
-        # self.driver.switch_to.alert.dismiss()
-        # assert basic_auth_page.basicAuth_NotAuthorizedText().text == "Not authorized"
-        # time.sleep(2)
-        # self.driver.back()
-        # self.driver.refresh()
-
-
-        # NOTE - Apparently there is only one type of test for this type of pop-up window
         # Verify correct info in pop up
         time.sleep(2)
         self.driver.get('http://admin:admin@the-internet.herokuapp.com/basic_auth')

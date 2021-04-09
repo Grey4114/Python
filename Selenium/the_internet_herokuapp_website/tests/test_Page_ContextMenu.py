@@ -3,6 +3,9 @@ Website:  https://the-internet.herokuapp.com/
 Date:  2/9/2021
 Notes:
     This script tests the XXX page
+
+    ** Unable to interact with windows pop up box using selenium python at this time
+    ** Accoring to internet sites this cannot be done in selenium
 """
 
 import time
@@ -13,8 +16,8 @@ from selenium.webdriver.common.keys import Keys
 from utilities.BaseClass import BaseClass
 from pageObjects.ContextMenuPage import ContextMenuPage
 
-class TestContextMenu(BaseClass):
 
+class TestContextMenu(BaseClass):
     def test_contex_menu(self):
         # Enter the Page
         log = self.getLogger()
@@ -53,7 +56,7 @@ class TestContextMenu(BaseClass):
         time.sleep(5)
 
 
-        # todo - Verify & Dismiss popup box
+        # Verify & Dismiss windows popup box
         # action.context_click().send_keys(Keys.BACKSPACE).perform()
         # self.driver.switch_to.window(self.driver.window_handles[0])   # Popup window
         # window.close()

@@ -2,8 +2,7 @@
 Website:  https://the-internet.herokuapp.com/
 Date:  2/9/2021
 Notes:
-    This script tests the XXX page
-    ** Mae sure the C:/Users/chris_000/Downloads  directory is empty before running this script
+    ** All the files in the C:/Users/chris_000/Downloads directory will be deleted
 """
 import os
 import os.path
@@ -35,28 +34,22 @@ class TestFileDownload(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # Find files and download
-        count = 0
+        # Verify - files downloaded
         filelist = fileDownload_page.fileDownload_FileList()
         for file in filelist:
-            file.click()
-            count += 1
+            if ".txt" in file.text or ".png" in file.text:
+                file.click()
+                time.sleep(5)
+                log.info(file.text)
+                dir_list = os.listdir("C:/Users/chris_000/Downloads")
+                assert file.text in dir_list
 
 
-        # Get a count of the files in the directory
-        time.sleep(30)
-        dir_list = os.listdir("C:/Users/chris_000/Downloads")
-        num_files = len(dir_list)
-
-        # Verify that the # of files in the dir = the # of downloaded files
-        assert count == num_files
-
-        # Todo - RAR files sometimes do not delete
         # Remove all of the downloaded files from the directory
+        dir_list = os.listdir("C:/Users/chris_000/Downloads")
         os.chdir("C:/Users/chris_000/Downloads")
         for f in dir_list:
             os.remove(f)
-        log.info("Downloads: Passed")
 
 
         # Exit the Page

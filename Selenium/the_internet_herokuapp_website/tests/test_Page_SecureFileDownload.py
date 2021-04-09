@@ -10,6 +10,10 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.SecureFileDownloadPage import SecureFileDownloadPage
 
+# NOTE - user and pass: admin
+# NOTE - Apparently there is only one way to test this type of pop-up Auth window
+# NOTE - According to the internet there is no way to test cancel button
+
 class TestSecureFileDownload(BaseClass):
 
     def test_secure_file_download(self):
@@ -24,29 +28,16 @@ class TestSecureFileDownload(BaseClass):
         assert url == "https://the-internet.herokuapp.com/download_secure"
         log.info("URL: " + url)
 
+
+        # Info info in pop up
+        time.sleep(2)
+        self.driver.get('https://admin:admin@the-internet.herokuapp.com/download_secure')
+
+
         # Verify the Header
         header_text = secureFileDownload_page.secureFileDownload_HeaderText().text
-        assert ("Secure File Download" in header_text)
+        assert ("Secure File Downloader" in header_text)
         log.info("Header: " + header_text)
-
-
-        # todo - Verify valid sign in
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify invalid sign in
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
-
-        # todo - Verify cancel
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
 
 
         # Exit the Page

@@ -15,8 +15,6 @@ class SlowResourcesPage:
     slow_Link = (By.XPATH, "//a[text()='Slow Resources']")      # Main Page link
     slow_Header = (By.XPATH, "//h3[text()='Slow Resources']")       # Page header text
 
-    slow_Get = (By.XPATH, " ")      # todo - request path
-
 
     def slowResources_LinkText(self):
         return self.driver.find_element(*SlowResourcesPage.slow_Link)
@@ -24,7 +22,5 @@ class SlowResourcesPage:
     def slowResources_HeaderText(self):
         return self.driver.find_element(*SlowResourcesPage.slow_Header)
 
-    def slowResources_Get_Request(self):
-        return self.driver.find_element(*SlowResourcesPage.slow_Get)
 
 

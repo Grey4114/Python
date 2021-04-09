@@ -7,10 +7,12 @@ Notes:
 
 import time
 import pytest
+from selenium.webdriver import ActionChains
+from selenium.webdriver.common.keys import Keys
+
 from utilities.BaseClass import BaseClass
 from pageObjects.InfiniteScrollPage import InfiniteScrollPage
 
-# TODO - Not sure how to test and verify this at this time
 
 class TestInfiniteScroll(BaseClass):
     def test_infinite_scroll(self):
@@ -30,16 +32,31 @@ class TestInfiniteScroll(BaseClass):
         assert ("Infinite Scroll" in header_text)
         log.info("Header: " + header_text)
 
+        # Verify scrolling down the page
+        # Get current scroll height
+        start_height = self.driver.execute_script("return document.body.scrollHeight")
+        log.info(start_height)
 
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+        # Scroll down the page 20 times
+        for x in range(1, 20):
+            # Scroll down to bottom of the page
+            self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+
+            # Wait to load page
+            time.sleep(1)
+
+            # Calculate new scroll height
+            new_height = self.driver.execute_script("return document.body.scrollHeight")
+
+        log.info(new_height)
+
+        # Check scroll height
+        assert start_height != new_height
 
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        time.sleep(2)
+        time.sleep(3)
         self.driver.back()
         self.driver.refresh()
 

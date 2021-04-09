@@ -12,7 +12,6 @@ from pageObjects.FileUploadPage import FileUploadPage
 
 
 class TestFileUpload(BaseClass):
-
     def test_file_upload(self):
         # Enter the Page
         log = self.getLogger()
@@ -33,18 +32,26 @@ class TestFileUpload(BaseClass):
         log.info("Header: " + header_text)
 
 
-        # Choose a file and Upload
-        fileUpload_page.fileUpload_ChooseFile().click()
-        # todo - MSWindow - change dir, select file and select ok
+        # Verify - Choose a file and Upload
+        button = fileUpload_page.fileUpload_ChooseFile()
+        button.send_keys("D:/GitHub/Python/Selenium/the_internet_herokuapp_website/testData/test_upload.txt")
         fileUpload_page.fileUpload_UploadButton().click()
-        uploadtext = fileUpload_page.fileUpload_UploadedText().text
-        fileUpload_page.fileUpload_FileUpload()     # todo - verify the file uploaded, not sure how to handle
+        time.sleep(3)
+        assert fileUpload_page.fileUpload_UploadedText().text == "File Uploaded!"
+        assert fileUpload_page.fileUpload_UploadedFile().text == "test_upload.txt"
+        self.driver.back()
+        self.driver.refresh()
+        time.sleep(3)
 
-        # todo - Verify drag and drop file into upload area
-        # xxx_page.xxxx_Item().click()
-        # xXxX = xxxx_page.xxxx_Elements()
-        # assert (xXxX in xxxx)
-        # log.info("Elements Passed")
+
+        # Verify drag and drop file into upload area
+        # dragdrop = fileUpload_page.fileUpload_DragDropArea()
+        # dragdrop.send_keys("D:/GitHub/Python/Selenium/the_internet_herokuapp_website/testData/test_upload_DD.txt")
+        # time.sleep(3)
+        # fileUpload_page.fileUpload_UploadButton().click()
+        # time.sleep(3)
+        # assert fileUpload_page.fileUpload_UploadedText().text == "File Uploaded!"
+        # assert fileUpload_page.fileUpload_UploadedFile().text == "test_upload_DD.txt"
 
 
         # Exit the Page

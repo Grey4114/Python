@@ -25,6 +25,8 @@ def pytest_addoption(parser):
 def setup(request):     # add request to make driver object avialable in other scripts
     global driver       # makes the driver object a global
 
+
+
     browser_name = request.config.getoption("--browser_name")
     if browser_name == "chrome":
         driver = webdriver.Chrome(executable_path="C:\\chromedriver.exe")
