@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/windows
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/MultipleWindowsPage.py
 """
 
 import time
@@ -11,23 +11,24 @@ from utilities.BaseClass import BaseClass
 from pageObjects.MultipleWindowsPage import MultipleWindowsPage
 
 class TestMultipleWindows(BaseClass):
-
     def test_multiple_windows(self):
         # Enter the Page
         log = self.getLogger()
         multipleWindows_page = MultipleWindowsPage(self.driver)
-        log.info("TEST START")
         multipleWindows_page.multipleWindows_LinkText().click()
+
+
+        # Verify the Header
+        header_text = multipleWindows_page.multipleWindows_HeaderText().text
+        assert ("Opening a new window" in header_text)
+        log.info("Header: " + header_text)
+
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/windows"
         log.info("URL: " + url)
 
-        # Verify the Header
-        header_text = multipleWindows_page.multipleWindows_HeaderText().text
-        assert ("Opening a new window" in header_text)
-        log.info("Header: " + header_text)
 
         # Verify open new window
         multipleWindows_page.multipleWindows_ClickHere().click()

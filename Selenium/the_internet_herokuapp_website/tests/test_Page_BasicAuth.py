@@ -1,8 +1,15 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/basic_auth
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/BasicAuthPage.py
+
+    - user and pass: admin
+    - No page header text
+    - Apparently there is only one way to test this type of pop-up Auth window
+    - According to the internet there is no way to test cancel button or false user/pass for the pop-up Auth window
+
+    ** Digest Authentication & Secure File Download pages have the same issues as this page
 """
 
 import time
@@ -16,17 +23,13 @@ from selenium.webdriver.common.alert import Alert
 from utilities.BaseClass import BaseClass
 from pageObjects.BasicAuthPage import BasicAuthPage
 
-# NOTE - user and pass: admin
-# NOTE - Apparently there is only one way to test this type of pop-up Auth window
-# NOTE - According to the internet there is no way to test cancel button of the pop-up Auth window
-
 class TestBasicAuth(BaseClass):
     def test_basic_auth(self):
         # Enter the Page
         log = self.getLogger()
         basic_auth_page = BasicAuthPage(self.driver)
-        log.info("TEST START")
         basic_auth_page.basicAuth_LinkText().click()
+
 
         # Verify the URL
         url = self.driver.current_url

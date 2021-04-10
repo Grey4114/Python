@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/shadowdom
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/ShadowDOMPage.py
 """
 
 import time
@@ -11,12 +11,10 @@ from utilities.BaseClass import BaseClass
 from pageObjects.ShadowDOMPage import ShadowDOMPage
 
 class TestShadowDOM(BaseClass):
-
     def test_shadow_dom(self):
         # Enter the Page
         log = self.getLogger()
         shadowDOM_page = ShadowDOMPage(self.driver)
-        log.info("TEST START")
         shadowDOM_page.shadowDOM_LinkText().click()
 
         # Verify the URL

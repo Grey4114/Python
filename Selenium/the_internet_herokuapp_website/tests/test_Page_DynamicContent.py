@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/dynamic_content
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/DynamicContentPage.py
 """
 
 import time
@@ -12,19 +12,17 @@ from pageObjects.DynamicContentPage import DynamicContentPage
 
 
 class TestDynamicContent(BaseClass):
-
-    # image_1 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-1.jpg"
-    # image_2 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-2.jpg"
-    # image_3 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-3.jpg"
-    # image_4 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-5.jpg"
-    # image_5 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-7.jpg"
-
     def test_dynamic_content(self):
         # Enter the Page
         log = self.getLogger()
         dynamicContent_page = DynamicContentPage(self.driver)
-        log.info("TEST START")
         dynamicContent_page.dynamicContent_LinkText().click()
+
+
+        # Verify the Header
+        header_text = dynamicContent_page.dynamicContent_HeaderText().text
+        assert ("Dynamic Content" in header_text)
+        log.info("Header: " + header_text)
 
 
         # Verify the URL
@@ -77,13 +75,13 @@ class TestDynamicContent(BaseClass):
         assert before_I0 != after_I0
         assert before_I1 != after_I1
         assert before_I2 != after_I2
-        log.info("Images: Passed")
+        # log.info("Images: Passed")
 
         # Verify text
         assert before_T0 != after_T0
         assert before_T1 != after_T1
         assert before_T2 != after_T2
-        log.info("Texts: Passed")
+        # log.info("Texts: Passed")
 
 
         # Exit the Page

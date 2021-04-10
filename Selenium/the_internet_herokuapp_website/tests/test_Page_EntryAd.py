@@ -1,8 +1,9 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/entry_ad
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/EntryAdPage.py
+
 """
 
 import time
@@ -13,19 +14,11 @@ from utilities.BaseClass import BaseClass
 from pageObjects.EntryAdPage import EntryAdPage
 
 class TestEntryAd(BaseClass):
-
     def test_entry_ad(self):
         # Enter the Page
         log = self.getLogger()
         entryad_page = EntryAdPage(self.driver)
-        log.info("TEST START")
         entryad_page.entryAd_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/entry_ad"
-        log.info("URL: " + url)
 
 
         # Verify the Header
@@ -34,8 +27,13 @@ class TestEntryAd(BaseClass):
         log.info("Header: " + header_text)
 
 
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/entry_ad"
+        log.info("URL: " + url)
+
+
         # Verify Modal Window open and close
-        time.sleep(3)
         modal = entryad_page.entryAd_ModalWindowState().is_displayed()
         assert modal    # verify open
         entryad_page.entryAd_ModalWindowClose().click()

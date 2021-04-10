@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/forgot_password
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/ForgotPasswordPage.py
 """
 
 import time
@@ -13,19 +13,11 @@ from utilities.BaseClass import BaseClass
 from pageObjects.ForgotPasswordPage import ForgotPasswordPage
 
 class TestForgotPassword(BaseClass):
-
     def test_forgot_password(self):
         # Enter the Page
         log = self.getLogger()
         forgotPassword_page = ForgotPasswordPage(self.driver)
-        log.info("TEST START")
         forgotPassword_page.forgotPassword_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/forgot_password"
-        log.info("URL: " + url)
 
 
         # Verify the Header
@@ -34,23 +26,24 @@ class TestForgotPassword(BaseClass):
         log.info("Header: " + header_text)
 
 
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/forgot_password"
+        log.info("URL: " + url)
+
+
         # Verify retrieve password
-        # time.sleep(3)
         emailfield = forgotPassword_page.forgotPassword_EmailField()
         emailfield.send_keys("TEST")
-        # time.sleep(3)
         forgotPassword_page.forgotPassword_RetrieveButton().click()
         fail = forgotPassword_page.forgotPassword_InterServerError().text
         assert fail == "Internal Server Error"
-        log.info("Check: Passed")
-        # time.sleep(3)
+        # log.info("Check: Passed")
+
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()
-
-
-
 

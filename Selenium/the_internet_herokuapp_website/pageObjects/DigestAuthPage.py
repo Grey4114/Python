@@ -1,13 +1,18 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/digest_auth
+Created:  2/14/2021
 Notes:
-    This script tests the Digest Authorization page
+    Connected Test Object Script - /tests/test_Page_DigestAuth.py
+
+    - user and pass: admin
+    - No page header text
+    - Apparently there is only one way to test this type of pop-up Auth window
+    - According to the internet there is no way to test cancel button or false user/pass for the pop-up Auth window
+
+    ** Basic Auth & Secure File Download pages have the same issues as this page
 """
 
 from selenium.webdriver.common.by import By
-
-# user and pass: admin
 
 class DigestAuthPage:
 

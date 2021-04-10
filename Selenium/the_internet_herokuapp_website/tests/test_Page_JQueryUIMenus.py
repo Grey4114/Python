@@ -1,8 +1,9 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/jqueryui/menu
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/JQueryUIMenusPage.py
+
 """
 
 import time
@@ -20,16 +21,17 @@ class TestJQueryUIMenus(BaseClass):
         log.info("TEST START")
         jqueryUIMenus_page.jQueryUIMenus_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/jqueryui/menu"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = jqueryUIMenus_page.jQueryUIMenus_HeaderText().text
         assert ("JQueryUI" in header_text)
         log.info("Header: " + header_text)
 
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/jqueryui/menu"
+        log.info("URL: " + url)
 
 
         # Verify Enabled

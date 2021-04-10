@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/status_codes
+Created:  2/16/2021
 Notes:
-    Connected Web Page Info - pageObjects/StatusCodesPage.py
+    Connected Page Object Script - pageObjects/StatusCodesPage.py
 """
 
 import time
@@ -16,13 +16,8 @@ class TestStatusCodes(BaseClass):
         # Enter the Page
         log = self.getLogger()
         statusCodes_page = StatusCodesPage(self.driver)
-        log.info("TEST START")
         statusCodes_page.statusCodes_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/status_codes"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = statusCodes_page.statusCodes_HeaderText().text
@@ -30,12 +25,16 @@ class TestStatusCodes(BaseClass):
         log.info("Header: " + header_text)
 
 
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/status_codes"
+        log.info("URL: " + url)
+
+
         # Verify Error code 200
         statusCodes_page.statusCodes_Code200().click()
         req = requests.get("https://the-internet.herokuapp.com/status_codes/200")
         assert req.status_code == 200
-        # log.info(req.status_code)
-        # time.sleep(3)
         self.driver.back()
         self.driver.refresh()
 
@@ -44,8 +43,6 @@ class TestStatusCodes(BaseClass):
         statusCodes_page.statusCodes_Code301().click()
         req = requests.get("https://the-internet.herokuapp.com/status_codes/301")
         assert req.status_code == 301
-        # log.info(req.status_code)
-        # time.sleep(3)
         self.driver.back()
         self.driver.refresh()
 
@@ -54,8 +51,6 @@ class TestStatusCodes(BaseClass):
         statusCodes_page.statusCodes_Code404().click()
         req = requests.get("https://the-internet.herokuapp.com/status_codes/404")
         assert req.status_code == 404
-        # log.info(req.status_code)
-        # time.sleep(3)
         self.driver.back()
         self.driver.refresh()
 
@@ -64,8 +59,6 @@ class TestStatusCodes(BaseClass):
         statusCodes_page.statusCodes_Code500().click()
         req = requests.get("https://the-internet.herokuapp.com/status_codes/500")
         assert req.status_code == 500
-        # log.info(req.status_code)
-        # time.sleep(3)
         self.driver.back()
 
 

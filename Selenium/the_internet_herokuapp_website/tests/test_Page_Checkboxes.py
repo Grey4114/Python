@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/checkboxes
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/CheckboxesPage.py
 """
 
 import time
@@ -12,25 +12,23 @@ from pageObjects.CheckboxesPage import CheckboxesPage
 
 
 class TestCheckboxes(BaseClass):
-
     def test_checkboxes(self):
         # Enter the Page
         log = self.getLogger()
         checkboxes_page = CheckboxesPage(self.driver)
-        log.info("TEST START")
         checkboxes_page.checkboxes_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/checkboxes"
-        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = checkboxes_page.checkbox_HeaderText().text
         assert ("Checkboxes" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/checkboxes"
+        log.info("URL: " + url)
 
 
         # Verify check/uncheck the boxes
@@ -43,11 +41,10 @@ class TestCheckboxes(BaseClass):
 
         assert checks[0]
         assert notchecks[0]
-        log.info("Checkboxes: Passed")
 
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        # time.sleep(2)
+        time.sleep(2)
         self.driver.back()
         self.driver.refresh()

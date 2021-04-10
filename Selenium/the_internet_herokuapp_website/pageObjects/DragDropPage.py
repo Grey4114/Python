@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/drag_and_drop
+Created:  2/14/2021
 Notes:
-    This script tests the Drag and Drop page
+    Connected Test Object Script - /tests/test_Page_DragDrop.py
 """
 
 from selenium.webdriver.common.by import By
@@ -13,10 +13,6 @@ class DragDropPage:
 
     drag_Link = (By.XPATH, "//a[text()='Drag and Drop']")       # Main Page link
     drag_Header = (By.XPATH, "//h3[text()='Drag and Drop']")    # Page header text
-
-    # drag_BoxA = (By.XPATH, "//div[@id='column-a']")      # Box A path
-    # drag_BoxB = (By.XPATH, "//div[@id='column-b']")      # Box B path
-
     drag_BoxA = (By.CSS_SELECTOR, "#column-a")      # Box A path
     drag_BoxB = (By.CSS_SELECTOR, "#column-b")      # Box B path
 

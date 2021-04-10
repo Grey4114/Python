@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/tinymce
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - pageObjects/WYSIWYGEditorPage.py
 """
 
 import time
@@ -14,23 +14,23 @@ from utilities.BaseClass import BaseClass
 from pageObjects.WYSIWYGEditorPage import WYSIWYGEditorPage
 
 class TestWYSIWYG_Editor(BaseClass):
-
     def test_wysiwyg_editor(self):
         # Enter the Page
         log = self.getLogger()
         wysiwygEditor_page = WYSIWYGEditorPage(self.driver)
-        log.info("TEST START")
         wysiwygEditor_page.WYSIWYGEditor_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/tinymce"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = wysiwygEditor_page.WYSIWYGEditor_HeaderText().text
         assert ("An iFrame containing" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/tinymce"
+        log.info("URL: " + url)
 
 
         # Verify enter text into iFrame area
@@ -39,7 +39,7 @@ class TestWYSIWYG_Editor(BaseClass):
         editor.clear()
         editor.send_keys("Quick Brown Fox Jumps over the lazy dog")
         assert "Quick Brown Fox Jumps over the lazy dog" in wysiwygEditor_page.WYSIWYGEditor_Area().text
-        log.info("iFrame: Passed")
+        # log.info("iFrame: Passed")
         self.driver.switch_to.default_content()
 
 

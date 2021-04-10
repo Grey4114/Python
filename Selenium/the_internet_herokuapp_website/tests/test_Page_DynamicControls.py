@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/dynamic_controls
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/DynamicControlsPage.py
 """
 
 import time
@@ -20,20 +20,20 @@ class TestDynamicControls(BaseClass):
         # Enter the Page
         log = self.getLogger()
         dynamicControls_page = DynamicControlsPage(self.driver)
-        log.info("TEST START")
         dynamicControls_page.dynamicControls_LinkText().click()
         wait = WebDriverWait(self.driver, 10)       # Waits 10 seconds when called
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/dynamic_controls"
-        log.info("URL Passed: " + url)
 
 
         # Verify the Header
         header_text = dynamicControls_page.dynamicControls_HeaderText().text
         assert ("Dynamic Controls" in header_text)
         log.info("Header Passed: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/dynamic_controls"
+        log.info("URL Passed: " + url)
 
 
         # Verify Remove button - checkbox removal & message text
@@ -47,8 +47,7 @@ class TestDynamicControls(BaseClass):
             messagetext = "No Message"
 
         assert messagetext == "It's gone!"
-        log.info("Add/Remove Button: " + messagetext)
-
+        # log.info("Add/Remove Button: " + messagetext)
 
 
         # Verify Enable button - enable text box & message text
@@ -61,7 +60,7 @@ class TestDynamicControls(BaseClass):
             messagetext = "No Message"
 
         assert messagetext == "It's enabled!"
-        log.info("Enable/Disable Button: " + messagetext)
+        # log.info("Enable/Disable Button: " + messagetext)
 
 
         # Exit the Page

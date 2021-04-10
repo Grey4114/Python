@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/disappearing_elements
+Created:  2/14/2021
 Notes:
-    This script tests the Digest Authorization page
+    Connected Test Object Script - /tests/test_Page_DisappearingElements.py
 """
 
 from selenium.webdriver.common.by import By

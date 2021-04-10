@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/disappearing_elements
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/DisappearingElementsPage.py
 """
 
 import time
@@ -14,7 +14,6 @@ from pageObjects.DisappearingElementsPage import DisappearingElementsPage
 
 
 class TestDisappearingElements(BaseClass):
-
     main_url = "https://the-internet.herokuapp.com/"
     disappear_url = "https://the-internet.herokuapp.com/disappearing_elements"
     about_url = "https://the-internet.herokuapp.com/about/"
@@ -27,19 +26,19 @@ class TestDisappearingElements(BaseClass):
         # Enter the Page
         log = self.getLogger()
         disappearingElements_page = DisappearingElementsPage(self.driver)
-        log.info("TEST START")
         disappearingElements_page.disappearingElements_LinkText().click()
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == TestDisappearingElements.disappear_url
-        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = disappearingElements_page.disappearingElements_HeaderText().text
         assert ("Disappearing Elements" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == TestDisappearingElements.disappear_url
+        log.info("URL: " + url)
 
 
         # Verify Home Button to Main (test not required - just for practice)
@@ -78,9 +77,6 @@ class TestDisappearingElements(BaseClass):
                 self.driver.refresh()
             except NoSuchElementException:
                 check = False
-
-        log.info("Gallery Button: Passed")
-
 
 
         # Exit the Page

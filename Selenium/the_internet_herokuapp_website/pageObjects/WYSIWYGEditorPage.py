@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/15/2021
+Website:  https://the-internet.herokuapp.com/tinymce
+Created:  2/15/2021
 Notes:
-    This script tests the Exit Intent page
+    Connected Test Object Script - /tests/test_Page_WYSIWYG_Editor.py
 """
 
 

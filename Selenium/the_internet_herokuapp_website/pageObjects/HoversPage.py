@@ -1,8 +1,10 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/15/2021
+Website:  https://the-internet.herokuapp.com/hovers
+Created:  2/15/2021
 Notes:
-    This script tests the Exit Intent page
+    Connected Test Object Script - /tests/test_Page_Hovers.py
+
+    - Hover is working on images, but unsure how to test that the hover text is shown
 """
 
 from selenium.webdriver.common.by import By
@@ -32,5 +34,4 @@ class HoversPage:
 
     def hovers_Picture_3(self):
         return self.driver.find_element(*HoversPage.hover_Picture3)
-
 

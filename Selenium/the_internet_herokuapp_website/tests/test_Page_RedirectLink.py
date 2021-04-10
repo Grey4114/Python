@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/redirector
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/RedirectLinkPage.py
 """
 
 import time
@@ -11,25 +11,23 @@ from utilities.BaseClass import BaseClass
 from pageObjects.RedirectLinkPage import RedirectLinkPage
 
 class TestRedirectLink(BaseClass):
-
     def test_redirect_link(self):
         # Enter the Page
         log = self.getLogger()
         redirectLink_page = RedirectLinkPage(self.driver)
-        log.info("TEST START")
         redirectLink_page.redirectLink_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/redirector"
-        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = redirectLink_page.redirectLink_HeaderText().text
         assert ("Redirection" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/redirector"
+        log.info("URL: " + url)
 
 
         # Verify new page url
@@ -44,6 +42,4 @@ class TestRedirectLink(BaseClass):
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()
-
-
 

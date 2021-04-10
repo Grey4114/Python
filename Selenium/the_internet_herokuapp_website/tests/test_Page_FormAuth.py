@@ -1,7 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/login
+Created:  2/16/2021
 Notes:
+    Connected Page Object Script - /pageObjects/FormAuthPage.py
     username: tomsmith
     password: SuperSecretPassword!
 """
@@ -13,25 +14,24 @@ from selenium.webdriver.common.keys import Keys
 from utilities.BaseClass import BaseClass
 from pageObjects.FormAuthPage import FormAuthPage
 
-
 class TestFormAuth(BaseClass):
-
     def test_form_authorities(self):
         # Enter the Page
         log = self.getLogger()
         formAuth_page = FormAuthPage(self.driver)
-        log.info("TEST START")
         formAuth_page.formAuth_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/login"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = formAuth_page.formAuth_HeaderText().text
         assert ("Login Page" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/login"
+        log.info("URL: " + url)
 
 
         # Verify Invalid login
@@ -40,7 +40,6 @@ class TestFormAuth(BaseClass):
         formAuth_page.formAuth_LoginButton().click()
         invalid = formAuth_page.formAuth_InvalidText().text
         assert "Your username is invalid!" in invalid
-        # time.sleep(3)
 
 
         # Verify Valid login
@@ -49,14 +48,13 @@ class TestFormAuth(BaseClass):
         formAuth_page.formAuth_LoginButton().click()
         valid = formAuth_page.formAuth_ValidText().text
         assert "You logged into a secure area!" in valid
-        # time.sleep(3)
 
 
         # Verify Logout
         formAuth_page.formAuth_LogoutButton().click()
         loggedout = formAuth_page.formAuth_ValidText().text
         assert "You logged out of the secure area!" in loggedout
-        log.info("Login Check: Passed")
+        # log.info("Login Check: Passed")
 
 
         # Exit the Page

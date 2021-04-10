@@ -1,9 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Webpage:  https://the-internet.herokuapp.com/abtest
+Created:  2/16/2021
 Notes:
-    This script tests the A/B Test page using the abPage objects script
-
+    Connected Page Object Script - /pageObjects/abPage.py
 """
 import time
 import pytest
@@ -18,16 +17,7 @@ class TestPageAB(BaseClass):
         # Enter the Page
         log = self.getLogger()
         ab_page = abPage(self.driver)
-        time.sleep(2)
         ab_page.ab_LinkText().click()
-        log.info("TEST START")
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/abtest"
-        log.info("URL: " + url)
-
 
         # Verify the Header
         try:
@@ -39,7 +29,14 @@ class TestPageAB(BaseClass):
         log.info("Header: " + header_text)
 
 
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/abtest"
+        log.info("URL: " + url)
+
+
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
+        time.sleep(2)
         self.driver.back()
         self.driver.refresh()

@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/challenging_dom
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/ChallengingDomPage.py
 """
 
 import time
@@ -16,14 +16,7 @@ class TestChallengingDOM(BaseClass):
         # Enter the Page
         log = self.getLogger()
         challenging_dom_page = ChallengingDomPage(self.driver)
-        log.info("TEST START")
         challenging_dom_page.challengingDom_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/challenging_dom"
-        log.info("URL: " + url)
 
 
         # Verify the Header
@@ -31,6 +24,10 @@ class TestChallengingDOM(BaseClass):
         assert ("Challenging DOM" in header_text)
         log.info("Header: " + header_text)
 
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/challenging_dom"
+        log.info("URL: " + url)
 
 
         # Verify Blue, Red and Green Button id numbers change after clickin on one of the buttons
@@ -46,9 +43,9 @@ class TestChallengingDOM(BaseClass):
         green_after = challenging_dom_page.challenging_ButtonGreen().get_attribute("id")
 
         # Logging the before and after id numbers for each button
-        log.info("Blue Button: " + blue_before + " - " + blue_after)
-        log.info("Red Button: " + red_before + " - " + red_after)
-        log.info("Green Button: " + green_before + " - " + green_after)
+        # log.info("Blue Button: " + blue_before + " - " + blue_after)
+        # log.info("Red Button: " + red_before + " - " + red_after)
+        # log.info("Green Button: " + green_before + " - " + green_after)
 
         # Verify that the id #'s have changed
         assert blue_before != blue_after
@@ -58,7 +55,7 @@ class TestChallengingDOM(BaseClass):
 
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
-        # time.sleep(2)
+        time.sleep(2)
         self.driver.back()
         self.driver.refresh()
 

@@ -1,7 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/frames
+Created:  2/16/2021
 Notes:
+    Connected Page Object Script - /pageObjects/FramesPage.py
     This page simply links to 2 other pages that already have test scripts writtem for them
 """
 
@@ -16,13 +17,8 @@ class TestFrames(BaseClass):
         # Enter the Page
         log = self.getLogger()
         frames_page = FramesPage(self.driver)
-        log.info("TEST START")
         frames_page.frames_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/frames"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = frames_page.frames_HeaderText().text
@@ -30,12 +26,15 @@ class TestFrames(BaseClass):
         log.info("Header: " + header_text)
 
 
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/frames"
+        log.info("URL: " + url)
+
+
         # Exit the Page
         log.info(header_text + " - All Tests Passed")
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()
-
-
-
 

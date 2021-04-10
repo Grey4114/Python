@@ -1,8 +1,11 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/15/2021
+Website:  https://the-internet.herokuapp.com/tables
+Created:  2/15/2021
 Notes:
-    This script tests the Exit Intent page
+    Connected Test Object Script - /tests/test_Page_SortableDataTables.py
+
+    This web page seems to be more of an example page then a selenium test page
+    Created a test for checking the names in the example 2 list.
 """
 
 

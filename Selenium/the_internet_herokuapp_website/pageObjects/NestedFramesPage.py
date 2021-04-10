@@ -1,13 +1,11 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/15/2021
+Website:  https://the-internet.herokuapp.com/nested_frames
+Created:  2/15/2021
 Notes:
-    This script tests the Exit Intent page
+    Connected Test Object Script - /tests/test_Page_NestedFrames.py
 """
 
-
 from selenium.webdriver.common.by import By
-
 
 class NestedFramesPage:
     def __init__(self, driver):

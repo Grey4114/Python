@@ -1,18 +1,22 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/basic_auth
+Created:  2/14/2021
 Notes:
-    This script tests the Basic Auth page
+    Connected Test Object Script - /tests/test_Page_BasicAuth.py
+
+    - user and pass: admin
+    - No page header text
+    - Apparently there is only one way to test this type of pop-up Auth window
+    - According to the internet there is no way to test cancel button or false user/pass for the pop-up Auth window
+
+    ** Digest Authentication & Secure File Download pages have the same issues as this page
 """
 
 from selenium.webdriver.common.by import By
 
-# NOTE - user and pass: admin
-
 class BasicAuthPage:
     def __init__(self, driver):
         self.driver = driver
-
 
     basic_Link = (By.XPATH, "//a[text()='Basic Auth']")                     # Main Website link to page
     basic_Success = (By.XPATH, "//p[contains(text(),'Congratulations! ')]")  # Success text
@@ -27,5 +31,4 @@ class BasicAuthPage:
 
     def basicAuth_NotAuthorizedText(self):
         return self.driver.find_element(*BasicAuthPage.basic_NotAuth)
-
 

@@ -1,15 +1,13 @@
 """
-Website:  https://the-internet.herokuapp.com/
+Website:  https://the-internet.herokuapp.com/login
 Date:  2/14/2021
 Notes:
+    Connected Test Object Script - /tests/test_Page_FormAuth.py
     username: tomsmith
     password: SuperSecretPassword!
 """
 
-
 from selenium.webdriver.common.by import By
-
-
 
 class FormAuthPage:
     def __init__(self, driver):
@@ -24,7 +22,6 @@ class FormAuthPage:
     form_Valid = (By.XPATH, "//div[@class='flash success']")            # Valid flash message
     form_Invalid = (By.XPATH, "//div[@class='flash error']")            # Invalid flash message
     form_Logout = (By.XPATH, "//i[@class='icon-2x icon-signout']")      # Login button
-
 
 
     def formAuth_LinkText(self):

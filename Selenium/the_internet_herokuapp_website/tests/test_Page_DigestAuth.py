@@ -1,8 +1,15 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/digest_auth
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/DigestAuthPage.py
+
+    - user and pass: admin
+    - No page header text
+    - Apparently there is only one way to test this type of pop-up Auth window
+    - According to the internet there is no way to test cancel button or false user/pass for the pop-up Auth window
+
+    ** Basic Auth & Secure File Download pages have the same issues as this page
 """
 
 import time
@@ -20,7 +27,6 @@ class TestDigestAuth(BaseClass):
         # Enter the Page
         log = self.getLogger()
         digestauth_page = DigestAuthPage(self.driver)
-        log.info("TEST START")
         digestauth_page.digestAuth_LinkText().click()
 
 
@@ -37,18 +43,16 @@ class TestDigestAuth(BaseClass):
 
 
         # Verify invalid name/pass and click on cancel
-        # TODO - unable to get a fail situation to work at this time
-        self.driver.back()
-        self.driver.back()
-        self.driver.refresh()
-        time.sleep(5)
-        action = ActionChains(self.driver)
-        self.driver.get('http://fail:fail@the-internet.herokuapp.com/digest_auth')
-        time.sleep(2)
-        action.send_keys(Keys.CANCEL)
-        time.sleep(2)
+        # unable to get a fail situation to work at this time
+        # self.driver.back()
+        # self.driver.refresh()
+        # time.sleep(5)
+        # action = ActionChains(self.driver)
+        # self.driver.get('http://fail:fail@the-internet.herokuapp.com/digest_auth')
+        # time.sleep(2)
+        # action.send_keys(Keys.CANCEL)
+        # time.sleep(2)
         # assert digestauth_page.digestAuth_SuccessLogin().text == "Not Found"
-
 
 
         # Exit the Page

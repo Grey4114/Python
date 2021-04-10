@@ -1,12 +1,11 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/add_remove_elements/
+Created:  2/14/2021
 Notes:
-    This script tests the Add Remove Elements page
+     Connected Test Object Script - /tests/test_Page_AddRemoveElements.py
 """
 
 from selenium.webdriver.common.by import By
-
 
 class AddRemoveElementsPage:
     def __init__(self, driver):

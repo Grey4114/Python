@@ -1,8 +1,10 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/drag_and_drop
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/DragDropPage.py
+
+    - Unable to get this to work at this time, various websites claim it ia a broken feature
 """
 
 import time
@@ -13,15 +15,20 @@ from selenium.webdriver import ActionChains
 from utilities.BaseClass import BaseClass
 from pageObjects.DragDropPage import DragDropPage
 
-# Todo - Unable to get this to work at this time, various websites claim it ia a broken feature
+# Todo - Broken drag and drop feature - try to fix in the future
 
 class TestDragDrop(BaseClass):
     def test_drag_and_drop(self):
         # Enter the Page
         log = self.getLogger()
         dragdrop_page = DragDropPage(self.driver)
-        log.info("TEST START")
         dragdrop_page.dragDrop_LinkText().click()
+
+
+        # Verify the Header
+        header_text = dragdrop_page.dragDrop_HeaderText().text
+        assert ("Drag and Drop" in header_text)
+        log.info("Header: " + header_text)
 
 
         # Verify the URL
@@ -29,13 +36,10 @@ class TestDragDrop(BaseClass):
         assert url == "https://the-internet.herokuapp.com/drag_and_drop"
         log.info("URL: " + url)
 
-        # Verify the Header
-        header_text = dragdrop_page.dragDrop_HeaderText().text
-        assert ("Drag and Drop" in header_text)
-        log.info("Header: " + header_text)
+
 
         # Verify drag A to B
-        # Action Chains
+        # Action Chains - not working
         # action = ActionChains(self.driver)
         # boxA = dragdrop_page.dragDrop_Box_A()
         # boxB = dragdrop_page.dragDrop_Box_B()

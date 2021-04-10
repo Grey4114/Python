@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/dropdown
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/DropDownPage.py
 """
 
 import time
@@ -12,25 +12,23 @@ from pageObjects.DropDownPage import DropDownPage
 
 
 class TestDropdown(BaseClass):
-
     def test_dropdown(self):
         # Enter the Page
         log = self.getLogger()
         dropdown_page = DropDownPage(self.driver)
-        log.info("TEST START")
         dropdown_page.dropDown_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/dropdown"
-        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = dropdown_page.dropDown_HeaderText().text
         assert ("Dropdown List" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/dropdown"
+        log.info("URL: " + url)
 
 
         # Verify List all options
@@ -41,8 +39,8 @@ class TestDropdown(BaseClass):
         for opt in options:
             opt.click()
             assert opt.text == options_text[count]
-            log.info("Dropdown: " + opt.text)
-            # time.sleep(2)
+            # log.info("Dropdown: " + opt.text)
+            time.sleep(2)
             count += 1
 
 

@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/nested_frames
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/NestedFramesPage.py
 """
 
 import time
@@ -17,16 +17,17 @@ class TestNestedFrames(BaseClass):
         driver = self.driver
         log = self.getLogger()
         nestedFrames_page = NestedFramesPage(self.driver)
-        log.info("TEST START")
         nestedFrames_page.nestedFrames_LinkText().click()
+
+
+        # Verify the Header - No actual header text on this page
+        log.info("Nested Frames")
+
 
         # Verify the URL
         url = self.driver.current_url
         assert url == "https://the-internet.herokuapp.com/nested_frames"
         log.info("URL: " + url)
-
-        # Verify the Header - No actual header text on this page
-        log.info("Nested Frames")
 
 
         # Verify left frame
@@ -35,7 +36,6 @@ class TestNestedFrames(BaseClass):
         self.driver.switch_to.frame('frame-top')
         self.driver.switch_to.frame('frame-left')
         left = nestedFrames_page.nestedFrames_BodyText().text
-        # log.info(left)
         assert left == 'LEFT'
 
 
@@ -44,7 +44,6 @@ class TestNestedFrames(BaseClass):
         self.driver.switch_to.frame('frame-top')
         self.driver.switch_to.frame('frame-middle')
         middle = nestedFrames_page.nestedFrames_BodyText().text
-        # log.info(middle)
         assert middle == 'MIDDLE'
 
 
@@ -53,7 +52,6 @@ class TestNestedFrames(BaseClass):
         self.driver.switch_to.frame('frame-top')
         self.driver.switch_to.frame('frame-right')
         right = nestedFrames_page.nestedFrames_BodyText().text
-        # log.info(right)
         assert right == 'RIGHT'
 
 
@@ -61,7 +59,6 @@ class TestNestedFrames(BaseClass):
         self.driver.refresh()
         driver.switch_to.frame('frame-bottom')
         bottom = nestedFrames_page.nestedFrames_BodyText().text
-        # log.info(bottom)
         assert bottom == 'BOTTOM'
 
 
@@ -70,6 +67,4 @@ class TestNestedFrames(BaseClass):
         time.sleep(2)
         self.driver.back()
         self.driver.refresh()
-
-
 

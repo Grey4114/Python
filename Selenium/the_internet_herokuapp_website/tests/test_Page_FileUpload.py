@@ -1,8 +1,11 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/9/2021
+Website:  https://the-internet.herokuapp.com/upload
+Created:  2/9/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/FileUploadPage.py
+
+    - Unable to drop get a file into the drag&drop area
+    - Could not find an internet site that explained how to make the drag&drop file area work with selenium
 """
 
 import time
@@ -10,26 +13,26 @@ import pytest
 from utilities.BaseClass import BaseClass
 from pageObjects.FileUploadPage import FileUploadPage
 
+# TODO - Learn how to get drag&drop file area to work
 
 class TestFileUpload(BaseClass):
     def test_file_upload(self):
         # Enter the Page
         log = self.getLogger()
         fileUpload_page = FileUploadPage(self.driver)
-        log.info("TEST START")
         fileUpload_page.fileUpload_LinkText().click()
-
-
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/upload"
-        log.info("URL: " + url)
 
 
         # Verify the Header
         header_text = fileUpload_page.fileUpload_HeaderText().text
         assert ("File Uploader" in header_text)
         log.info("Header: " + header_text)
+
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/upload"
+        log.info("URL: " + url)
 
 
         # Verify - Choose a file and Upload

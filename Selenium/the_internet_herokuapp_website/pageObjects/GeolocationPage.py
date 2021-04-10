@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/geolocation
+Created:  2/14/2021
 Notes:
-    This script tests the Exit Intent page
+    Connected Test Object Script - /tests/test_Page_Geolocation.py
 """
 
 from selenium.webdriver.common.by import By

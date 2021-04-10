@@ -1,8 +1,10 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/download
+Created:  2/14/2021
 Notes:
-    This script tests the Exit Intentpage
+    Connected Test Object Script - /tests/test_Page_FileDownload.py
+
+    ** All the files in the C:/Users/chris_000/Downloads directory will be deleted
 """
 
 from selenium.webdriver.common.by import By

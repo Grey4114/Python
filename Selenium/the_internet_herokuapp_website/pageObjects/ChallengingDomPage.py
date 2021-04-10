@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/challenging_dom
+Created:  2/14/2021
 Notes:
-    This script tests the Challenging Dom page
+    Connected Test Object Script - /tests/test_Page_ChallengingDOM.py
 """
 
 from selenium.webdriver.common.by import By
@@ -13,11 +13,9 @@ class ChallengingDomPage:
 
     challenging_Link = (By.XPATH, "//a[text()='Challenging DOM']")          # Main Page link
     challenging_Header = (By.XPATH, "//h3[text()='Challenging DOM']")       # Page header text
-
     challenging_Blue = (By.XPATH, "//a[@class='button']")                   # Blue Button
     challenging_Red = (By.XPATH, "//a[@class='button alert']")              # Red Button
     challenging_Green = (By.XPATH, "//a[@class='button success']")          # Green Button
-
     challenging_Canvas = (By.XPATH, "//canvas[@id='canvas']")               # Canvas
 
 

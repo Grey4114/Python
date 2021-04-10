@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/dynamic_content
+Created:  2/14/2021
 Notes:
-    This script tests the Dynamic Content page
+    Connected Test Object Script - /tests/test_Page_DynamicContent.py
 """
 
 from selenium.webdriver.common.by import By
@@ -32,3 +32,10 @@ class DynamicContentPage:
 
     def dynamicContent_PageTexts(self):
         return self.driver.find_elements(*DynamicContentPage.content_Texts)
+
+
+    # image_1 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-1.jpg"
+    # image_2 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-2.jpg"
+    # image_3 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-3.jpg"
+    # image_4 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-5.jpg"
+    # image_5 = "/img/avatars/Original-Facebook-Geek-Profile-Avatar-7.jpg"

@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/broken_images
+Created:  2/14/2021
 Notes:
-    This script tests the Broken Images page
+    Connected Test Object Script - /tests/test_Page_BrokenImages.py
 """
 
 from selenium.webdriver.common.by import By

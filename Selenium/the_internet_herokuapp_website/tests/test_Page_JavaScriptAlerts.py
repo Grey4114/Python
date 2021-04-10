@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/javascript_alerts
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/JavaScriptAlertsPage.py
 """
 
 import time
@@ -11,25 +11,23 @@ from utilities.BaseClass import BaseClass
 from pageObjects.JavaScriptAlertsPage import JavaScriptAlertsPage
 
 class TestJavaScriptAlerts(BaseClass):
-
     def test_java_script_alerts(self):
-
         # Enter the Page
         log = self.getLogger()
         javaScriptAlerts_page = JavaScriptAlertsPage(self.driver)
-        log.info("TEST START")
         javaScriptAlerts_page.javaScriptAlerts_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/javascript_alerts"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = javaScriptAlerts_page.javaScriptAlerts_HeaderText().text
         assert ("JavaScript Alerts" in header_text)
         log.info("Header: " + header_text)
 
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/javascript_alerts"
+        log.info("URL: " + url)
 
 
         # Verify JSAlert window open & close
@@ -39,7 +37,7 @@ class TestJavaScriptAlerts(BaseClass):
         alert.accept()
         time.sleep(3)
         assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You successfully clicked an alert"
-        log.info("JS Alert: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+        # log.info("JS Alert: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
         # Verify JSConfirm - Cancel
@@ -49,7 +47,7 @@ class TestJavaScriptAlerts(BaseClass):
         alert.dismiss()
         time.sleep(3)
         assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You clicked: Cancel"
-        log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+        # log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
         # Verify JSConfirm - Cancel
@@ -59,7 +57,7 @@ class TestJavaScriptAlerts(BaseClass):
         alert.accept()
         time.sleep(3)
         assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You clicked: Ok"
-        log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+        # log.info("JS Confirm: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
         # Verify JS Prompt - Cancel
@@ -69,7 +67,7 @@ class TestJavaScriptAlerts(BaseClass):
         alert.dismiss()
         # time.sleep(3)
         assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You entered: null"
-        log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+        # log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
         # Verify JS Prompt - OK w/Empty Text Field
@@ -79,7 +77,7 @@ class TestJavaScriptAlerts(BaseClass):
         alert.accept()
         # time.sleep(2)
         assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You entered:"
-        log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+        # log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
         # Verify JS Prompt - OK w/Text Field
@@ -91,7 +89,7 @@ class TestJavaScriptAlerts(BaseClass):
         alert.accept()
         time.sleep(2)
         assert javaScriptAlerts_page.javaScriptAlerts_Results().text == "You entered: test"
-        log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
+        # log.info("JS Prompt: " + javaScriptAlerts_page.javaScriptAlerts_Results().text)
 
 
         # Exit the Page

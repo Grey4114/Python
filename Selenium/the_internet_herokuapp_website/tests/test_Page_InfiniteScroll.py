@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/16/2021
+Website:  https://the-internet.herokuapp.com/infinite_scroll
+Created:  2/16/2021
 Notes:
-    This script tests the XXX page
+    Connected Page Object Script - /pageObjects/InfiniteScrollPage.py
 """
 
 import time
@@ -19,36 +19,33 @@ class TestInfiniteScroll(BaseClass):
         # Enter the Page
         log = self.getLogger()
         infiniteScroll_page = InfiniteScrollPage(self.driver)
-        log.info("TEST START")
         infiniteScroll_page.infiniteScroll_LinkText().click()
 
-        # Verify the URL
-        url = self.driver.current_url
-        assert url == "https://the-internet.herokuapp.com/infinite_scroll"
-        log.info("URL: " + url)
 
         # Verify the Header
         header_text = infiniteScroll_page.infiniteScroll_HeaderText().text
         assert ("Infinite Scroll" in header_text)
         log.info("Header: " + header_text)
 
+
+        # Verify the URL
+        url = self.driver.current_url
+        assert url == "https://the-internet.herokuapp.com/infinite_scroll"
+        log.info("URL: " + url)
+
+
         # Verify scrolling down the page
         # Get current scroll height
         start_height = self.driver.execute_script("return document.body.scrollHeight")
-        log.info(start_height)
+        # log.info(start_height)
 
         # Scroll down the page 20 times
         for x in range(1, 20):
             # Scroll down to bottom of the page
             self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-
-            # Wait to load page
-            time.sleep(1)
-
-            # Calculate new scroll height
-            new_height = self.driver.execute_script("return document.body.scrollHeight")
-
-        log.info(new_height)
+            time.sleep(1)       # Wait to load page
+            new_height = self.driver.execute_script("return document.body.scrollHeight")    # Calculate new scroll height
+            # log.info(new_height)
 
         # Check scroll height
         assert start_height != new_height

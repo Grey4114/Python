@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/dynamic_controls
+Created:  2/14/2021
 Notes:
-    This script tests the Dynamic Controls page
+    Connected Test Object Script - /tests/test_Page_DynamicControls.py
 """
 
 from selenium.webdriver.common.by import By

@@ -1,8 +1,10 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/frames
+Created:  2/14/2021
 Notes:
-    This script tests the Exit Intent page
+    Connected Test Object Script - /tests/test_Page_Frames.py
+
+    This page simply links to 2 other pages that already have test scripts writtem for them
 """
 
 from selenium.webdriver.common.by import By
@@ -20,8 +22,4 @@ class FramesPage:
 
     def frames_HeaderText(self):
         return self.driver.find_element(*FramesPage.frames_Header)
-
-
-
-
 

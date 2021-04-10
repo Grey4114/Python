@@ -1,8 +1,8 @@
 """
-Website:  https://the-internet.herokuapp.com/
-Date:  2/14/2021
+Website:  https://the-internet.herokuapp.com/entry_ad
+Created:  2/14/2021
 Notes:
-    This script tests the Dynamic Loading page
+    Connected Test Object Script - /tests/test_Page_EntryAd.py
 """
 
 from selenium.webdriver.common.by import By
