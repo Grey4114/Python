@@ -4,16 +4,12 @@ Date:  2/9/2021
 Notes:
     conftest.py script
 """
+import os
 
 import pytest
 from selenium import webdriver
 import time
 driver = None
-
-
-# html report - Run in Jenkins
-# Todo - screenshots - move to reports dir
-# todo - add all 3 browser config settings - Chome, Firefox and Edge
 
 
 # use to change browsers at launch
@@ -25,19 +21,28 @@ def pytest_addoption(parser):
 def setup(request):     # add request to make driver object avialable in other scripts
     global driver       # makes the driver object a global
 
-
-
     browser_name = request.config.getoption("--browser_name")
     if browser_name == "chrome":
-        driver = webdriver.Chrome(executable_path="C:\\chromedriver.exe")
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument("--start-maximized")    # Starts the webpage maximized
+        chrome_options.add_argument("--headless")  # Sets it so that the web page is not shown.
+        driver = webdriver.Chrome(executable_path="C:\\chromedriver.exe", options=chrome_options)
+
     elif browser_name == "firefox":
+        # Note: Setting from - https://www.programcreek.com/python/example/115596/selenium.webdriver.FirefoxOptions
+        options = webdriver.FirefoxOptions()
+        # options.set_preference("dom.webnotifications.serviceworker.enabled", False)
+        # options.set_preference("dom.webnotifications.enabled", False)
+        options.add_argument('--headless')
         driver = webdriver.Firefox(executable_path="C:\\geckodriver.exe")
+        driver.maximize_window()
+
     elif browser_name == "edge":
+        # Note: Need to do more research for these settings
         driver = webdriver.Edge(executable_path="C:\\msedgedriver.exe")
+        driver.maximize_window()
 
     driver.get("https://the-internet.herokuapp.com/")
-    driver.maximize_window()
-
     request.cls.driver = driver     # creates a class object called cls.driver for driver
     yield   # runs close last
     driver.close()
@@ -53,6 +58,8 @@ def pytest_runtest_makereport(item):
     outcome = yield
     report = outcome.get_result()
     extra = getattr(report, 'extra', [])
+    # The next line changes the dir where to save the files
+    os.chdir("D:/GitHub/Python/Selenium/the_internet_herokuapp_website/tests_screenShots")
 
     if report.when == 'call' or report.when == "setup":
         xfail = hasattr(report, 'wasxfail')
