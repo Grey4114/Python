@@ -1,5 +1,6 @@
 Author: Chris Caprio
 Created: 11/11/2020 - 11/12/2020
+Updated: 4/14/2021
 Program: Coin Flip Simulation
 Details:
 Write some code that simulates flipping a single coin however many times the user decides.
