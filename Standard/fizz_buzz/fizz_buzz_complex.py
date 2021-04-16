@@ -7,84 +7,88 @@ For multiples of three print “Fizz” and for the multiples of five print “B
 For numbers which are multiples of both three and five print “FizzBuzz”.
 
 Notes:  This is a more robust version of the fizz_buzz_simple program.
-
 """
 
+# Froms, Imports & Variables
 from collections import Counter
 
 
-""" --- Functions --- """
-# Generate a list of numbers from start to end
-def number_genterator():
-    for num in range(start, end+1):
-        if num % 3 == 0 and num % 5 == 0:
-            number_list.append("FizzBuzz")
-        elif num % 3 == 0:
-            number_list.append("Fizz")
-        elif num % 5 == 0:
-            number_list.append("Buzz")
-        else:
-            number_list.append(num)
-
-    return number_list
-
-
-# Print the number list
-def print_list(number_list):
-    for x in number_list:
-        print(f'\t{x}')
-
-
-# Count the types and print the amounts
-def count_print_fizzbuzz(number_list):
-    fizzbuzz = Counter(number_list)
-    print(f'\nCount of Fizzes & Buzzes'
-          f'\n\tFizz: {fizzbuzz["Fizz"]}'
-          f'\n\tBuzz: {fizzbuzz["Buzz"]}'
-          f'\n\tFizzBuzz: {fizzbuzz["FizzBuzz"]}')
-
-
-""" --- MAIN --- """
-while True:
+# Function - Applications opening/start up info
+def start_info():
     print("\nWelcome to the FizzBuzz program")
-    print("\t1) The program will ask you the user to enter number range (Ex. 85 to 123)")
-    print("\t2) The program will print the number range")
-    print("\t3) Multiples of 3 are replaced with Fizz")
-    print("\t4) Multiples of 5 are replaced with Buzz")
-    print("\t5) Multiples of both 3 and 5 are replaced with FizzBuzz.")
-    print("\t6) A count of each Fizz, Buzz and FizzBuzz.")
-    input("Press Enter to continue")
+    print("\tThe user can enter number range (Ex. 85 to 123) and number range will be shown")
+    print("\t- Multiples of 3 are replaced with Fizz")
+    print("\t- Multiples of 5 are replaced with Buzz")
+    print("\t- Multiples of 3 and 5 are replaced with FizzBuzz")
+    input("Press Enter to continue:")
+
+
+# Function - User enters a number
+def enter_a_number(start):
+    num = 0
+    while True:
+        try:
+            num = int(input("Number: "))
+            if num <= start:
+                print("Error! Enter a higher number.")
+                continue
+        except ValueError:
+            print("Error! Enter a whole number!")
+            continue
+        break
+    return num
+
+
+# Function - Generates the list of numbers with Fizz, Buzz and FizzBuzz
+def number_genterator(start, end):
+    return ["FizzBuzz" if num % 3 == 0 and num % 5 == 0 else "Fizz" if num % 3 == 0 else "Buzz" if num % 5 == 0 else num for num in range(start, end+1)]
+
+
+# Function - Print the number list
+def print_list(fizzBuzz_list):
+    print("\nFizzBuzz List")
+    print(*[f'\t{x}' for x in fizzBuzz_list], sep="\n")
+
+
+# Function - Count the types and print the amounts
+def count_print_fizzbuzz(fizzBuzz_list):
+    count = Counter(fizzBuzz_list)
+    print(f'----------\n\tFizzes: {count["Fizz"]}\n\tBuzzes: {count["Buzz"]}\n\tFizzBuzzes: {count["FizzBuzz"]}')
+
+
+# Function - Asks the player to play again - Player Input
+def play_again():
+    while True:
+        play_again = input("\nPlay Again (Y,N): ")
+        if play_again.upper() == "Y":
+            return True
+        elif play_again.upper() == "N":
+            print("\nThanks for playing!!")
+            return False
+        else:
+            print("Please enter 'Y' or 'N'.")
+
+
+# Main - This area runs all of the functions
+if __name__ == "__main__":
+    playing = True
 
     while True:
-        start = 0
-        end = 0
-        number_list = []
+        start_info()
 
-        # Enter the starting number
-        while True:
-            try:
-                start = int(input("\nEnter the starting number: "))
-            except ValueError:
-                print("Error! Enter a whole number!")
-                continue
-            break
+        while playing:
+            start = 0
+            end = 0
 
-        # Enter the ending number
-        while True:
-            try:
-                end = int(input("Entet the ending number: "))
-                if end <= start:
-                    print("Error! End number must be higher then the starting number.")
-                    continue
-            except ValueError:
-                print("Error! Enter a whole number!")
-                continue
-            break
+            print("\nEnter the Starting number")
+            start = enter_a_number(start)
 
-        number_list = number_genterator()
-        print_list(number_list)
-        count_print_fizzbuzz(number_list)
+            print("\nEnter the Ending number")
+            end = enter_a_number(start)
+
+            fizzBuzz_list = number_genterator(start, end)
+            print_list(fizzBuzz_list)
+            count_print_fizzbuzz(fizzBuzz_list)
+            playing = play_again()
         break
-    break
-
 

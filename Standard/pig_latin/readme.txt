@@ -1,5 +1,6 @@
 Author: Chris Caprio
 Created: 11/22/2020 - 11/23/2020
+Updated: 4/15/2021
 Program: Pig Latin
 Details:
     Pig Latin is a game of alterations played on the English language game.
@@ -18,9 +19,9 @@ Details:
 
     Words that begin with vowel sounds, the vowel is left alone and 'way' is added to the end of the word.
     Examples are:
-    "eat" = "eatyay"
-    "omelet" = "omeletay"
-    "I"= "Iyay"
+    "eat" = "eatway"
+    "omelet" = "omeletway"
+    "I"= "Iway"
 
 Notes:
     Pierian Data's Complete Python 3 Bootcamp Projects List

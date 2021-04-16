@@ -34,7 +34,7 @@ def show_results(flipCount):
     countFlips = Counter(flipCount)
     coin = {0: 'Heads', 1: 'Tails'}
     print(*[coin[n] for n in flipCount], sep="\n")  # Prints out each coin flip
-    return f'{flips} Flips: {countFlips[0]} Heads & {countFlips[1]} Tails'
+    print(f'{flips} Flips: {countFlips[0]} Heads & {countFlips[1]} Tails')
 
 
 # Function - Asks the player to play again - Player Input
@@ -60,7 +60,7 @@ if __name__ == "__main__":
         while playing:
             flips = start()
             flip_count = flip_the_coin(flips)
-            print(show_results(flip_count))
+            show_results(flip_count)
             playing = play_again()
         break
 

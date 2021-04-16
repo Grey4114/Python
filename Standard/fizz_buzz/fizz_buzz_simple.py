@@ -10,19 +10,24 @@ Notes:  This is a very simple first pass of the program
 
 """
 
+# Function - Applications opening/start up info
+def start_info():
+    print("\nFizzBuzz program")
+    print("\t- Prints a list of number from 1 - 100 ")
+    print("\t- Multiples of 3 are replaced with Fizz")
+    print("\t- Multiples of 5 are replaced with Buzz")
+    print("\t- Multiples of both 3 and 5 are replaced with FizzBuzz")
 
+
+# Function - Prints the list of number with Fizz, Buzz and FizzBuzz
 def number_genterator():
-    for num in range(1, 101):
-        if num % 3 == 0 and num % 5 == 0:
-            print("FizzBuzz")
-        elif num % 3 == 0:
-            print("Fizz")
-        elif num % 5 == 0:
-            print("Buzz")
-        else:
-            print(num)
+    return [print("\tFizzBuzz") if num % 3 == 0 and num % 5 == 0 else print("\tFizz") if num % 3 == 0 else print("\tBuzz") if num % 5 == 0 else print("\t", num) for num in range(1, 101) ]
 
 
+# Main - This area runs all of the functions
+if __name__ == "__main__":
+    start_info()
+    number_genterator()
 
 
 
