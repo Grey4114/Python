@@ -8,35 +8,32 @@ quarters, dimes, nickels, pennies needed for the change.
 Notes: Main section of the change_return.py script
 
 """
+# Imports & Variables
+from return_change_functions import opening_info, choose_random_price, enter_payment, calc_difference
+from return_change_functions import calc_change, print_results, play_again
 
-from return_change_functions import choose_random_price, check_the_payment, calc_difference, calc_change, show_change
-play = True
+# A list of product costs - Must be floats
+prices = [0.99, 1.94, 2.84, 3.59, 4.12]
 
-""" --- MAIN PROGRAM --- """
-while True:
-    print("\nWelcome to the Change Return program.")
-    print("How the program works:")
-    print("\t1) The player will be shown a Purchase Price")
-    print("\t2) The Player will be asked to input a Payment amount.")
-    print("\t3) The return change will be shown.")
 
-    while True:
-        price = choose_random_price()
+# Main while loop that runs all of the functions
+def main():
+    playing = True
+    while playing:
+        price = choose_random_price(prices)
         print(f'\nThe Purchase Price is ${price}.')
+        payment = enter_payment(price)
+        diff = calc_difference(price, payment)
+        results = calc_change(diff)
+        print_results(diff, results)
+        playing = play_again()
 
-        while play:
-            try:
-                payment = int(input("Enter the Payment dollar amount: $"))
-            except ValueError:
-                print("Whoops! That's not a whole dollar amount. Please try again.")
-                continue
-            else:
-                play = check_the_payment(price, payment)
-        break
 
-    diff = calc_difference(price, payment)
-    change = calc_change(diff)
-    show_change(diff, change)
 
-    break
+# Calls the main() function
+if __name__ == "__main__":
+    payment = 0
+    opening_info()
+    main()
+
 

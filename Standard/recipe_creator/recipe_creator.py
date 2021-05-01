@@ -9,24 +9,19 @@ Notes:
     Import / export info to/from CSV files
 """
 
-" --- IMPORTS --- "
+# Imports & Variables
 import csv
-
-" --- VARIABLES --- "
-
 
 recipes_file = "D:\\GitHub\\Python\\Standard\\recipe_creator\\recipes.csv"
 ingrediants_file = "D:\\GitHub\\Python\\Standard\\recipe_creator\\ingrediants.csv"
-
 recipe_type = ('Main Meal', 'Candy', 'Cookie', 'Cake', 'Pie', 'Soup', 'Sandwich', 'Salad')
 ingrediant_type = ('Spice', 'Fruit', 'Vegitable', 'Condiment', 'Protien', 'Grains')
-
 main_dict = {1: 'Recipe', 2: 'Ingrediants', 3: 'Exit'}
 menu_dict = {1: 'View All', 2: 'Find By Type', 3: 'Add', 4: 'Main Menu'}
 
 
-" --- CLASSES --- "
-# Recipe class
+
+# Recipe CLASS
 class Recipes:
     def __init__(self, recipe_type, recipes_file, main_dict, menu_dict):
         self.recipes_file = recipes_file
@@ -234,7 +229,7 @@ def add_data(info_type, choice_type, main_dict, data, recipes, ingrediants):
 
 
 
-" --- MAIN FUNCTION --- "
+# MAIN
 def main():
     recipes = Recipes(recipe_type, recipes_file, main_dict, menu_dict)
     ingrediants = Ingrediants(ingrediant_type, ingrediants_file, main_dict, menu_dict)

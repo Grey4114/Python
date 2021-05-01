@@ -5,79 +5,74 @@ Notes: Functions section of the change_return.py script
 
 """
 
+
+# Imports & Variables
 import random
-
-
-""" --- VARIABLES --- """
-# A list of product costs - Must be floats
-purchase_prices = [0.99, 1.94, 2.84, 3.59, 4.12]
 currency_dict = {0: 'Dollars', 1: 'Quarters', 2: 'Dimes', 3: 'Nickels', 4: 'Pennies'}
 
 
-""" --- FUNCTIONS --- """
-# Randomly choose product cost from list
-def choose_random_price():
-    pick = random.choice(purchase_prices)
-    return pick
+# Function - Prints the title and info
+def opening_info():
+    print("\nWelcome to the Change Return program.")
+    print("\t1) The player will be shown a Purchase Price")
+    print("\t2) The Player will be asked to input a Payment amount.")
+    print("\t3) The return change will be shown.")
 
 
-# Calculate that the payment is more then the purchase price
-def check_the_payment(price, payment):
-    if price > payment:
-        print("Enter a dollar amount that is higher than the Purchase Price")
-        return True
-    else:
-        return False
+# Function - Randomly choose product cost from list
+def choose_random_price(prices):
+    return random.choice(prices)
 
 
-# Calculate differnce between cost and payment
+# Function - Player enters a payment amounts
+def enter_payment(price):
+    check = True
+    amount = 0
+    while check:
+        try:
+            amount = int(input("Enter the Payment dollar amount: $"))
+        except ValueError:
+            print("Whoops! That's not a whole dollar amount. Please try again.")
+            continue
+        else:
+            if price > amount:
+                print("Enter a dollar amount that is higher than the Purchase Price")
+                check = True
+            else:
+                check = False
+    return amount
+
+
+# Function - Calculate differnce between cost and payment
 def calc_difference(price, payment):
     return round(payment - price, 2)
 
 
-# Break out change amounts
+# Function - Break out change amounts
 def calc_change(diff):
-    if diff < 0:
-        raise TypeError("Wrong data.  Requires a positve number. ")
-    else:
-        if diff > 1:
-            dollars = int(diff)
-            diff = round(diff - dollars, 2)
+    money = [100, 25, 10, 5, 1]
+    newDiff = round(diff*100)
+    results = [0] * len(money)
+    new = newDiff
+    for index, coin in enumerate(money):
+        results[index], new = divmod(new, coin)
+    return results
+
+
+# Function - Prints the number of each bill/coin type
+def print_results(diff, results):
+    print(f"\nThe Return Change is ${diff}:")
+    print(*[f'{coin} : {currency_dict[index]}' for index, coin in enumerate(results) if coin > 0], sep='\n')
+
+
+# Function - Asks the player to play again - Player Input
+def play_again():
+    while True:
+        play_again = input("\nPlay Again (Y,N): ")
+        if play_again.upper() == "Y":
+            return True
+        elif play_again.upper() == "N":
+            print("\nThanks for playing!!")
+            return False
         else:
-            dollars = 0
-
-        if diff >= .25:
-            quarters = int(diff / .25)
-            diff = round(diff - (quarters * .25), 2)
-        else:
-            quarters = 0
-
-        if diff >= .10:
-            dimes = int(diff / .10)
-            diff = round(diff - (dimes * .10), 2)
-        else:
-            dimes = 0
-
-        if diff >= .05:
-            nickels = int(diff / .05)
-            diff = round(diff - (nickels * .05), 2)
-        else:
-            nickels = 0
-
-        pennies = int(diff / .01)
-        return dollars, quarters, dimes, nickels, pennies
-
-
-# Prints the number of each bill/coin type
-def show_change(diff, change):
-    print(f"The Return Change for ${diff} is:")
-
-    if isinstance(diff, float) or diff > 0:
-        for x in range(0, 5):
-            if change[x] > 0:
-                print(f"\t{change[x]} {currency_dict[x]}")
-
-    else:
-        raise TypeError("Error! Incorrect info provided")
-
-
+            print("Please enter 'Y' or 'N'.")
