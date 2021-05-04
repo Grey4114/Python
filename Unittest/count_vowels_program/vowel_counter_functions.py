@@ -1,47 +1,65 @@
 """
 Author: Chris Caprio
-Program: Count Vowels
-Notes: Functions section of the vowel_counter.py script
+Program: Count Vowels - functions
 """
 
-""" --- VARIABLES --- """
-# vowels = ('a', 'e', 'i', 'o', 'u', 'y')
+# Imports and Variables
+from collections import Counter
+vowels = ('a', 'e', 'i', 'o', 'u', 'y')
 
 
-
-""" --- FUNCTIONS --- """
-# Function - Make the string lower case
-def lower_the_string(start_string):
-    new_string = start_string.lower()
-    return new_string
-
-
-# Function - slice up the string
-def slice_the_string(new_string):
-    slice_string = new_string.replace('', ' ')
-    return slice_string
+# Function - Prints the title and app info
+def opening_info():
+    print('\nVowel Counter Program')
+    print('\tEnter a string of words or letters')
+    print('\tThe program will count the vowels and return the count for each vowel.')
 
 
-# Function - count the vowels
-def count_vowels(slice_string, vowels):
-    vowel_count = []
-    for let in vowels:
-        count = 0
-        for char in slice_string:
-            if let == char:
-                count += 1
+# Function - Player enters the string
+def string_input():
+    start_string = ""
+    while True:
+        try:
+            start_string = input('\nEnter in a word, sentence or string: ')
+            if not start_string:
+                raise ValueError('\tError! Nothing entered, please try again')
+        except ValueError as e:
+            print(e)
+            continue
+        break  # Exits the loop
+    return start_string
 
-        vowel_count.append((let, count))
-    return vowel_count
+
+# Function - Counts the vowels
+def get_vowels(start_string, vowels):
+    countLetters = Counter(start_string.lower().replace('', ' '))
+    return [(l, countLetters[l]) for l in vowels if countLetters[l] > 0]
 
 
-# Function - Print the vowel count
-def print_vowel_count(vowel_count):
-    print('Vowel count for the string is:')
+# Function - Counts all of the vowels in the string
+def count_vowels(in_string):
+    return sum([x[1] for x in in_string])
 
-    for x in range(len(vowel_count)):
-        if vowel_count[x][1] > 0:
-            print(f'\t{vowel_count[x][0]}: {vowel_count[x][1]}')
+
+# Function - Prints the list of vowels
+def print_vowels(in_string, vowel_count):
+    print("\nList of vowels in the string")
+    print("vowel : count")
+    print(*[f"\t{x[0]} : {x[1]}" for x in in_string], sep="\n")
+    print(f"Total vowels: {vowel_count}")
+
+
+# Function - Asks the player to play again - Player Input
+def play_again():
+    while True:
+        play_again = input("\nPlay Again (Y,N): ")
+        if play_again.upper() == "Y":
+            return True
+        elif play_again.upper() == "N":
+            print("\nThanks for playing!!")
+            return False
+        else:
+            print("Please enter 'Y' or 'N'.")
 
 
 

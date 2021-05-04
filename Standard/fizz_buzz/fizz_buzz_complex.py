@@ -14,7 +14,7 @@ from collections import Counter
 
 
 # Function - Applications opening/start up info
-def start_info():
+def opening_info():
     print("\nWelcome to the FizzBuzz program")
     print("\tThe user can enter number range (Ex. 85 to 123) and number range will be shown")
     print("\t- Multiples of 3 are replaced with Fizz")
@@ -74,7 +74,7 @@ if __name__ == "__main__":
     playing = True
 
     while True:
-        start_info()
+        opening_info()
 
         while playing:
             start = 0
