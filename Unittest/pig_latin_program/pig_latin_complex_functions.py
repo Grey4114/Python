@@ -1,77 +1,84 @@
 """
 Author: Chris Caprio
-Program: Pig Latin
-Notes: Functions section of the pig_latin_complex.py script
-
+Program: Pig Latin - Functions
 """
 
-""" --- IMPORTS --- """
-from pig_latin_complex_class import PigLatin
+# Imports and Variables
+special = "!@#$%^&*()-+_=,.<>?:;[]{}/"
+vowels = "aeiouy"
+consonants = "bcdfghjklmnpqrstvwxz"
 
 
-""" --- VARIABLES --- """
-vowels = ('aeiouy')
+# Function - Applications opening/start up info
+def opening_info():  # opening_info
+    print('\nWelcome to the Pig Latin Translator Program')
+    print('\tHow the program works:')
+    print('\tEnter a word or a sentence that does not contain any numbers or special characters')
+    print('\tand the program will convert it into pig latin.')
 
-""" --- FUNCTIONS --- """
-# Checks where the first vowel is and marks its position
-def check_for_vowel(word_in):
-    new_count = 5
 
-    for v in vowels:
-        count = word_in.find(v)
-        if count < new_count and count >= 0:
-            new_count = count
+# Function - User enters a word or a sentence
+def enter_text_string():
+    text_string = ""
+    while True:
+        try:
+            text_string = input('\nEnter a word or a sentance: ')
+            if not text_string:
+                raise ValueError('\tError! Empty string, please try again')
+            elif any(a.isdigit() for a in text_string):
+                raise ValueError('\tError! Contains numbers, please try again')
+            elif any(sc in special for sc in text_string):
+                raise ValueError('\tError! Contains special characters, please try again')
+        except ValueError as e:
+            print(e)
+            continue
+        break
+    return text_string
 
-    return new_count
+
+# Function - Transform each word into a pig latin word
+def convert_sentance(text_string):
+    newString = text_string.split()
+    return " ".join([transform_word(word) for word in newString])
 
 
 # This checks the word and returns the pig latin version
 def transform_word(word):
-    word_type = ""
-    word_in = word.lower()
-    pl = PigLatin(word_in)
-
-    word_type = check_for_vowel(word_in)
-
-    if word_type == 0:
-        return pl.vowel_word()
-    elif word_type == 1:
-        return pl.consonant_word()
-    elif word_type == 2:
-        return pl.two_consonant_word()
+    word = word.lower()
+    if [True for v in vowels if word[0] == v]:
+        return vowel_word(word)
+    elif word[0] in consonants and word[1] in consonants and word[2] in consonants:
+        return consonant_word(word, 3)
+    elif word[0] in consonants and word[1] in consonants:
+        return consonant_word(word, 2)
     else:
-        return pl.three_consonant_word()
+        return consonant_word(word, 1)
 
 
-# Sentnce - Transform each word and add into the sentance
-def convert_sentance(sentance):
-    sentance = sentance.split()
-    new_sentance = []
-    for word in sentance:
-        pig_latin_word = transform_word(word)
-        new_sentance.append(pig_latin_word)
-        pig_latin_sentance = " ".join(new_sentance)
-    return pig_latin_sentance
+# Function - Vowel - first letter is a vowel, return pig latin word
+def vowel_word(word):
+    return word + 'way'
 
 
-# Users choice transform the Word / Sentance into pig latin
-def user_choice(choice, word, sentance):
-    if choice.lower() == 'w':
-        pig_latin_word = transform_word(word)
-        print_pig_latin_word(word, pig_latin_word)
-    else:
-        pig_latin_sentance = convert_sentance(sentance)
-        print_pig_latin_sentance(sentance, pig_latin_sentance)
+# Function - Consonant - first letter is a consonant, return pig latin word
+def consonant_word(word, n):
+    return word[n::] + word[0:n] + 'ay'
 
 
-# Print the orinal word and the pig latin word
-def print_pig_latin_word(word, pig_latin_word):
-    print(f'\n\t  Oringal Word: {word}\n\tPig Latin Word: {pig_latin_word}')
+# Function - Print the original sentance and the new pig latin sentance
+def print_pig_latin(text_string, pig_latin):
+    print(f'\n\tOringal: {text_string}\n\tPig Latin: {pig_latin}')
 
 
-# Print the original sentance and the new pig latin sentance
-def print_pig_latin_sentance(sentance, pig_latin_sentance):
-    print(f'\n\t  Oringal Sentance: {sentance}\n\tPig Latin Sentance: {pig_latin_sentance}')
-
-
+# Function - Asks the player to play again - Player Input
+def play_again():
+    while True:
+        play_again = input("\nPlay Again (Y,N): ")
+        if play_again.upper() == "Y":
+            return True
+        elif play_again.upper() == "N":
+            print("\nThanks for playing!!")
+            return False
+        else:
+            print("Please enter 'Y' or 'N'.")
 

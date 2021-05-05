@@ -1,5 +1,6 @@
 Author: Chris Caprio
 Created: 11/22/2020 - 11/23/2020
+Updated: 5/4/2021
 Program: Pig Latin
 Details:
     Pig Latin is a game of alterations played on the English language game.
