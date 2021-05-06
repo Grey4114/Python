@@ -5,69 +5,57 @@ Details:
 Make an application which takes randomly picked questions from a csv file and puts together a quiz for students.
 Each quiz can be different and then reads a key to grade the quizzes.
 Program scores 10 point for each correct answer and gives a total at end.
-
-Notes: This is the Main section of the original quiz_maker.py script
-
 """
+# Import and Variables
+from quiz_maker_functions import opening_info, get_text_from_csv_file, question_number_list, answers_number_list
+from quiz_maker_functions import choice_list, input_answer, add_points, print_question, print_score, play_again
 
 
-" --- IMPORTS --- "
-from quiz_maker_functions import get_text_from_csv_file, question_number_list, answers_number_list
-from quiz_maker_functions import print_score, print_greeting, print_question, prints_answers
-from quiz_maker_functions import correct_answer, select_answer, check_choice_answer, play_again
 
-
-" --- MAIN --- "
-def main(questions, q_num_list, ques_count):
-    # Print the greeting
-    print_greeting()
-    points = 0
-
+# Function -  Main loop prints questions, answers and score
+def start(points, ques_count, questions):
     while True:
         # For loop prints the question
-        for x in q_num_list:
-            # Setup variable
-            correct_answer_number = 0
-            answ_count = 0
+        for x in num_list:
+            correct_answer = 0
+            # answ_count = 0
             ques_count += 1
-
-            # Runs the function and prints the question
-            print(print_question(ques_count, questions[x][0]))
-
-            # Runs the function that generates a randon list of the answer numbers
+            print_question(ques_count, questions[x][0])
             a_num_list = answers_number_list()
 
-            # Runs the function and prints the list of answers
-            prints_answers(a_num_list, answ_count, questions[x])
+            # Prints the list of choices
+            choice_list(x, a_num_list, questions)
 
-            # Runs the function that finds the position of the correct answer and returns it
-            correct_answer_number = correct_answer(a_num_list)
+            # Note which answer is the correct one
+            correct_answer = a_num_list.index(1) + 1
 
-            # Runs the function, user can enter choice and that number is returned
-            choice = select_answer()
+            # Player inputs the answer number
+            choice = input_answer()
 
-            # Runs the function, checks choice against answer, returns points and prints result
-            points = check_choice_answer(points, choice, correct_answer_number)
-
+            # Compare choice to correct answer, give response and apply points
+            points = add_points(points, choice, correct_answer)
         break
-    print(print_score(points))
+    return points
 
 
+# Main - This loop does the program setup and runs the start function
 if __name__ == "__main__":
     playing = True
-
-    # Main loop
     while playing:
-        # Setup the variables
-        questions = get_text_from_csv_file()
-        q_num_list = question_number_list()
+        # Setup counters
         ques_count = 0
+        points = 0
 
-        # Run the main function
-        main(questions, q_num_list, ques_count)
+        # Print the greeting
+        opening_info()
 
-        # Run the play again function
+        # Setup the numbers & questions variables
+        questions = get_text_from_csv_file()
+        num_list = question_number_list(questions)
+
+        # Main loop prints questions, answers and score
+        points = start(points, ques_count, questions)
+
+        # Prints points and play again
+        print_score(points)
         playing = play_again()
-
-
-

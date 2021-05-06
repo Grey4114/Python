@@ -40,7 +40,7 @@ def answers_number_list():
     return ansList
 
 
-# Finction - Prints the question
+# Function - Prints the question
 def print_question(count, question):
     print(f"\nQuestion {count}: {question}")
 
