@@ -9,6 +9,7 @@ import sys
 import unittest
 from io import StringIO
 from unittest.mock import patch
+from unittest import mock
 from coin_flip_functions import input_flips, flip_the_coin, show_results, play_again
 
 
@@ -30,20 +31,22 @@ class TestInputFlips(unittest.TestCase):
         self.assertEquals(flips, 0)
 
 
-    # todo - get mock to work with error text
-    """
     # Inputs 'a' and returns a value error
-    @patch('builtins.input', return_value='a')
+    # 'a' is first incorrect input, 5 is second correct input / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 5))
     def test_input_invlaid_letter(self, mock_input):
-        flips = input_flips()
+        flip = input_flips()
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! That's not a number. Please try again.")
+        self.assertEqual(flip, 5)
+
 
     # Inputs '' and returns a value error
-    @patch('builtins.input', return_value='')
+    @patch('builtins.input', side_effect=('', 5))
     def test_input_invalid_space(self, mock_input):
-        input_flips()
+        flip = input_flips()
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! That's not a number. Please try again.")
-    """
+        self.assertEqual(flip, 5)
+
 
     def tearDown(self):
         pass
@@ -120,21 +123,21 @@ class TestPlayAgain(unittest.TestCase):
         self.assertEquals(play, False)
         self.assertEqual(sys.stdout.getvalue().strip(), "Thanks for playing!!")
 
-    # todo - get mock to work with error text
-    """
-    # User inputs 'a'
-    @patch('builtins.input', return_value='a')
-    def test_input_other_text(self, mock_input):
-        play = play_again()
-        self.assertEquals(play, False)
 
-    # User inputs a number
-    @patch('builtins.input', return_value=1)
-    def test_input_number(self, mock_input):
+    # Inputs 'a' and returns an error
+    # 'a' is first incorrect input, 'y' is second correct input / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 'y'))
+    def test_input_invlaid_letter(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
-    """
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEquals(play, True)
 
+    # Inputs '' and returns an error
+    @patch('builtins.input', side_effect=('', 'y'))
+    def test_input_invlaid_space(self, mock_input):
+        play = play_again()
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEquals(play, True)
 
     def tearDown(self):
         pass

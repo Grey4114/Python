@@ -169,13 +169,13 @@ class TestInputAnswer(unittest.TestCase):
     @patch('builtins.input', return_value=0)
     def test_invalid_number_0(self, mock_input):
         num = input_answer()
-        self.assertEqual(sys.stdout.getvalue().strip(), '\tError! Enter 1, 2 or 3')
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter 1, 2 or 3')
 
     # Inputs 'a' and returns a value error
     @patch('builtins.input', return_value='a')
     def test_invlaid_letter(self, mock_input):
         flips = input_flips()
-        self.assertEqual(sys.stdout.getvalue().strip(), '\tError! Enter 1, 2 or 3')
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter 1, 2 or 3')
 
     # Inputs '' and returns a value error
     @patch('builtins.input', return_value='')
@@ -260,20 +260,21 @@ class TestPlayAgain(unittest.TestCase):
         self.assertEquals(play, False)
         self.assertEqual(sys.stdout.getvalue().strip(), "Thanks for playing!!")
 
-    # todo - get mock to work with error text
-    """
-    # User inputs 'a'
-    @patch('builtins.input', return_value='a')
-    def test_input_other_text(self, mock_input):
+    # Inputs 'a' and returns an error
+    # 'a' is first incorrect input, 'y' is second correct input / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 'y'))
+    def test_input_invlaid_letter(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEquals(play, True)
 
-    # User inputs a number
-    @patch('builtins.input', return_value=1)
-    def test_input_number(self, mock_input):
+    # Inputs '' and returns an error
+    @patch('builtins.input', side_effect=('', 'y'))
+    def test_input_invlaid_space(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
-    """
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEquals(play, True)
+
     def tearDown(self):
         pass
 
