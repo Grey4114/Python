@@ -58,8 +58,8 @@ def input_answer():
             choice = int(input("Choice: "))
             if choice < 1 or choice > 3:
                 raise ValueError('\tError! Enter 1, 2 or 3')
-        except ValueError as e:
-            print(e)
+        except ValueError:
+            print('\tError! Enter a valid number')
             continue
         break
     return choice

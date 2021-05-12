@@ -149,40 +149,43 @@ class TestInputAnswer(unittest.TestCase):
     @patch('builtins.input', return_value=1)
     def test_valid_number_1(self, mock_input):
         num = input_answer()
-        self.assertEquals(num, 1)
+        self.assertEqual(num, 1)
 
     # Inputs 2 and returns the number 2
     @patch('builtins.input', return_value=2)
     def test_valid_number_2(self, mock_input):
         num = input_answer()
-        self.assertEquals(num, 2)
+        self.assertEqual(num, 2)
 
     # Inputs 3 and returns the number 3
     @patch('builtins.input', return_value=3)
     def test_valid_number_3(self, mock_input):
         num = input_answer()
-        self.assertEquals(num, 3)
+        self.assertEqual(num, 3)
 
-    # todo - get mock to work with error text
-    """
     # Inputs 0 and returns error
-    @patch('builtins.input', return_value=0)
+    # Inputs 3, which is correct  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(0, 3))
     def test_invalid_number_0(self, mock_input):
         num = input_answer()
-        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter 1, 2 or 3')
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter a valid number')
+        self.assertEqual(num, 3)
 
-    # Inputs 'a' and returns a value error
-    @patch('builtins.input', return_value='a')
-    def test_invlaid_letter(self, mock_input):
-        flips = input_flips()
-        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter 1, 2 or 3')
+    # Inputs 'a' and returns error
+    # Inputs 3, which is correct  / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 3))
+    def test_invalid_letter(self, mock_input):
+        num = input_answer()
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter a valid number')
+        self.assertEqual(num, 3)
 
-    # Inputs '' and returns a value error
-    @patch('builtins.input', return_value='')
+    # Inputs ' ' and returns error
+    # Inputs 3, which is correct  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(' ', 3))
     def test_invalid_space(self, mock_input):
-        input_flips()
-        self.assertEqual(sys.stdout.getvalue().strip(), '\tError! Enter 1, 2 or 3')
-    """
+        num = input_answer()
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter a valid number')
+        self.assertEqual(num, 3)
 
     def tearDown(self):
         pass
@@ -251,13 +254,13 @@ class TestPlayAgain(unittest.TestCase):
     @patch('builtins.input', return_value='y')
     def test_input_y(self, mock_input):
         play = play_again()
-        self.assertEquals(play, True)
+        self.assertEqual(play, True)
 
     # User inputs 'n'
     @patch('builtins.input', return_value='n')
     def test_input_n(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
+        self.assertEqual(play, False)
         self.assertEqual(sys.stdout.getvalue().strip(), "Thanks for playing!!")
 
     # Inputs 'a' and returns an error
@@ -266,14 +269,14 @@ class TestPlayAgain(unittest.TestCase):
     def test_input_invlaid_letter(self, mock_input):
         play = play_again()
         self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
-        self.assertEquals(play, True)
+        self.assertEqual(play, True)
 
     # Inputs '' and returns an error
     @patch('builtins.input', side_effect=('', 'y'))
     def test_input_invlaid_space(self, mock_input):
         play = play_again()
         self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
-        self.assertEquals(play, True)
+        self.assertEqual(play, True)
 
     def tearDown(self):
         pass

@@ -35,38 +35,45 @@ class TestEnterNumber(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
 
-    # todo - get mock to work with error text
-    """
     # Input nothing, returns an error
-    @patch('builtins.input', return_value='')
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=('', 2))
     def test_input_none(self, mock_input):
         number = enter_a_number(0)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a whole number!")
+        self.assertEqual(number, 2)
 
     # Input a space, returns an error
-    @patch('builtins.input', return_value=' ')
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(' ', 2))
     def test_input_space(self, mock_input):
         number = enter_a_number(0)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a whole number!")
+        self.assertEqual(number, 2)
 
     # Input a letter, returns an error
-    @patch('builtins.input', return_value='w')
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 2))
     def test_input_letter(self, mock_input):
         number = enter_a_number(0)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a whole number!")
+        self.assertEqual(number, 2)
 
     # Input a special character, returns an error
-    @patch('builtins.input', return_value='$')
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=('$', 2))
     def test_input_special(self, mock_input):
         number = enter_a_number(0)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a whole number!")
+        self.assertEqual(number, 2)
 
     # Input a negative number, returns an error
-    @patch('builtins.input', return_value=-2)
+    # Input 2, which returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(-1, 2))
     def test_input_negativeNumber(self, mock_input):
         number = enter_a_number(0)
-        self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a whole number!")
-    """
+        self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a higher number.")
+        self.assertEqual(number, 2)
 
     def tearDown(self):
         pass
@@ -77,14 +84,13 @@ class TestEnterNumber_Begin(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
 
-    # todo - get mock to work with error text
-    """
     # Input 0, returns an error
-    @patch('builtins.input', return_value=0)
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(0, 2))
     def test_inputBegin_0(self, mock_input):
         number = enter_a_number(0)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a higher number.")
-    """
+        self.assertEqual(number, 2)
 
     # Input a number, returns the number
     @patch('builtins.input', return_value=7)
@@ -104,21 +110,21 @@ class TestEnterNumber_End(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
 
-    # todo - get mock to work with error text
-    """
     # Input same number as begin, returns an error
-    @patch('builtins.input', return_value=1)
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(1, 2))
     def test_inputEnd_sameAsBegin(self, mock_input):
         number = enter_a_number(1)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a higher number.")
+        self.assertEqual(number, 2)
 
-
-    # Input a number that is lower then the beginning number, returns an error
-    @patch('builtins.input', return_value=1)
+    # Input 1 that is lower then the beginning number, returns an error
+    # Input 5, which is higher returns 5  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(1, 5))
     def test_inputEnd_lessThenBegin(self, mock_input):
         number = enter_a_number(2)
         self.assertEqual(sys.stdout.getvalue().strip(), "Error! Enter a higher number.")
-    """
+        self.assertEqual(number, 5)
 
     # Input a number greater then the beginnin number, returns the number
     @patch('builtins.input', return_value=5)
@@ -251,29 +257,30 @@ class TestPlayAgain(unittest.TestCase):
     @patch('builtins.input', return_value='y')
     def test_input_y(self, mock_input):
         play = play_again()
-        self.assertEquals(play, True)
+        self.assertEqual(play, True)
 
     # User inputs 'n'
     @patch('builtins.input', return_value='n')
     def test_input_n(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
+        self.assertEqual(play, False)
         self.assertEqual(sys.stdout.getvalue().strip(), "Thanks for playing!!")
 
-    # todo - get mock to work with error text
-    """
-    # User inputs 'a'
-    @patch('builtins.input', return_value='a')
-    def test_input_other_text(self, mock_input):
+    # Inputs 'a' and returns an error
+    # 'a' is first incorrect input, 'y' is second correct input / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 'y'))
+    def test_input_invlaid_letter(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEqual(play, True)
 
-    # User inputs a number
-    @patch('builtins.input', return_value=1)
-    def test_input_number(self, mock_input):
+    # Inputs '' and returns an error
+    @patch('builtins.input', side_effect=('', 'y'))
+    def test_input_invlaid_space(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
-    """
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEqual(play, True)
+
     def tearDown(self):
         pass
 

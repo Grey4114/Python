@@ -58,32 +58,37 @@ class TestEnterPayment(unittest.TestCase):
         pay = enter_payment(1.94)
         self.assertEqual(pay, 2)
 
-    # todo - need to figure out how to test mock input with error text
-    """
-    # Price is 1.94 and input is 1, returns  error text
-    @patch('builtins.input', return_value=1)
+    # Input 1, returns an error
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(1, 2))
     def test_lower_value(self, mock_input):
         pay = enter_payment(1.94)
         self.assertEqual(sys.stdout.getvalue().strip(), "Enter a dollar amount that is higher than the Purchase Price")
+        self.assertEqual(pay, 2)
 
-    # Price is 1.94 and input no value, returns  error text
-    @patch('builtins.input', return_value="")
+    # Price is 1.94 and input no value, returns error text
+    # Input 2, which is correct returns 2  / this breaks infinite loop
+    @patch('builtins.input', side_effect=('', 2))
     def test_no_value(self, mock_input):
         pay = enter_payment(1.94)
-        self.assertEqual(sys.stdout.getvalue().strip(), "Enter a dollar amount that is higher than the Purchase Price")
+        self.assertEqual(sys.stdout.getvalue().strip(), "Whoops! That's not a whole dollar amount. Please try again.")
+        self.assertEqual(pay, 2)
 
-    # Price is 1.94 and input text value, returns  error text
-    @patch('builtins.input', return_value="a")
+    # Price is 1.94 and input text value, returns error text
+    # Input 2 returns 2  / this breaks the infinite loop
+    @patch('builtins.input', side_effect=('a', 2))
     def test_text_value(self, mock_input):
         pay = enter_payment(1.94)
         self.assertEqual(sys.stdout.getvalue().strip(), "Whoops! That's not a whole dollar amount. Please try again.")
+        self.assertEqual(pay, 2)
 
     # Price is 1.94 and input negative value, returns  error text
-    @patch('builtins.input', return_value=-1)
+    # Input 2 returns 2  / this breaks the infinite loop
+    @patch('builtins.input', side_effect=(-1, 2))
     def test_negative_value(self, mock_input):
         pay = enter_payment(1.94)
         self.assertEqual(sys.stdout.getvalue().strip(), "Enter a dollar amount that is higher than the Purchase Price")
-    """
+        self.assertEqual(pay, 2)
 
     def tearDown(self):
         pass
@@ -169,7 +174,7 @@ class TestSPrintResults(unittest.TestCase):
         pass
 
 
-# TEST - the play_again function
+# TEST - checks the play_again function
 class TestPlayAgain(unittest.TestCase):
     def setUp(self):
         self.held, sys.stdout = sys.stdout, StringIO()
@@ -178,29 +183,30 @@ class TestPlayAgain(unittest.TestCase):
     @patch('builtins.input', return_value='y')
     def test_input_y(self, mock_input):
         play = play_again()
-        self.assertEquals(play, True)
+        self.assertEqual(play, True)
 
     # User inputs 'n'
     @patch('builtins.input', return_value='n')
     def test_input_n(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
+        self.assertEqual(play, False)
         self.assertEqual(sys.stdout.getvalue().strip(), "Thanks for playing!!")
 
-    # todo - get mock to work with error text
-    """
-    # User inputs 'a'
-    @patch('builtins.input', return_value='a')
-    def test_input_other_text(self, mock_input):
+    # Inputs 'a' and returns an error
+    # 'a' is first incorrect input, 'y' is second correct input / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 'y'))
+    def test_input_invlaid_letter(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEqual(play, True)
 
-    # User inputs a number
-    @patch('builtins.input', return_value=1)
-    def test_input_number(self, mock_input):
+    # Inputs '' and returns an error
+    @patch('builtins.input', side_effect=('', 'y'))
+    def test_input_invlaid_space(self, mock_input):
         play = play_again()
-        self.assertEquals(play, False)
-    """
+        self.assertEqual(sys.stdout.getvalue().strip(), "Please enter 'Y' or 'N'.")
+        self.assertEqual(play, True)
+
     def tearDown(self):
         pass
 

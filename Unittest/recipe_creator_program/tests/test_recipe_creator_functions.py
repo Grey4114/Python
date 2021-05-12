@@ -95,37 +95,41 @@ class TestMenuChoice(unittest.TestCase):
         answer = menu_choice(3)
         self.assertEqual(answer, 3)
 
-    # Todo - invalid 0 - unsure how to test
-    @patch('builtins.input', side_effect=[0])
+    # Input 0, returns an error
+    # Input 3, returns 3  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(0, 3))
     def test_menu_choice_invalid_0(self, mock_input):
-        pass
-        # with self.assertRaises(ValueError, 'Value Error! Enter a valid number'):
-        #    menu_choice(3)
-        # self.assertEqual(sys.stdout.getvalue().strip(), 'Value Error! Enter a valid number')
+        pick = menu_choice(3)
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Value Error! Enter a valid number')
+        self.assertEqual(pick, 3)
 
-    # Todo - invalid 4- unsure how to test
-    @patch('builtins.input', return_value=4)
+    # Input 4, returns an error
+    # Input 3, returns 3  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(4, 3))
     def test_menu_choice_invalid_4(self, mock_input):
-        # answer = menu_choice(3)
-        # self.assertEqual(answer, 4)
-        pass
+        pick = menu_choice(3)
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Value Error! Enter a valid number')
+        self.assertEqual(pick, 3)
 
-    # Todo - invalid 'a'- unsure how to test
-    @patch('builtins.input', return_value='a')
+    # Input 'a', returns an error
+    # Input 3, returns 3  / this breaks infinite loop
+    @patch('builtins.input', side_effect=('a', 3))
     def test_menu_choice_invalid_letter(self, mock_input):
-        # menu_choice(3)
-        # self.assertEqual(sys.stdout.getvalue().strip(), "Select an Option: ")
-        pass
+        pick = menu_choice(3)
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter a number')
+        self.assertEqual(pick, 3)
 
-    # Todo - invalid space - unsure how to test
-    @patch('builtins.input', return_value=' ')
+    # Input ' ', returns an error
+    # Input 3, returns 3  / this breaks infinite loop
+    @patch('builtins.input', side_effect=(' ', 3))
     def test_menu_choice_invalid_none(self, mock_input):
-        # menu_choice(3)
-        # self.assertEqual(sys.stdout.getvalue().strip(), "Select an Option: ")
-        pass
+        pick = menu_choice(3)
+        self.assertEqual(sys.stdout.getvalue().strip(), 'Error! Enter a number')
+        self.assertEqual(pick, 3)
 
     def tearDown(self):
         pass
+
 
 # Tests the Choice RI Type function
 class TestChoiceRIType(unittest.TestCase):
